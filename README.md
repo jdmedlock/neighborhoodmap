@@ -46,12 +46,16 @@ This app has the following dependencies
 
 | Module/Library | Environment | Description | Related Files |
 |:---------------|:------------|:------------|:--------------|
-| Lodash         | Runtime     | _debounce text input | N/a  |
+| dotenv         | Runtime     | Load environment variables | `.env` |
+| lodash.debounce | Runtime     | _debounce text input | N/a  |
+| node-sass-chokidar | Development | CSS complier | N/a |
 | NPM            | Development | Package manager | package.json |
-| Prop-Types     | Runtime     | Type checking for props | N/a |
-| React          | Runtime     | UI Library  | N/a           |
-| React-Router   | Runtime     | Declarative routing for React | N/a |
-| React-Scripts  | Runtime     | scripts and configuration used by Create React App | N/a |
+| npm-run-all    | Runtime     | Run multiple scripts | N/a |
+| prop-types     | Runtime     | Type checking for props | N/a |
+| react          | Runtime     | UI Library  | N/a           |
+| react-dom      | Runtime     | DOM renderer for React | N/a |
+| react-router   | Runtime     | Declarative routing for React | N/a |
+| react-scripts  | Runtime     | scripts and configuration used by Create React App | N/a |
 
 ## Application Structure
 
