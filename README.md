@@ -33,6 +33,20 @@ for the main page are:
 
 <TBD>
 
+### Style Guide
+
+| Style Component | Part                                                    |
+|:----------------|:--------------------------------------------------------|
+| Color           | Primary: #0288d1 - Light: #5eb8ff - Dark: #005b9f       |
+|                 | Secondary: #f9a825 - Light: #ffd95a - Dark: #c17900     |
+|                 | Text on primary: #000000 - secondary: #000000           |
+| Typography      | Title: Roboto                                           |
+|                 | Subtitle: Open Sans                                     |
+|                 | Body: Roboto Slab                                       |
+|                 | Caption: Roboto Slab                                    |
+|                 | Button: Roboto                                          |
+| Motion          | Selection: Increase dimension then return to normal size |
+
 ### Starting the App
 
 To start the application simply run `npm run start` or `yarn start` from the
@@ -46,8 +60,9 @@ This app has the following dependencies
 
 | Module/Library | Environment | Description | Related Files |
 |:---------------|:------------|:------------|:--------------|
+| @material-x...x | Runtime     | Material Components for React | |
 | dotenv         | Runtime     | Load environment variables | `.env` |
-| lodash.debounce | Runtime     | _debounce text input | N/a  |
+| lodash.debounce | Runtime    | _debounce text input | N/a  |
 | node-sass-chokidar | Development | CSS complier | N/a |
 | NPM            | Development | Package manager | package.json |
 | npm-run-all    | Runtime     | Run multiple scripts | N/a |
