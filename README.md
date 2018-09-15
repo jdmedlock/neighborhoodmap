@@ -60,17 +60,28 @@ This app has the following dependencies
 
 | Module/Library | Environment | Description | Related Files |
 |:---------------|:------------|:------------|:--------------|
-| @material-x...x | Runtime     | Material Components for React | |
+| @material      | Runtime     | [Material Design UI Web Components](https://material.io/develop/web/docs/getting-started/) | N/a |
+| autoprefixer   | Development | Parses CSS and adds vendor prefixes to CSS rules | N/a |
+| babel-core     | Development | Babel compiler core | N/a |
+| babel-loader   | Development | Compiles JavaScript files using babel | N/a |
+| babel-preset-es2015 | Development | Preset for compiling es2015 | N/a |
+| css-loader     | Development | Resolves CSS @import and url() paths | N/a |
 | dotenv         | Runtime     | Load environment variables | `.env` |
+| extract-loader | Development | Extracts the CSS into a .css file | N/a |
+| file-loader    | Development | Serves the .css file as a public URL | N/a |
 | lodash.debounce | Runtime    | _debounce text input | N/a  |
 | node-sass-chokidar | Development | CSS complier | N/a |
 | NPM            | Development | Package manager | package.json |
 | npm-run-all    | Runtime     | Run multiple scripts | N/a |
+| postcss-loader | Deveopment  | Loader for Webpack used in conjunction with autoprefixer | N/a |
 | prop-types     | Runtime     | Type checking for props | N/a |
 | react          | Runtime     | UI Library  | N/a           |
 | react-dom      | Runtime     | DOM renderer for React | N/a |
 | react-router   | Runtime     | Declarative routing for React | N/a |
 | react-scripts  | Runtime     | scripts and configuration used by Create React App | N/a |
+| sass-loader    | Development | Loads a Sass file and compiles it to CSS | N/a |
+| webpack        | Development | Module bundler | `webpack.config.js` |
+| webpack-dev-server | Development | Development server | N/a |
 
 ## Application Structure
 
