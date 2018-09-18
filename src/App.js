@@ -1,6 +1,13 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import {MDCTopAppBar} from '@material/top-app-bar/index';
+import {
+  TopAppBar,
+  TopAppBarRow,
+  TopAppBarSection,
+  TopAppBarNavigationIcon,
+  TopAppBarActionItem,
+  TopAppBarTitle
+} from '@rmwc/top-app-bar';
 import FooterBar from './components/FooterBar';
 import Map from './components/Map';
 import PlacePage from './components/PlacePage';
@@ -25,12 +32,15 @@ class NeighborhoodMap extends React.Component {
   render() {
     return (
       <div>
-        <header className="mdc-top-app-bar">
-          <div className="mdc-top-app-bar__row">
-            <section className="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-              <span className="mdc-top-app-bar__title">Neighborhood Map</span>
-            </section>
-          </div>
+        <header>
+          <TopAppBar>
+            <TopAppBarRow>
+              <TopAppBarSection>
+                <TopAppBarNavigationIcon icon="" />
+                <TopAppBarTitle>Neighborhood Map</TopAppBarTitle>
+              </TopAppBarSection>
+            </TopAppBarRow>
+          </TopAppBar>
         </header>
 
         <section>

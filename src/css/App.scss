@@ -1,10 +1,10 @@
 @charset "utf-8";
 
-@import "../../node_modules/@material/top-app-bar/mdc-top-app-bar";
-
+@import "../../node_modules/material-components-web/dist/material-components-web.min.css";
 
 /* ====================== Grid Layout ====================== */
 
+/*
 #header {
   grid-area: header;
 }
@@ -16,8 +16,9 @@
 #footer {
   grid-area: footer;
 }
-
+*/
 /* Default to 2-column layout */
+/*
 .wrapper {
   display: grid;
   grid-template-columns: 6fr 6fr;
@@ -28,5 +29,6 @@
     "reviews map"
     "footer footer";
 }
+*/
 
 /* ============= HTML Tag Attribute overrides ============== */
