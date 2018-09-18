@@ -1,6 +1,14 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 // import { Route } from 'react-router-dom';
+
+// React Material Web Components
+import {
+  Grid,
+  GridCell
+} from '@rmwc/grid';
+
+// Application Components
 import '../css/App.css';
 
 const Map = (props) => {
@@ -12,7 +20,11 @@ const Map = (props) => {
    */
   return (
     <div>
-      <h1>Map</h1>
+      <Grid>
+        <GridCell span="4">
+          <h1>Map</h1>
+        </GridCell>
+      </Grid>
     </div>
   )
 }

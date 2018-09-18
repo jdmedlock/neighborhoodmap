@@ -1,6 +1,14 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 // import { Route } from 'react-router-dom';
+
+// React Material Web Components
+import {
+  Grid,
+  GridCell
+} from '@rmwc/grid';
+
+// Application Components
 import '../css/App.css';
 
 const SearchPage = (props) => {
@@ -13,7 +21,11 @@ const SearchPage = (props) => {
    */
   return (
     <div>
-      <h1>Search fields and info goes here</h1>
+      <Grid>
+        <GridCell span="4">
+          <h1>Search fields and info goes here</h1>
+        </GridCell>
+      </Grid>
     </div>
   )
 }

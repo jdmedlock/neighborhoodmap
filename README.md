@@ -60,7 +60,7 @@ This app has the following dependencies
 
 | Module/Library | Environment | Description | Related Files |
 |:---------------|:------------|:------------|:--------------|
-| @material      | Runtime     | [Material Design UI Web Components](https://material.io/develop/web/docs/getting-started/) | N/a |
+| @rmwc          | Runtime     | [React Material Web Components](https://jamesmfriedman.github.io/rmwc//) | N/a |
 | autoprefixer   | Development | Parses CSS and adds vendor prefixes to CSS rules | N/a |
 | babel-core     | Development | Babel compiler core | N/a |
 | babel-loader   | Development | Compiles JavaScript files using babel | N/a |

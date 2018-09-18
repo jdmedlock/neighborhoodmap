@@ -1,34 +1,15 @@
 @charset "utf-8";
 
+$mdc-theme-primary: #0288d1;
+$mdc-theme-secondary: #f9a825;
+$mdc-theme-background: #fff;
+
 @import "../../node_modules/material-components-web/dist/material-components-web.min.css";
 
-/* ====================== Grid Layout ====================== */
-
-/*
-#header {
-  grid-area: header;
-}
-
-#map-container {
-  grid-area: map;
-}
-
-#footer {
-  grid-area: footer;
-}
-*/
-/* Default to 2-column layout */
-/*
-.wrapper {
-  display: grid;
-  grid-template-columns: 6fr 6fr;
-  grid-template-areas:
-    "header header"
-    "breadcrumb breadcrumb"
-    "restaurant map"
-    "reviews map"
-    "footer footer";
-}
-*/
-
 /* ============= HTML Tag Attribute overrides ============== */
+
+/* ============== Material Design overrides ================ */
+
+.mdc-layout-grid__cell {
+  margin-top: 1em;
+}

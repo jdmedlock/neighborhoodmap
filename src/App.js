@@ -1,13 +1,20 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+
+// React Material Web Components
 import {
   TopAppBar,
   TopAppBarRow,
   TopAppBarSection,
   TopAppBarNavigationIcon,
-  TopAppBarActionItem,
   TopAppBarTitle
 } from '@rmwc/top-app-bar';
+import {
+  Grid,
+  GridCell
+} from '@rmwc/grid';
+
+// Application Components
 import FooterBar from './components/FooterBar';
 import Map from './components/Map';
 import PlacePage from './components/PlacePage';
@@ -35,7 +42,7 @@ class NeighborhoodMap extends React.Component {
         <header>
           <TopAppBar>
             <TopAppBarRow>
-              <TopAppBarSection>
+              <TopAppBarSection alignStart>
                 <TopAppBarNavigationIcon icon="" />
                 <TopAppBarTitle>Neighborhood Map</TopAppBarTitle>
               </TopAppBarSection>
@@ -43,24 +50,34 @@ class NeighborhoodMap extends React.Component {
           </TopAppBar>
         </header>
 
-        <section>
-          <Switch>
-            <Route exact path='/' render={() => (
-              <SearchPage />
-              )}/>
-            <Route exact path='/search' render={() => (
-              <PlacePage />
-            )}/>
-          </Switch>
-        </section>
+        <Grid>
+          <GridCell span="4">
+            <section>
+              <Switch>
+                <Route exact path='/' render={() => (
+                  <SearchPage />
+                  )}/>
+                <Route exact path='/search' render={() => (
+                  <PlacePage />
+                )}/>
+              </Switch>
+            </section>
+          </GridCell>
 
-        <section className="map-container">
-          <Map />
-        </section>
+          <GridCell span="4">
+            <section className="map-container">
+              <Map />
+            </section>
+          </GridCell>
 
-        <footer className="footer">
-          <FooterBar />
-        </footer>
+          <GridCell span="4">
+            <footer className="footer">
+              <FooterBar />
+            </footer>
+          </GridCell>
+
+        </Grid>
+
       </div>
     )
   }
