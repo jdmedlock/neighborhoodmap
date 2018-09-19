@@ -51,7 +51,7 @@ class NeighborhoodMap extends React.Component {
         </header>
 
         <Grid>
-          <GridCell span="4">
+          <GridCell span="8">
             <section>
               <Switch>
                 <Route exact path='/' render={() => (
@@ -64,13 +64,13 @@ class NeighborhoodMap extends React.Component {
             </section>
           </GridCell>
 
-          <GridCell span="4">
+          <GridCell span="8">
             <section className="map-container">
               <Map />
             </section>
           </GridCell>
 
-          <GridCell span="4">
+          <GridCell span="8">
             <footer className="footer">
               <FooterBar />
             </footer>
