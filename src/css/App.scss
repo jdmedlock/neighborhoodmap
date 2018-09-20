@@ -13,3 +13,11 @@ $mdc-theme-background: #fff;
 .mdc-layout-grid__cell {
   margin-top: 1em;
 }
+
+/* ======================= Map Area ======================== */@at-root
+#map {
+  margin: 0;
+  padding: 0;
+  height: 100vw;
+  width: 90vw;
+}

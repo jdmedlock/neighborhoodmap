@@ -12,7 +12,7 @@ const FooterBar = (props) => {
    */
   return (
     <div>
-      <h1>About</h1>
+      <h4>About</h4>
     </div>
   )
 }

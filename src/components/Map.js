@@ -19,11 +19,10 @@ class Map extends React.Component {
    * @memberof Map
    */
   componentDidMount() {
-    console.log('document: ', document);
-    let map = new window.google.maps.Map(document.getElementById('mapit'), {
-      center: {lat: -34.397, lng: 150.644},
+    let map = new window.google.maps.Map(document.getElementById('map'), {
+      center: { lat: 28.4812299, lng: -80.8883962 },
       zoom: 8
-    })
+    });
   }
 
   /**
@@ -36,9 +35,7 @@ class Map extends React.Component {
       <div>
         <Grid>
           <GridCell span="8">
-            <h1>Map</h1>
-            <div id="mapit">
-            </div>
+            <section id="map" />
           </GridCell>
         </Grid>
       </div>

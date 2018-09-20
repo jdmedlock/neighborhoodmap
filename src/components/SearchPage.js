@@ -3,10 +3,9 @@ import React from 'react';
 // import { Route } from 'react-router-dom';
 
 // React Material Web Components
-import {
-  Grid,
-  GridCell
-} from '@rmwc/grid';
+import { Grid, GridCell } from '@rmwc/grid';
+import { TextField, TextFieldIcon, TextFieldHelperText } from '@rmwc/textfield';
+
 
 // Application Components
 import '../css/App.css';
@@ -23,7 +22,8 @@ const SearchPage = (props) => {
     <div>
       <Grid>
         <GridCell span="4">
-          <h1>Search fields and info goes here</h1>
+          <TextField box withLeadingIcon="search" fullwidth label="Enter location or place to search for..." />
+          <h2>Results...</h2>
         </GridCell>
       </Grid>
     </div>
