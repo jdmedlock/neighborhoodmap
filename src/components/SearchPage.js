@@ -21,9 +21,10 @@ const SearchPage = (props) => {
   return (
     <div>
       <Grid>
-        <GridCell span="4">
-          <TextField box withLeadingIcon="search" fullwidth label="Enter location or place to search for..." />
-          <h2>Results...</h2>
+        <GridCell span="8">
+          <TextField box withTrailingIcon={<TextFieldIcon icon='search' />}
+            fullwidth type="text" label="Enter location or place to search for..." />
+          <h3>Search Results...</h3>
         </GridCell>
       </Grid>
     </div>
