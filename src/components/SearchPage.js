@@ -1,16 +1,15 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-// import { Route } from 'react-router-dom';
 
 // React Material Web Components
 import { Grid, GridCell } from '@rmwc/grid';
-import { TextField, TextFieldIcon, TextFieldHelperText } from '@rmwc/textfield';
-
 
 // Application Components
+import SearchInput from './SearchInput.js'
+import SearchResults from './SearchResults.js'
 import '../css/App.css';
 
-const SearchPage = (props) => {
+class SearchPage extends React.Component {
 
   /**
    * @description Create the search page which provides the user with the means
@@ -18,17 +17,18 @@ const SearchPage = (props) => {
    * @returns {HTMLDivElement} Main application page
    * @memberof SearchPage
    */
-  return (
-    <div>
-      <Grid>
-        <GridCell span="8">
-          <TextField box withTrailingIcon={<TextFieldIcon icon='search' />}
-            fullwidth type="text" label="Enter location or place to search for..." />
-          <h3>Search Results...</h3>
-        </GridCell>
-      </Grid>
-    </div>
-  )
+  render() {
+    return (
+      <div>
+        <Grid>
+          <GridCell span="8">
+            <SearchInput handleChange={this.handleChange} />
+            <SearchResults />
+          </GridCell>
+        </Grid>
+      </div>
+    )
+  }
 }
 
 export default SearchPage;

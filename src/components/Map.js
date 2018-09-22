@@ -19,7 +19,7 @@ class Map extends React.Component {
    * @memberof Map
    */
   componentDidMount() {
-    let map = new window.google.maps.Map(document.getElementById('map'), {
+    new window.google.maps.Map(document.getElementById('map'), {
       center: { lat: 28.4812299, lng: -80.8883962 },
       zoom: 8
     });
