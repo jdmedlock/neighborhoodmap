@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 // React Material Web Components
 import { Grid, GridCell } from '@rmwc/grid';
@@ -10,6 +10,10 @@ import SearchResults from './SearchResults.js'
 import '../css/App.css';
 
 class SearchPage extends React.Component {
+
+  static propTypes = {
+    map: PropTypes.object.isRequired
+  }
 
   /**
    * @description Create the search page which provides the user with the means
@@ -22,7 +26,7 @@ class SearchPage extends React.Component {
       <div>
         <Grid>
           <GridCell span="8">
-            <SearchInput handleChange={this.handleChange} />
+            <SearchInput handleChange={ this.handleChange } map={ this.props.map } />
             <SearchResults />
           </GridCell>
         </Grid>

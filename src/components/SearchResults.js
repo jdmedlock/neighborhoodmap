@@ -5,6 +5,7 @@ import React from 'react';
 // import { Grid, GridCell } from '@rmwc/grid';
 
 // Application Components
+import PlaceResult from './PlaceResult';
 import '../css/App.css';
 
 const SearchResults = (props) => {
@@ -17,6 +18,7 @@ const SearchResults = (props) => {
   return (
     <div>
       <h3>Search Results...</h3>
+      <PlaceResult />
     </div>
   )
 }

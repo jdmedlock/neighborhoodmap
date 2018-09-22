@@ -1,5 +1,7 @@
 import React from 'react';
 import debounce from "lodash.debounce";
+import PropTypes from 'prop-types';
+
 
 // React Material Web Components
 import { TextField, TextFieldIcon } from '@rmwc/textfield';
@@ -10,10 +12,14 @@ import '../css/App.css';
 
 class SearchInput extends React.Component {
 
+  static propTypes = {
+    map: PropTypes.object.isRequired
+  }
+
   /**
-   * @description Establish the state for this component and define the 
+   * @description Establish the state for this component and define the
    * `emitChangeDebounce` function on the class.
-   * @param {*} props 
+   * @param {*} props
    */
   constructor(props) {
     super(props);
@@ -25,6 +31,31 @@ class SearchInput extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.emitChangeDebounce = debounce(this.queryLocation, 150);
+  }
+
+  /**
+   * @description Link Google Maps Autocomplete to the search text fiels
+   * @memberof SearchInput
+   */
+  componentDidMount() {
+    console.log('window: ', window);
+    const places = window.google.maps.places;
+    const searchAutocomplete = new places.Autocomplete(
+      document.getElementById('search-text'));
+    // Constrain searches to the bounds of our neighborhood map and specify
+    // the specific fields to be returned
+    searchAutocomplete.bindTo('bounds', document.getElementById('map'));
+    searchAutocomplete.setFields(
+      ['place_id', 'name', 'types', 'rating', 'photos']);
+
+    const searchBox = new window.google.maps.places.SearchBox(
+      document.getElementById('search-text'));
+    // Constrain searches to the bounds of our neighborhood map and specify
+    // the specific fields to be returned
+    console.log('map: ', this.props.map);
+    searchBox.setBounds(this.props.map.getBounds());
+    let results = searchBox.getPlaces();
+    console.log('results: ', results);
   }
 
   /**
@@ -56,7 +87,7 @@ class SearchInput extends React.Component {
   render() {
     return (
       <div>
-        <TextField box withTrailingIcon={<TextFieldIcon icon='search' />}
+        <TextField id="search-text" box withTrailingIcon={<TextFieldIcon icon='search' />}
           fullwidth type="text" onChange={this.handleChange}
           label="Enter location or place to search for..." />
       </div>

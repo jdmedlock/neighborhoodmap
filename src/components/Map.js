@@ -1,6 +1,4 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
-// import { Route } from 'react-router-dom';
 
 // React Material Web Components
 import {
@@ -12,18 +10,6 @@ import {
 import '../css/App.css';
 
 class Map extends React.Component {
-
-  /**
-   * @description Load the Google map for our neighborhood and add insert it
-   * into the DOM
-   * @memberof Map
-   */
-  componentDidMount() {
-    new window.google.maps.Map(document.getElementById('map'), {
-      center: { lat: 28.4812299, lng: -80.8883962 },
-      zoom: 8
-    });
-  }
 
   /**
    * @description Create the map area containing the map of our neighborhood

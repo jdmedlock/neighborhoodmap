@@ -26,7 +26,22 @@ class NeighborhoodMap extends React.Component {
   // MainPage state
   state = {
     homeLatLng: '',
+    map: '',
     searchRadius: 0
+  }
+
+  /**
+   * @description Load the Google map for our neighborhood and add insert it
+   * into the DOM
+   * @memberof Map
+   */
+  componentDidMount() {
+    const map = new window.google.maps.Map(document.getElementById('map'), {
+      center: { lat: 28.4812299, lng: -80.8883962 },
+      zoom: 8
+    });
+    this.setState({ map });
+    console.log('Created map: ', map);
   }
 
   /**
@@ -55,7 +70,7 @@ class NeighborhoodMap extends React.Component {
             <section>
               <Switch>
                 <Route exact path='/' render={() => (
-                  <SearchPage />
+                  <SearchPage map={ this.state.map } />
                   )}/>
                 <Route exact path='/search' render={() => (
                   <PlacePage />
