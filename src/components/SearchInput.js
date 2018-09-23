@@ -131,9 +131,11 @@ class SearchInput extends React.Component {
   render() {
     return (
       <div>
-        <TextField id="search-text" box withTrailingIcon={<TextFieldIcon icon='search' />}
-          fullwidth type="text" onChange={this.handleChange}
-          label="Enter location or place to search for..." />
+        <TextField id="search-text" box
+          withTrailingIcon={<TextFieldIcon icon='search' />}
+          fullwidth type="text" onChange={this.handleChange} 
+          label="Enter the place you want to find..."
+          placeholder="" />
       </div>
     )
   }
