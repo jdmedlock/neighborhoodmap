@@ -38,7 +38,6 @@ class SearchInput extends React.Component {
    * @memberof SearchInput
    */
   componentDidMount() {
-    console.log('window: ', window);
     const places = window.google.maps.places;
     const searchAutocomplete = new places.Autocomplete(
       document.getElementById('search-text'));
@@ -52,7 +51,6 @@ class SearchInput extends React.Component {
       document.getElementById('search-text'));
     // Constrain searches to the bounds of our neighborhood map and specify
     // the specific fields to be returned
-    console.log('map: ', this.props.map);
     searchBox.setBounds(this.props.map.getBounds());
     let results = searchBox.getPlaces();
     console.log('results: ', results);

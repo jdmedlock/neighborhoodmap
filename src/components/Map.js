@@ -9,14 +9,12 @@ import {
 // Application Components
 import '../css/App.css';
 
-class Map extends React.Component {
-
+const Map = (props) => {
   /**
    * @description Create the map area containing the map of our neighborhood
    * @returns {HTMLDivElement} Main application page
    * @memberof Map
    */
-  render() {
     return (
       <div>
         <Grid>
@@ -26,7 +24,6 @@ class Map extends React.Component {
         </Grid>
       </div>
     )
-  }
-}
+};
 
 export default Map;

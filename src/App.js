@@ -23,11 +23,11 @@ import './css/App.css';
 
 class NeighborhoodMap extends React.Component {
 
-  // MainPage state
+  // App state
   state = {
     homeLatLng: '',
-    map: '',
-    searchRadius: 0
+    map: {},
+    mapIsLoaded: false
   }
 
   /**
@@ -36,12 +36,21 @@ class NeighborhoodMap extends React.Component {
    * @memberof Map
    */
   componentDidMount() {
-    const map = new window.google.maps.Map(document.getElementById('map'), {
-      center: { lat: 28.4812299, lng: -80.8883962 },
-      zoom: 8
+    this.loadGoogleMap().then((google) => {
+      this.setState({ mapIsLoaded: true });
     });
-    this.setState({ map });
-    console.log('Created map: ', map);
+  }
+
+  loadGoogleMap() {
+    return new Promise((resolve, reject) => {
+      const map = new window.google.maps.Map(document.getElementById('map'), {
+        center: { lat: 28.4812299, lng: -80.8883962 },
+        zoom: 8
+      });
+      this.setState({ map: map });
+      console.log('Created map: ', this.state.map);
+      resolve(window.google);
+    });
   }
 
   /**
@@ -68,20 +77,23 @@ class NeighborhoodMap extends React.Component {
         <Grid>
           <GridCell span="8">
             <section>
-              <Switch>
-                <Route exact path='/' render={() => (
-                  <SearchPage map={ this.state.map } />
-                  )}/>
-                <Route exact path='/search' render={() => (
-                  <PlacePage />
-                )}/>
-              </Switch>
+              { this.state.mapIsLoaded ? (
+                  <Switch>
+                    <Route exact path='/' render={() => (
+                      <SearchPage map={ this.state.map } />
+                      )}/>
+                    <Route exact path='/search' render={() => (
+                      <PlacePage />
+                    )}/>
+                  </Switch>
+                ) : ('')
+              }
             </section>
           </GridCell>
 
           <GridCell span="8">
             <section className="map-container">
-              <Map />
+              <Map id="map"/>
             </section>
           </GridCell>
 
