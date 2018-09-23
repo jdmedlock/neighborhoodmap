@@ -28,10 +28,12 @@ class NeighborhoodMap extends React.Component {
 
     // App state
     this.state = {
-      homeLatLng: '',
+      // Coordinates of the center of our neighborhood
+      home: { lat: 28.5729, lng: -80.6490 },
+      // Maximum search radius in meters
+      searchRadius: '16000',
       map: {},
       mapIsLoaded: false,
-      searchResults: []
     };
   }
 
@@ -55,21 +57,12 @@ class NeighborhoodMap extends React.Component {
   loadGoogleMap() {
     return new Promise((resolve, reject) => {
       const map = new window.google.maps.Map(document.getElementById('map'), {
-        center: { lat: 28.5729, lng: -80.6490 },
+        center: { lat: this.state.home.lat, lng: this.state.home.lng },
         zoom: 10,
         mapTypeId: 'roadmap'
       });
       resolve(map);
     });
-  }
-
-  /**
-   * @description Replace the search results in our state
-   * @param {*} searchResults Array of place results
-   * @memberof NeighborhoodMap
-   */
-  setSearchResults(searchResults) {
-    this.setState({ searchResults: searchResults });
   }
 
   /**
@@ -96,12 +89,14 @@ class NeighborhoodMap extends React.Component {
         <Grid>
           <GridCell span="8">
             <section>
-              { 
+              {
                 this.state.mapIsLoaded ? (
                   <Switch>
                     <Route exact path='/' render={() => (
                       <SearchPage
-                        map={ this.state.map } 
+                        home={ this.state.home }
+                        searchRadius={ this.state.searchRadius }
+                        map={ this.state.map }
                         setSearchResults={ this.setSearchResults } />
                       )}/>
                     <Route exact path='/search' render={() => (
@@ -115,7 +110,7 @@ class NeighborhoodMap extends React.Component {
 
           <GridCell span="8">
             <section className="map-container">
-              <Map id="map"/>
+              <Map />
             </section>
           </GridCell>
 

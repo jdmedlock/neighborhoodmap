@@ -13,6 +13,8 @@ import '../css/App.css';
 class SearchInput extends React.Component {
 
   static propTypes = {
+    home: PropTypes.object.isRequired,
+    searchRadius: PropTypes.string.isRequired,
     map: PropTypes.object.isRequired,
     setSearchResults: PropTypes.func.isRequired
   }
@@ -41,14 +43,8 @@ class SearchInput extends React.Component {
   componentDidMount() {
     const searchBox = new window.google.maps.places.SearchBox(
       document.getElementById('search-text'));
-    // Constrain searches to the bounds of our neighborhood map and specify
-    // the specific fields to be returned
     searchBox.setBounds(this.props.map.getBounds());
-    searchBox.addListener('places_changed', () => {
-      let results = searchBox.getPlaces();
-      console.log('results: ', results);
-      this.props.setSearchResults(results);
-    });
+    searchBox.addListener('places_changed', this.handlePlaceChange);
   }
 
   /**
@@ -62,13 +58,31 @@ class SearchInput extends React.Component {
   }
 
   /**
+   * @description Conduct a nearby search using the user-specified search
+   * keywords. Searches are constrained to be within a given radius of the
+   * center position of our neighborhood.
+   * @memberof SearchInput
+   */
+  handlePlaceChange = () => {
+    const service = new window.google.maps.places.PlacesService(this.props.map);
+    service.nearbySearch({
+      location: this.props.home,
+      radius: this.props.searchRadius,
+      keyword: this.state.searchText,
+    }, (results, status) => {
+      if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+        this.props.setSearchResults(results);
+      }
+    });
+  }
+
+  /**
    * @description Search Google Maps for matching locations within our
    * neighborhood
    * @param {String} enteredText Search terms entered by the user
    */
   queryLocation(enteredText) {
-    // TODO: Add search logic
-    console.log('enteredText: ', enteredText);
+    this.setState({ searchText: enteredText });
   }
 
   /**

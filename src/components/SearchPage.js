@@ -12,8 +12,26 @@ import '../css/App.css';
 class SearchPage extends React.Component {
 
   static propTypes = {
+    home: PropTypes.object.isRequired,
+    searchRadius: PropTypes.string.isRequired,
     map: PropTypes.object.isRequired,
-    setSearchResults: PropTypes.func.isRequired
+  }
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      searchResults: []
+    };
+  }
+
+  /**
+   * @description Replace the search results in our state
+   * @param {*} searchResults Array of place results
+   * @memberof NeighborhoodMap
+   */
+  setSearchResults = (searchResults) => {
+    this.setState({ searchResults: searchResults });
   }
 
   /**
@@ -28,9 +46,11 @@ class SearchPage extends React.Component {
         <Grid>
           <GridCell span="8">
             <SearchInput handleChange={ this.handleChange }
+              home={ this.props.home }
+              searchRadius={ this.props.searchRadius }
               map={ this.props.map }
-              setSearchResults={ this.props.setSearchResults } />
-            <SearchResults />
+              setSearchResults={ this.setSearchResults } />
+            <SearchResults searchResults={ this.state.searchResults }/>
           </GridCell>
         </Grid>
       </div>
