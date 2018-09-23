@@ -12,7 +12,8 @@ import '../css/App.css';
 class SearchPage extends React.Component {
 
   static propTypes = {
-    map: PropTypes.object.isRequired
+    map: PropTypes.object.isRequired,
+    setSearchResults: PropTypes.func.isRequired
   }
 
   /**
@@ -26,7 +27,9 @@ class SearchPage extends React.Component {
       <div>
         <Grid>
           <GridCell span="8">
-            <SearchInput handleChange={ this.handleChange } map={ this.props.map } />
+            <SearchInput handleChange={ this.handleChange }
+              map={ this.props.map }
+              setSearchResults={ this.props.setSearchResults } />
             <SearchResults />
           </GridCell>
         </Grid>

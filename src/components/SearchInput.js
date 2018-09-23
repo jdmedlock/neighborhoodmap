@@ -13,7 +13,8 @@ import '../css/App.css';
 class SearchInput extends React.Component {
 
   static propTypes = {
-    map: PropTypes.object.isRequired
+    map: PropTypes.object.isRequired,
+    setSearchResults: PropTypes.func.isRequired
   }
 
   /**
@@ -38,22 +39,16 @@ class SearchInput extends React.Component {
    * @memberof SearchInput
    */
   componentDidMount() {
-    const places = window.google.maps.places;
-    const searchAutocomplete = new places.Autocomplete(
-      document.getElementById('search-text'));
-    // Constrain searches to the bounds of our neighborhood map and specify
-    // the specific fields to be returned
-    searchAutocomplete.bindTo('bounds', document.getElementById('map'));
-    searchAutocomplete.setFields(
-      ['place_id', 'name', 'types', 'rating', 'photos']);
-
     const searchBox = new window.google.maps.places.SearchBox(
       document.getElementById('search-text'));
     // Constrain searches to the bounds of our neighborhood map and specify
     // the specific fields to be returned
     searchBox.setBounds(this.props.map.getBounds());
-    let results = searchBox.getPlaces();
-    console.log('results: ', results);
+    searchBox.addListener('places_changed', () => {
+      let results = searchBox.getPlaces();
+      console.log('results: ', results);
+      this.props.setSearchResults(results);
+    });
   }
 
   /**

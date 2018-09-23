@@ -23,34 +23,53 @@ import './css/App.css';
 
 class NeighborhoodMap extends React.Component {
 
-  // App state
-  state = {
-    homeLatLng: '',
-    map: {},
-    mapIsLoaded: false
+  constructor(props) {
+    super(props);
+
+    // App state
+    this.state = {
+      homeLatLng: '',
+      map: {},
+      mapIsLoaded: false,
+      searchResults: []
+    };
   }
 
   /**
    * @description Load the Google map for our neighborhood and add insert it
    * into the DOM
-   * @memberof Map
+   * @memberof NeighborhoodMap
    */
   componentDidMount() {
-    this.loadGoogleMap().then((google) => {
+    this.loadGoogleMap().then((map) => {
+      this.setState({ map: map });
       this.setState({ mapIsLoaded: true });
     });
   }
 
+  /**
+   * @description Load the Neighborhood map
+   * @returns {Promise} Promise that will be resolved when the map is loaded
+   * @memberof NeighborhoodMap
+   */
   loadGoogleMap() {
     return new Promise((resolve, reject) => {
       const map = new window.google.maps.Map(document.getElementById('map'), {
-        center: { lat: 28.4812299, lng: -80.8883962 },
-        zoom: 8
+        center: { lat: 28.5729, lng: -80.6490 },
+        zoom: 10,
+        mapTypeId: 'roadmap'
       });
-      this.setState({ map: map });
-      console.log('Created map: ', this.state.map);
-      resolve(window.google);
+      resolve(map);
     });
+  }
+
+  /**
+   * @description Replace the search results in our state
+   * @param {*} searchResults Array of place results
+   * @memberof NeighborhoodMap
+   */
+  setSearchResults(searchResults) {
+    this.setState({ searchResults: searchResults });
   }
 
   /**
@@ -77,10 +96,13 @@ class NeighborhoodMap extends React.Component {
         <Grid>
           <GridCell span="8">
             <section>
-              { this.state.mapIsLoaded ? (
+              { 
+                this.state.mapIsLoaded ? (
                   <Switch>
                     <Route exact path='/' render={() => (
-                      <SearchPage map={ this.state.map } />
+                      <SearchPage
+                        map={ this.state.map } 
+                        setSearchResults={ this.setSearchResults } />
                       )}/>
                     <Route exact path='/search' render={() => (
                       <PlacePage />
