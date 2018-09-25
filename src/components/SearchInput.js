@@ -79,7 +79,7 @@ class SearchInput extends React.Component {
     }, (results, status) => {
       if (status === window.google.maps.places.PlacesServiceStatus.OK) {
         this.props.setSearchResults(results);
-        this.createMarkers(results);
+        this.addPlacesToMap(results);
       }
     });
   }
@@ -89,29 +89,52 @@ class SearchInput extends React.Component {
    * results list.
    * @memberof SearchInput
    */
-  createMarkers = (places)  => {
+  addPlacesToMap = (places)  => {
     const bounds = new window.google.maps.LatLngBounds();
 
-    for (let i = 0, place; place = places[i]; i++) {
-      const image = {
-        url: place.icon,
-        size: new window.google.maps.Size(71, 71),
-        origin: new window.google.maps.Point(0, 0),
-        anchor: new window.google.maps.Point(17, 34),
-        scaledSize: new window.google.maps.Size(25, 25)
-      };
+    places.forEach((place) => {
+      const marker = this.addMarker(place, bounds);
+      this.addInfoWindow(place, marker);
+    });
 
-      const marker = new window.google.maps.Marker({
-        map: this.props.map,
-        icon: image,
-        title: place.name,
-        position: place.geometry.location
-      });
-
-      bounds.extend(place.geometry.location);
-    }
     this.props.map.fitBounds(bounds);
   };
+
+  /**
+   * @description Add a marker to the map for the specified place
+   * @param {Object} place A place returned as the result of a search
+   * @param {LatLngBounds} bounds Boundry of the neighborhood map
+   * @memberof SearchInput
+   */
+  addMarker = (place, bounds) => {
+    const image = {
+      url: place.icon,
+      size: new window.google.maps.Size(71, 71),
+      origin: new window.google.maps.Point(0, 0),
+      anchor: new window.google.maps.Point(17, 34),
+      scaledSize: new window.google.maps.Size(25, 25)
+    };
+
+    const marker = new window.google.maps.Marker({
+      map: this.props.map,
+      icon: image,
+      title: place.name,
+      position: place.geometry.location
+    });
+
+    bounds.extend(place.geometry.location);
+    return marker;
+  }
+
+  addInfoWindow(place, marker) {
+    const infowindow = new window.google.maps.InfoWindow({
+      content: '<p>Stuff goes here</p>'
+    });
+
+    marker.addListener('click', () => {
+      infowindow.open(this.props.map, marker);
+    });
+  }
 
   /**
    * @description Search Google Maps for matching locations within our

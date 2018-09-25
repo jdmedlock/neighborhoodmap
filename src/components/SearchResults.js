@@ -25,7 +25,7 @@ const SearchResults = (props) => {
               <DataTableHead>
                 <DataTableRow>
                   <DataTableHeadCell>Name</DataTableHeadCell>
-                  <DataTableHeadCell>Type</DataTableHeadCell>
+                  <DataTableHeadCell>Location Type</DataTableHeadCell>
                   <DataTableHeadCell>Rating</DataTableHeadCell>
                 </DataTableRow>
               </DataTableHead>
