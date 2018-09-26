@@ -93,8 +93,8 @@ class SearchInput extends React.Component {
     const bounds = new window.google.maps.LatLngBounds();
 
     places.forEach((place) => {
-      const marker = this.addMarker(place, bounds);
-      this.addInfoWindow(place, marker);
+      const marker = this.addMarkerToMap(place, bounds);
+      this.addInfoWindowToMarker(place, marker);
     });
 
     this.props.map.fitBounds(bounds);
@@ -106,7 +106,7 @@ class SearchInput extends React.Component {
    * @param {LatLngBounds} bounds Boundry of the neighborhood map
    * @memberof SearchInput
    */
-  addMarker = (place, bounds) => {
+  addMarkerToMap = (place, bounds) => {
     const image = {
       url: place.icon,
       size: new window.google.maps.Size(71, 71),
@@ -126,9 +126,16 @@ class SearchInput extends React.Component {
     return marker;
   }
 
-  addInfoWindow(place, marker) {
+  addInfoWindowToMarker(place, marker) {
     const infowindow = new window.google.maps.InfoWindow({
-      content: '<p>Stuff goes here</p>'
+      content: 
+        `<div> 
+          <h4>${place.name}</h4>
+          <div>${place.vicinity}</div>
+          <div>${place.types[0]}</div>
+          <div>${place.opening_hours.open_now ? 'Open' : 'Closed'}</div>
+          <div>Rating: ${place.rating}</div>
+        </div>`
     });
 
     marker.addListener('click', () => {
