@@ -29,7 +29,8 @@ class SearchInput extends React.Component {
 
     // SearchPage state
     this.state = {
-      searchText: ""
+      searchText: "",
+      placesService: 0,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -72,12 +73,14 @@ class SearchInput extends React.Component {
    */
   handlePlaceChange = () => {
     const service = new window.google.maps.places.PlacesService(this.props.map);
+    this.setState( { placesService: service });
     service.nearbySearch({
       location: this.props.home,
       radius: this.props.searchRadius,
-      keyword: this.state.searchText,
+      keyword: this.state.searchText
     }, (results, status) => {
       if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+        console.log('results: ', results);
         this.props.setSearchResults(results);
         this.addPlacesToMap(results);
       }
@@ -126,20 +129,37 @@ class SearchInput extends React.Component {
     return marker;
   }
 
-  addInfoWindowToMarker(place, marker) {
-    const infowindow = new window.google.maps.InfoWindow({
-      content: 
-        `<div> 
-          <h4>${place.name}</h4>
-          <div>${place.vicinity}</div>
-          <div>${place.types[0]}</div>
-          <div>${place.opening_hours.open_now ? 'Open' : 'Closed'}</div>
-          <div>Rating: ${place.rating}</div>
-        </div>`
-    });
+  /**
+   * @description Add an infowindow to the specified marker
+   * @param {Object} place Place result
+   * @param {Object} marker Marker the place is to be associated with
+   * @memberof SearchInput
+   */
+  addInfoWindowToMarker = (place, marker) => {
+    this.state.placesService.getDetails({
+      placeId: place.place_id
+    }, (placeDetails, status) => {
+      console.log('placeDetails: ', placeDetails);
+      const placeType = placeDetails.types[0].charAt(0).toUpperCase() + placeDetails.types[0].slice(1);
+      const placeOpen = placeDetails.opening_hours.open_now ? 'Open' : 'Closed';
+      const priceLevel = ['Free', 'Inexpensive', 'Moderate', 'Expensive', 'Very Expensive'];
+      const infowindow = new window.google.maps.InfoWindow({
+        content: 
+          `<div> 
+            <div>${placeDetails.name}</div>
+            <div>${placeDetails.adr_address}</div>
+            <div>${placeDetails.formatted_phone_number}</div>
+            <div>
+              <span class="chip">${placeType}</span>
+              <span class="chip">${priceLevel[placeDetails.price_level]}</span>
+              <span class="chip">${placeDetails.rating}</span>
+              <span class="chip">${placeOpen}</span>
+          </div>`
+      });
 
-    marker.addListener('click', () => {
-      infowindow.open(this.props.map, marker);
+      marker.addListener('click', () => {
+        infowindow.open(this.props.map, marker);
+      });
     });
   }
 
