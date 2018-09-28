@@ -8,6 +8,7 @@ import { TextField, TextFieldIcon } from '@rmwc/textfield';
 
 
 // Application Components
+import InfoWindow from './InfoWindow';
 import '../css/App.css';
 
 class SearchInput extends React.Component {
@@ -80,7 +81,6 @@ class SearchInput extends React.Component {
       keyword: this.state.searchText
     }, (results, status) => {
       if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-        console.log('results: ', results);
         this.props.setSearchResults(results);
         this.addPlacesToMap(results);
       }
@@ -139,40 +139,10 @@ class SearchInput extends React.Component {
     this.state.placesService.getDetails({
       placeId: place.place_id
     }, (placeDetails, status) => {
-      const placeType = placeDetails.types[0].charAt(0).toUpperCase() + placeDetails.types[0].slice(1);
-      const placeOpen = placeDetails.opening_hours.open_now ? 'Open' : 'Closed';
-      const priceLevel = ['Free', 'Inexpensive', 'Moderate', 'Expensive', 'Very Expensive'];
-      
-      // Translate the numerical place rating to a graphical star rating
-      const noWholeStars = Math.floor(placeDetails.rating);
-      let starRating = '';
-      const ICON_STAR = 'star ';  // Material Design Icon Font - star
-      const ICON_STAR_HALF = 'star_half '; // Material Design Icon Font - star_half
-      for (let i = 0; i < noWholeStars; i += 1) {
-        starRating += ICON_STAR;
-      }
-      if (placeDetails.rating > noWholeStars) {
-        starRating += ICON_STAR_HALF;
-      }
-
-      // Add place information to the infowindow
+      const infoWindow = new InfoWindow();
       const infowindow = new window.google.maps.InfoWindow({
-        content: 
-          `<div> 
-            <div class="infowindow-place">${placeDetails.name}</div>
-            <div>${placeDetails.adr_address}</div>
-            <div>${placeDetails.formatted_phone_number}</div>
-            <div/>
-            <div class="infowindow-attrs">
-              <span class="infowindow-chip">${placeType}</span>
-              <span class="infowindow-chip">${priceLevel[placeDetails.price_level]}</span>
-              <span class="infowindow-chip">
-                <i class="material-icons infowindow-rating">${starRating}</i>
-              </span>
-              <span class="infowindow-chip">${placeOpen}</span>
-          </div>`
+        content: infoWindow.create(placeDetails)
       });
-
       marker.addListener('click', () => {
         infowindow.open(this.props.map, marker);
       });
@@ -199,7 +169,7 @@ class SearchInput extends React.Component {
       <div>
         <TextField id="search-text" box
           withTrailingIcon={<TextFieldIcon icon='search' />}
-          fullwidth type="text" onChange={this.handleChange} 
+          fullwidth type="text" onChange={this.handleChange}
           label="Enter the place you want to find..."
           placeholder="" />
       </div>

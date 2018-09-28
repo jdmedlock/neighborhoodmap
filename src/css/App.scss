@@ -18,11 +18,27 @@ $mdc-theme-background: #fff;
 #map {
   margin: 0;
   padding: 0;
-  height: 50vw;
+  height: 75vw;
   width: 90vw;
 }
 
 /* =================== Map Infowindow ===================== */
+
+.gm-style-iw {
+  background-color: #fffde7 !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 120px !important;
+  padding-top: .75em;
+  display: block !important;
+ }
+
+ .infowindow-content {
+  color: black;
+  margin: .25rem;
+ }
 
 .infowindow-place {
   font-weight: bold;
@@ -32,6 +48,8 @@ $mdc-theme-background: #fff;
 .infowindow-attrs {
   margin: .5rem 0 0 0;
   padding: 0;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .infowindow-rating {
@@ -39,10 +57,17 @@ $mdc-theme-background: #fff;
 }
 
 .infowindow-chip {
+  align-content: center;
   border: 1px solid grey;
   border-radius: 10px;
-  background-color: #f9a825;
   color: black;
-  margin: .25rem 0 .25rem .5rem;
-  padding: 0 .5rem 0 .5rem;
+  background-color: #ffd95a;
+  display: flex;
+  font-weight: bold;
+  margin: 0 0 0 .5rem;
+  padding: .25rem .5rem .25rem .5rem;
+  height: 1.25rem;
+}
+
+.infowindow i {
 }
