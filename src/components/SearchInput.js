@@ -43,12 +43,6 @@ class SearchInput extends React.Component {
    * @memberof SearchInput
    */
   componentDidMount() {
-    /*
-    const searchBox = new window.google.maps.places.SearchBox(
-      document.getElementById('search-text'));
-    searchBox.setBounds(this.props.map.getBounds());
-    searchBox.addListener('places_changed', this.handlePlaceChange);
-    */
     const searchBox = new window.google.maps.places.Autocomplete(
     document.getElementById('search-text'));
     searchBox.bindTo('bounds', this.props.map);

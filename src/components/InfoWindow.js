@@ -10,18 +10,18 @@ class InfoWindow {
    */
   create(placeDetails) {
     return (
-      `<div class="infowindow-content">
-        <div class="infowindow-place">${placeDetails.name}</div>
+      `<div class="iw-container">
+        <div class="iw-title">${placeDetails.name}</div>
+        <div class="infowindow-location">
           ${this.getAddress(placeDetails)}
           <div>${placeDetails.formatted_phone_number}</div>
-          <div/>
-          <div class="infowindow-attrs">
-            ${this.getType(placeDetails)}
-            ${this.getPriceLevel(placeDetails)}
-            ${this.getRating(placeDetails)}
-            ${this.getStatus(placeDetails)}
-          </div>
         <div/>
+        <div class="infowindow-attrs">
+          ${this.getType(placeDetails)}
+          ${this.getPriceLevel(placeDetails)}
+          ${this.getRating(placeDetails)}
+          ${this.getStatus(placeDetails)}
+        </div>
       </div>`);
   }
 
@@ -35,8 +35,8 @@ class InfoWindow {
     if (placeDetails.formatted_address === undefined) {
       return '';
     }
-    const firstComma = placeDetails.formatted_address.indexOf(',');
     // Return the address separated into two lines
+    const firstComma = placeDetails.formatted_address.indexOf(',');
     return (
       `<div>${placeDetails.formatted_address.slice(0,firstComma)}</div>
       <div>${placeDetails.formatted_address.slice(firstComma+1)}</div>`
