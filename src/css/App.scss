@@ -24,6 +24,25 @@ $mdc-theme-background: #fff;
 
 /* =================== Map Infowindow ===================== */
 
-.infowindow-list {
-  list-style-type: none;
+.infowindow-place {
+  font-weight: bold;
+  border-bottom: 1px solid black;
+}
+
+.infowindow-attrs {
+  margin: .5rem 0 0 0;
+  padding: 0;
+}
+
+.infowindow-rating {
+  font-size: 1rem;
+}
+
+.infowindow-chip {
+  border: 1px solid grey;
+  border-radius: 10px;
+  background-color: #f9a825;
+  color: black;
+  margin: .25rem 0 .25rem .5rem;
+  padding: 0 .5rem 0 .5rem;
 }
