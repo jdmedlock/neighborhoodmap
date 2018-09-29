@@ -2,20 +2,10 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 // React Material Web Components
-import {
-  TopAppBar,
-  TopAppBarRow,
-  TopAppBarSection,
-  TopAppBarNavigationIcon,
-  TopAppBarTitle
-} from '@rmwc/top-app-bar';
-import {
-  Grid,
-  GridCell
-} from '@rmwc/grid';
+import { TopAppBar, TopAppBarRow, TopAppBarSection, TopAppBarTitle } from '@rmwc/top-app-bar';
+import { Grid, GridCell } from '@rmwc/grid';
 
 // Application Components
-import FooterBar from './components/FooterBar';
 import Map from './components/Map';
 import PlacePage from './components/PlacePage';
 import SearchPage from './components/SearchPage';
@@ -79,7 +69,6 @@ class NeighborhoodMap extends React.Component {
           <TopAppBar>
             <TopAppBarRow>
               <TopAppBarSection alignStart>
-                <TopAppBarNavigationIcon icon="" />
                 <TopAppBarTitle>Neighborhood Map</TopAppBarTitle>
               </TopAppBarSection>
             </TopAppBarRow>
@@ -112,12 +101,6 @@ class NeighborhoodMap extends React.Component {
             <section className="map-container">
               <Map />
             </section>
-          </GridCell>
-
-          <GridCell span="8">
-            <footer className="footer">
-              <FooterBar />
-            </footer>
           </GridCell>
 
         </Grid>
