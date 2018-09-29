@@ -52,16 +52,14 @@ tr:nth-child(odd) {
   width: 90vw; }
 
 /* =================== Map Infowindow ===================== */
-/*
 .gm-style-iw {
   top: 0 !important;
   left: 0 !important;
   width: 100% !important;
   height: 100% !important;
   min-height: 140px !important;
-  display: block !important;
- }
- */
+  display: block !important; }
+
 .iw-titlebar {
   height: 3.25rem;
   padding-left: .5rem; }
