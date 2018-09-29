@@ -5,6 +5,16 @@ html, body {
   margin: 0;
   padding: 0; }
 
+th {
+  background-color: lightblue;
+  width: 100%; }
+
+tr:nth-child(even) {
+  background: #CCC; }
+
+tr:nth-child(odd) {
+  background: #FFF; }
+
 /* ============== Material Design overrides ================ */
 .mdc-layout-grid {
   padding-bottom: 0; }

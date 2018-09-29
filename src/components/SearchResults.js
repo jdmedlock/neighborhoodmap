@@ -22,10 +22,10 @@ const SearchResults = (props) => {
         props.searchResults.length > 0 ? (
           <DataTable>
             <DataTableContent>
-              <DataTableHead>
+              <DataTableHead className="table-heading">
                 <DataTableRow>
                   <DataTableHeadCell>Name</DataTableHeadCell>
-                  <DataTableHeadCell>Location Type</DataTableHeadCell>
+                  <DataTableHeadCell>Type</DataTableHeadCell>
                   <DataTableHeadCell>Rating</DataTableHeadCell>
                 </DataTableRow>
               </DataTableHead>
@@ -38,8 +38,9 @@ const SearchResults = (props) => {
                   props.searchResults.map((place) => (
                     <DataTableRow key={ place.id }>
                       <DataTableCell>{ place.name }</DataTableCell>
-                      <DataTableCell>{ place.types[0] }</DataTableCell>
-                      <DataTableCell>{ place.rating }</DataTableCell>
+                      <DataTableCell>{ place.types[0].charAt(0).toUpperCase() +
+                        place.types[0].slice(1) }</DataTableCell>
+                      <DataTableCell alignMiddle>{ place.rating }</DataTableCell>
                     </DataTableRow >
                   ))}
               </DataTableBody>
