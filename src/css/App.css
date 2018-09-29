@@ -24,9 +24,12 @@ tr:nth-child(even) {
   background: #e2f5ff; }
 
 tr:nth-child(odd) {
-  background: #FFF; }
+  background: #ffffff; }
 
 /* ============== Material Design overrides ================ */
+.mdc-top-app-bar {
+  background-color: #005b9f; }
+
 .mdc-layout-grid {
   padding-bottom: 0; }
 

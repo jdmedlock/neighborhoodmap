@@ -1,8 +1,15 @@
 @charset "utf-8";
 
 $mdc-theme-primary: #0288d1;
+$mdc-theme-primary-light: #5eb8ff;
+$mdc-theme-primary-dark: #005b9f;
 $mdc-theme-secondary: #f9a825;
+$mdc-theme-secondary-light: #ffd95a;
+$mdc-theme-secondary-dark: #c17900;
 $mdc-theme-background: #fff;
+
+$table-row-light: #ffffff;
+$table-row-dark: #e2f5ff;
 
 @import "../../node_modules/material-components-web/dist/material-components-web.min.css";
 
@@ -15,7 +22,7 @@ html, body {
 }
 
 th {
-  background-color: #0288d1;
+  background-color: $mdc-theme-primary;
   color: white;
   font-size: 1rem;
   font-weight: 400;
@@ -31,10 +38,14 @@ td, tr {
 }
 
 /* Alternate row shading for table rows */
-tr:nth-child(even) {background: #e2f5ff}
-tr:nth-child(odd) {background: #FFF}
+tr:nth-child(even) {background: $table-row-dark;}
+tr:nth-child(odd) {background: $table-row-light;}
 
 /* ============== Material Design overrides ================ */
+
+.mdc-top-app-bar {
+  background-color: $mdc-theme-primary-dark;
+}
 
 .mdc-layout-grid {
   padding-bottom: 0;
@@ -85,7 +96,7 @@ tr:nth-child(odd) {background: #FFF}
 .iw-title {
   display: flex;
   align-items: center;
-  background-color: #0288d1;
+  background-color: $mdc-theme-primary;
   color: white;
   font-size: 1.25rem;
   font-weight: 600;
@@ -111,7 +122,7 @@ tr:nth-child(odd) {background: #FFF}
   border: 1px solid grey;
   border-radius: 10px;
   color: black;
-  background-color: #ffd95a;
+  background-color: $mdc-theme-secondary-light;
   display: flex;
   font-size: .8rem;
   font-weight: 400;
