@@ -1,10 +1,7 @@
 import React from 'react';
 
 // React Material Web Components
-import {
-  Grid,
-  GridCell
-} from '@rmwc/grid';
+import { Grid, GridCell } from '@rmwc/grid';
 
 // Application Components
 import '../css/App.css';

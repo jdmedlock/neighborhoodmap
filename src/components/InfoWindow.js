@@ -10,13 +10,13 @@ class InfoWindow {
    */
   create(placeDetails) {
     return (
-      `<div class="iw-container">
-        <div class="iw-title">${placeDetails.name}</div>
-        <div class="infowindow-location">
+      `<div class="gm-style-iw">
+        <div class="iw-titlebar iw-title">${placeDetails.name}</div>
+        <div class="iw-location">
           ${this.getAddress(placeDetails)}
           <div>${placeDetails.formatted_phone_number}</div>
         <div/>
-        <div class="infowindow-attrs">
+        <div class="iw-attrs">
           ${this.getType(placeDetails)}
           ${this.getPriceLevel(placeDetails)}
           ${this.getRating(placeDetails)}
@@ -55,7 +55,7 @@ class InfoWindow {
     }
     const priceLevel = ['$ Free', '$ Inexpensive', '$ Moderate', '$ Expensive', '$ Very Expensive'];
     return (
-      `<span class="infowindow-chip">${priceLevel[placeDetails.price_level]}</span>`
+      `<span class="iw-chip">${priceLevel[placeDetails.price_level]}</span>`
     );
   }
 
@@ -84,8 +84,8 @@ class InfoWindow {
     }
 
     return (
-      `<span class="infowindow-chip">
-        <i class="material-icons infowindow-rating">${starRating}</i>
+      `<span class="iw-chip">
+        <i class="material-icons iw-rating">${starRating}</i>
       </span>`
 
     );
@@ -102,7 +102,7 @@ class InfoWindow {
       return '';
     }
     return (
-      `<span class="infowindow-chip">${placeDetails.opening_hours.open_now ? 'Open' : 'Closed'}</span>`
+      `<span class="iw-chip">${placeDetails.opening_hours.open_now ? 'Open' : 'Closed'}</span>`
     );
 }
 
@@ -115,7 +115,7 @@ class InfoWindow {
   getType(placeDetails) {
     // Return only the first type associated with the place
     return (
-      `<span class="infowindow-chip">
+      `<span class="iw-chip">
         ${placeDetails.types[0].charAt(0).toUpperCase() + placeDetails.types[0].slice(1)}
       </span>`
     );
