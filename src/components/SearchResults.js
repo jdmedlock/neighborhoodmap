@@ -38,9 +38,12 @@ const SearchResults = (props) => {
                   props.searchResults.map((place) => (
                     <DataTableRow key={ place.id }>
                       <DataTableCell>{ place.name }</DataTableCell>
-                      <DataTableCell>{ place.types[0].charAt(0).toUpperCase() +
-                        place.types[0].slice(1) }</DataTableCell>
-                      <DataTableCell alignMiddle>{ place.rating }</DataTableCell>
+                      <DataTableCell>
+                        { place.types[0].charAt(0).toUpperCase() + place.types[0].slice(1) }
+                      </DataTableCell>
+                      <DataTableCell id="dt-rating" alignMiddle>
+                        { place.rating }
+                      </DataTableCell>
                     </DataTableRow >
                   ))}
               </DataTableBody>

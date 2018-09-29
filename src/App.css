@@ -1,14 +1,35 @@
 @import url(../../node_modules/material-components-web/dist/material-components-web.min.css);
 /* ============= HTML Tag Attribute overrides ============== */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0; }
+
+th {
+  background-color: lightblue;
+  width: 100%; }
+
+tr:nth-child(even) {
+  background: #CCC; }
+
+tr:nth-child(odd) {
+  background: #FFF; }
+
 /* ============== Material Design overrides ================ */
+.mdc-layout-grid {
+  padding-bottom: 0; }
+
 .mdc-layout-grid__inner {
   margin-top: 1rem; }
 
 /* ======================= Map Area ======================== */
+.map-container .mdc-layout-grid {
+  padding: 0; }
+
 #map {
   margin: 0;
   padding: 0;
-  height: 75vw;
+  height: 100vw;
   width: 90vw; }
 
 /* =================== Map Infowindow ===================== */
