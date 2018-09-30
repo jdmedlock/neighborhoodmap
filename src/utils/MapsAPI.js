@@ -19,6 +19,20 @@ class MapsAPI {
   }
 
   /**
+   * @description Create a new map
+   * @param {Object} home LatLng of our neighborhood
+   * @returns {Map} Google Map
+   * @memberof MapsAPI
+   */
+  createMap(home) {
+    return new window.google.maps.Map(document.getElementById('map'), {
+      center: { lat: home.lat, lng: home.lng },
+      zoom: 10,
+      mapTypeId: 'roadmap'
+    });
+  }
+
+  /**
    * @description Enable autocomplete for the place search imput element
    * @param {Object} map Map
    * @param {String} elementId DOM element id of the search input field

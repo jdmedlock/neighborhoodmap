@@ -47,11 +47,7 @@ class NeighborhoodMap extends React.Component {
    * @memberof NeighborhoodMap
    */
   loadGoogleMap = () => {
-    const map = new window.google.maps.Map(document.getElementById('map'), {
-      center: { lat: this.state.home.lat, lng: this.state.home.lng },
-      zoom: 10,
-      mapTypeId: 'roadmap'
-    });
+    const map = this.state.mapsAPI.createMap(this.state.home);
     this.setState({ map: map });
     this.setState({ mapIsLoaded: true });
   }
