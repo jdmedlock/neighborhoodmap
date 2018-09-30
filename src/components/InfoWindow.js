@@ -1,3 +1,4 @@
+import { removeSpecialChars } from '../utils/utilFunctions';
 import '../css/App.css';
 
 class InfoWindow {
@@ -10,13 +11,13 @@ class InfoWindow {
    */
   create(placeDetails) {
     return (
-      `<div class="gm-style-iw">
-        <div class="iw-titlebar iw-title">${placeDetails.name}</div>
-        <div class="iw-location">
+      `<div class="gm-style-iw full-width">
+        <div class="title full-width">${placeDetails.name}</div>
+        <div class="address-line full-width">
           ${this.getAddress(placeDetails)}
           <div>${placeDetails.formatted_phone_number}</div>
         <div/>
-        <div class="iw-attrs">
+        <div class="iw-attrs full-width">
           ${this.getType(placeDetails)}
           ${this.getPriceLevel(placeDetails)}
           ${this.getRating(placeDetails)}
@@ -116,7 +117,8 @@ class InfoWindow {
     // Return only the first type associated with the place
     return (
       `<span class="iw-chip">
-        ${placeDetails.types[0].charAt(0).toUpperCase() + placeDetails.types[0].slice(1)}
+        ${placeDetails.types[0].charAt(0).toUpperCase() + 
+          removeSpecialChars(placeDetails.types[0].slice(1))}
       </span>`
     );
   }

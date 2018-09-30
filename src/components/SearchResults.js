@@ -6,6 +6,7 @@ import { DataTable, DataTableContent, DataTableHead, DataTableBody,
   DataTableHeadCell, DataTableRow, DataTableCell } from '@rmwc/data-table';
 
 // Application Components
+import { removeSpecialChars } from '../utils/utilFunctions';
 import '../css/App.css';
 
 const SearchResults = (props) => {
@@ -39,10 +40,11 @@ const SearchResults = (props) => {
                     <DataTableRow key={ place.id }>
                       <DataTableCell>{ place.name }</DataTableCell>
                       <DataTableCell>
-                        { place.types[0].charAt(0).toUpperCase() + place.types[0].slice(1) }
+                        { place.types[0].charAt(0).toUpperCase() + 
+                          removeSpecialChars(place.types[0].slice(1)) }
                       </DataTableCell>
                       <DataTableCell id="dt-rating" alignMiddle>
-                        { place.rating }
+                        { place.rating.toFixed(1) }
                       </DataTableCell>
                     </DataTableRow >
                   ))}
