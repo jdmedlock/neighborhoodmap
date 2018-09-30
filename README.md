@@ -64,7 +64,9 @@ take effect.
 |:------------------------|:------------|:----------------|
 | REACT_APP_LAT           | Latitude of the neighborhood | REACT_APP_LAT=28.4812299 |
 | REACT_APP_LNG           | Longitude of the neighborhood | REACT_APP_LNG=-80.8883962 |
-| REACT_APP_SEARCH_RADIUS | Radius in meters to searches are constrained to | REACT_APP_SEARCH_RADIUS=16000 |
+| REACT_APP_MAPS_URL      | Google Maps URL with API key | REACT_APP_MAPS_URL="https://maps.googleapis.com/maps/api/js?libraries=places&key=\<YOUR-API-KEY\>" |
+| REACT_APP_SEARCH_RADIUS | Radius, in meters, searches are constrained to | REACT_APP_SEARCH_RADIUS=16000 |
+
 
 ## Dependencies
 

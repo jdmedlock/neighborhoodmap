@@ -53,18 +53,13 @@ class MapsAPI {
    * @description Conduct a nearby search
    * @param {Object} map Map
    * @param {Object} placesService Reference to the places service
-   * @param {Object} home LatLng of our neighborhood
-   * @param {String} searchRadius Search radius (in meters)
-   * @param {String} searchText Search terms
    * @param {Function} setSearchResults Callback to receive the search results
+   * @param {Object} options Google Places SearchNearby options. Must included
+   * at lease the `location` and `radius` attributes.
    * @memberof MapsAPI
    */
-  searchNearby (map, placesService, home, searchRadius, searchText, setSearchResults) {
-    placesService.nearbySearch({
-      location: home,
-      radius: searchRadius,
-      keyword: searchText
-    }, (results, status) => {
+  searchNearby (map, placesService, setSearchResults, options) {
+    placesService.nearbySearch(options, (results, status) => {
       if (status === window.google.maps.places.PlacesServiceStatus.OK) {
         setSearchResults(results);
         this.addPlacesToMap(map, placesService, results);

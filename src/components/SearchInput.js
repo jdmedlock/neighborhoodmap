@@ -56,8 +56,11 @@ class SearchInput extends React.Component {
    */
   handlePlaceChange = () => {
     this.state.mapsAPI.searchNearby(this.props.map, this.state.placesService,
-      this.props.home, this.props.searchRadius, this.state.searchText,
-      this.props.setSearchResults
+      this.props.setSearchResults, {
+        location: this.props.home,
+        radius: this.props.searchRadius,
+        keyword: this.state.searchText
+      }
     );
   };
 
