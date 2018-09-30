@@ -26,7 +26,6 @@ class NeighborhoodMap extends React.Component {
       },
       // Maximum search radius in meters
       searchRadius: Number.parseInt(process.env.REACT_APP_SEARCH_RADIUS,10),
-      mapsAPI: '',
       map: {},
       mapIsLoaded: false,
     };
@@ -38,9 +37,7 @@ class NeighborhoodMap extends React.Component {
    * @memberof NeighborhoodMap
    */
   componentDidMount() {
-    const mapsAPI = new MapsAPI();
-    this.setState({ mapsAPI: mapsAPI });
-    mapsAPI.addScriptToDOM(process.env.REACT_APP_MAPS_URL, this.loadGoogleMap);
+    MapsAPI.addScriptToDOM(process.env.REACT_APP_MAPS_URL, this.loadGoogleMap);
   }
 
   /**
@@ -49,7 +46,7 @@ class NeighborhoodMap extends React.Component {
    * @memberof NeighborhoodMap
    */
   loadGoogleMap = () => {
-    const map = this.state.mapsAPI.createMap(this.state.home);
+    const map = MapsAPI.createMap(this.state.home);
     this.setState({ map: map });
     this.setState({ mapIsLoaded: true });
   }

@@ -21,7 +21,6 @@ class SearchInput extends React.Component {
     // SearchPage state
     this.state = {
       searchText: "",
-      mapsAPI: new MapsAPI(),
       placesService: new window.google.maps.places.PlacesService(this.props.map)
     };
 
@@ -34,7 +33,17 @@ class SearchInput extends React.Component {
    * @memberof SearchInput
    */
   componentDidMount() {
-    this.state.mapsAPI.createSearchBox(this.props.map,
+    // Default to search for local attractions
+    /*
+    MapsAPI.searchNearby(this.props.map, this.state.placesService,
+      this.props.setSearchResults, {
+        location: this.props.home,
+        radius: this.props.searchRadius,
+        keyword: [ 'Kennedy' ]
+      }
+    );
+    */
+    MapsAPI.createSearchBox(this.props.map,
       'search-text', this.handlePlaceChange);
   };
 
@@ -55,7 +64,7 @@ class SearchInput extends React.Component {
    * @memberof SearchInput
    */
   handlePlaceChange = () => {
-    this.state.mapsAPI.searchNearby(this.props.map, this.state.placesService,
+    MapsAPI.searchNearby(this.props.map, this.state.placesService,
       this.props.setSearchResults, {
         location: this.props.home,
         radius: this.props.searchRadius,

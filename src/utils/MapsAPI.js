@@ -8,7 +8,7 @@ class MapsAPI {
    * @param {String} url URL of the script source location
    * @param {function} callback Optional `onload` callback function
    */
-  addScriptToDOM(url, callback) {
+  static addScriptToDOM(url, callback) {
     let script = document.createElement("script");
     script.type = "text/javascript";
     if ( callback ) {
@@ -24,7 +24,7 @@ class MapsAPI {
    * @returns {Map} Google Map
    * @memberof MapsAPI
    */
-  createMap(home) {
+  static createMap(home) {
     return new window.google.maps.Map(document.getElementById('map'), {
       center: { lat: home.lat, lng: home.lng },
       zoom: 10,
@@ -40,7 +40,7 @@ class MapsAPI {
    * @returns {Object} Google Maps Search Box
    * @memberof MapsAPI
    */
-  createSearchBox(map, elementId, changeHandler) {
+  static createSearchBox(map, elementId, changeHandler) {
     const searchBox = new window.google.maps.places.Autocomplete(
       document.getElementById(elementId)
     );
@@ -58,7 +58,7 @@ class MapsAPI {
    * at lease the `location` and `radius` attributes.
    * @memberof MapsAPI
    */
-  searchNearby (map, placesService, setSearchResults, options) {
+  static searchNearby (map, placesService, setSearchResults, options) {
     placesService.nearbySearch(options, (results, status) => {
       if (status === window.google.maps.places.PlacesServiceStatus.OK) {
         setSearchResults(results);
@@ -75,7 +75,7 @@ class MapsAPI {
    * @param {PlaceResults} places Array of places returned from a search
    * @memberof SearchInput
    */
-  addPlacesToMap(map, placesService, places) {
+  static addPlacesToMap(map, placesService, places) {
     const bounds = new window.google.maps.LatLngBounds();
     places.forEach((place) => {
       const marker = this.addMarkerToMap(map, place, bounds);
@@ -92,7 +92,7 @@ class MapsAPI {
    * @param {LatLngBounds} bounds Boundry of the neighborhood map
    * @memberof SearchInput
    */
-  addMarkerToMap(map, place, bounds) {
+  static addMarkerToMap(map, place, bounds) {
     const image = {
       url: place.icon,
       size: new window.google.maps.Size(71, 71),
@@ -120,7 +120,7 @@ class MapsAPI {
    * @param {Object} marker Marker the place is to be associated with
    * @memberof SearchInput
    */
-  addInfoWindowToMarker(map, placesService, place, marker) {
+  static addInfoWindowToMarker(map, placesService, place, marker) {
     placesService.getDetails({
       placeId: place.place_id
     }, (placeDetails, status) => {
