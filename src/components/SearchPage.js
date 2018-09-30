@@ -13,7 +13,7 @@ class SearchPage extends React.Component {
 
   static propTypes = {
     home: PropTypes.object.isRequired,
-    searchRadius: PropTypes.string.isRequired,
+    searchRadius: PropTypes.number.isRequired,
     map: PropTypes.object.isRequired,
   }
 

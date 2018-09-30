@@ -20,9 +20,12 @@ class NeighborhoodMap extends React.Component {
     // App state
     this.state = {
       // Coordinates of the center of our neighborhood
-      home: { lat: 28.5729, lng: -80.6490 },
+      home: {
+        lat: Number.parseFloat(process.env.REACT_APP_LAT),
+        lng: Number.parseFloat(process.env.REACT_APP_LNG)
+      },
       // Maximum search radius in meters
-      searchRadius: '16000',
+      searchRadius: Number.parseInt(process.env.REACT_APP_SEARCH_RADIUS,10),
       mapsAPI: '',
       map: {},
       mapIsLoaded: false,
