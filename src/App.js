@@ -9,6 +9,7 @@ import { Grid, GridCell } from '@rmwc/grid';
 import Map from './components/Map';
 import PlacePage from './components/PlacePage';
 import SearchPage from './components/SearchPage';
+import { addScriptToDOM } from './utils/mapsAPI';
 import './css/App.css';
 
 class NeighborhoodMap extends React.Component {
@@ -33,10 +34,8 @@ class NeighborhoodMap extends React.Component {
    * @memberof NeighborhoodMap
    */
   componentDidMount() {
-    this.loadGoogleMap().then((map) => {
-      this.setState({ map: map });
-      this.setState({ mapIsLoaded: true });
-    });
+    const mapsUrl = "https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyATr66LXoeC02a3PKqvZTdfgMh6X2NIha4";
+    addScriptToDOM(mapsUrl, this.loadGoogleMap);
   }
 
   /**
@@ -44,15 +43,14 @@ class NeighborhoodMap extends React.Component {
    * @returns {Promise} Promise that will be resolved when the map is loaded
    * @memberof NeighborhoodMap
    */
-  loadGoogleMap() {
-    return new Promise((resolve, reject) => {
-      const map = new window.google.maps.Map(document.getElementById('map'), {
-        center: { lat: this.state.home.lat, lng: this.state.home.lng },
-        zoom: 10,
-        mapTypeId: 'roadmap'
-      });
-      resolve(map);
+  loadGoogleMap = () => {
+    const map = new window.google.maps.Map(document.getElementById('map'), {
+      center: { lat: this.state.home.lat, lng: this.state.home.lng },
+      zoom: 10,
+      mapTypeId: 'roadmap'
     });
+    this.setState({ map: map });
+    this.setState({ mapIsLoaded: true });
   }
 
   /**

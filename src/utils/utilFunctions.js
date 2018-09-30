@@ -12,6 +12,6 @@ const removeSpecialChars = (string) => {
     }
     return char;
   }).join('');
-}
+};
 
 export { removeSpecialChars };
