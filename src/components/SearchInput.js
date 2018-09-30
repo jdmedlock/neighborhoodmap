@@ -2,24 +2,14 @@ import React from 'react';
 import debounce from "lodash.debounce";
 import PropTypes from 'prop-types';
 
-
 // React Material Web Components
 import { TextField, TextFieldIcon } from '@rmwc/textfield';
 
-
 // Application Components
-import InfoWindow from './InfoWindow';
+import MapsAPI from '../utils/MapsAPI';
 import '../css/App.css';
 
 class SearchInput extends React.Component {
-
-  static propTypes = {
-    home: PropTypes.object.isRequired,
-    searchRadius: PropTypes.string.isRequired,
-    map: PropTypes.object.isRequired,
-    setSearchResults: PropTypes.func.isRequired
-  }
-
   /**
    * @description Establish the state for this component and define the
    * `emitChangeDebounce` function on the class.
@@ -31,7 +21,8 @@ class SearchInput extends React.Component {
     // SearchPage state
     this.state = {
       searchText: "",
-      placesService: 0,
+      mapsAPI: new MapsAPI(),
+      placesService: new window.google.maps.places.PlacesService(this.props.map)
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -43,12 +34,9 @@ class SearchInput extends React.Component {
    * @memberof SearchInput
    */
   componentDidMount() {
-    const searchBox = new window.google.maps.places.Autocomplete(
-    document.getElementById('search-text'));
-    searchBox.bindTo('bounds', this.props.map);
-    searchBox.setFields( ['id', 'name', 'types', 'rating', 'icon', 'geometry'] );
-    searchBox.addListener('place_changed', this.handlePlaceChange);
-  }
+    this.state.mapsAPI.createSearchBox(this.props.map,
+      'search-text', this.handlePlaceChange);
+  };
 
   /**
    * @description Add input entered by the user to the searchText element in
@@ -58,7 +46,7 @@ class SearchInput extends React.Component {
    */
   handleChange(event) {
     this.emitChangeDebounce(event.target.value);
-  }
+  };
 
   /**
    * @description Conduct a nearby search using the user-specified search
@@ -67,81 +55,11 @@ class SearchInput extends React.Component {
    * @memberof SearchInput
    */
   handlePlaceChange = () => {
-    const service = new window.google.maps.places.PlacesService(this.props.map);
-    this.setState( { placesService: service });
-    service.nearbySearch({
-      location: this.props.home,
-      radius: this.props.searchRadius,
-      keyword: this.state.searchText
-    }, (results, status) => {
-      if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-        this.props.setSearchResults(results);
-        this.addPlacesToMap(results);
-      }
-    });
-  }
-
-  /**
-   * @description Add a marker on the map for each place in the search
-   * results list.
-   * @memberof SearchInput
-   */
-  addPlacesToMap = (places)  => {
-    const bounds = new window.google.maps.LatLngBounds();
-
-    places.forEach((place) => {
-      const marker = this.addMarkerToMap(place, bounds);
-      this.addInfoWindowToMarker(place, marker);
-    });
-
-    this.props.map.fitBounds(bounds);
+    this.state.mapsAPI.searchNearby(this.props.map, this.state.placesService,
+      this.props.home, this.props.searchRadius, this.state.searchText,
+      this.props.setSearchResults
+    );
   };
-
-  /**
-   * @description Add a marker to the map for the specified place
-   * @param {Object} place A place returned as the result of a search
-   * @param {LatLngBounds} bounds Boundry of the neighborhood map
-   * @memberof SearchInput
-   */
-  addMarkerToMap = (place, bounds) => {
-    const image = {
-      url: place.icon,
-      size: new window.google.maps.Size(71, 71),
-      origin: new window.google.maps.Point(0, 0),
-      anchor: new window.google.maps.Point(17, 34),
-      scaledSize: new window.google.maps.Size(25, 25)
-    };
-
-    const marker = new window.google.maps.Marker({
-      map: this.props.map,
-      icon: image,
-      title: place.name,
-      position: place.geometry.location
-    });
-
-    bounds.extend(place.geometry.location);
-    return marker;
-  }
-
-  /**
-   * @description Add an infowindow to the specified marker
-   * @param {Object} place Place result
-   * @param {Object} marker Marker the place is to be associated with
-   * @memberof SearchInput
-   */
-  addInfoWindowToMarker = (place, marker) => {
-    this.state.placesService.getDetails({
-      placeId: place.place_id
-    }, (placeDetails, status) => {
-      const infoWindow = new InfoWindow();
-      const infowindow = new window.google.maps.InfoWindow({
-        content: infoWindow.create(placeDetails)
-      });
-      marker.addListener('click', () => {
-        infowindow.open(this.props.map, marker);
-      });
-    });
-  }
 
   /**
    * @description Search Google Maps for matching locations within our
@@ -150,7 +68,7 @@ class SearchInput extends React.Component {
    */
   queryLocation(enteredText) {
     this.setState({ searchText: enteredText });
-  }
+  };
 
   /**
    * @description Capture search terms entered by the user to locate places
@@ -168,7 +86,14 @@ class SearchInput extends React.Component {
           placeholder="" />
       </div>
     )
-  }
+  };
 }
+
+SearchInput.propTypes = {
+  home: PropTypes.object.isRequired,
+  searchRadius: PropTypes.string.isRequired,
+  map: PropTypes.object.isRequired,
+  setSearchResults: PropTypes.func.isRequired
+};
 
 export default SearchInput;

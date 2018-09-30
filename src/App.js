@@ -9,7 +9,7 @@ import { Grid, GridCell } from '@rmwc/grid';
 import Map from './components/Map';
 import PlacePage from './components/PlacePage';
 import SearchPage from './components/SearchPage';
-import { addScriptToDOM } from './utils/mapsAPI';
+import MapsAPI from './utils/MapsAPI';
 import './css/App.css';
 
 class NeighborhoodMap extends React.Component {
@@ -23,6 +23,7 @@ class NeighborhoodMap extends React.Component {
       home: { lat: 28.5729, lng: -80.6490 },
       // Maximum search radius in meters
       searchRadius: '16000',
+      mapsAPI: '',
       map: {},
       mapIsLoaded: false,
     };
@@ -35,7 +36,9 @@ class NeighborhoodMap extends React.Component {
    */
   componentDidMount() {
     const mapsUrl = "https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyATr66LXoeC02a3PKqvZTdfgMh6X2NIha4";
-    addScriptToDOM(mapsUrl, this.loadGoogleMap);
+    const mapsAPI = new MapsAPI();
+    this.setState({ mapsAPI: mapsAPI });
+    mapsAPI.addScriptToDOM(mapsUrl, this.loadGoogleMap);
   }
 
   /**
