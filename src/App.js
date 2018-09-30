@@ -38,10 +38,9 @@ class NeighborhoodMap extends React.Component {
    * @memberof NeighborhoodMap
    */
   componentDidMount() {
-    const mapsUrl = "https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyATr66LXoeC02a3PKqvZTdfgMh6X2NIha4";
     const mapsAPI = new MapsAPI();
     this.setState({ mapsAPI: mapsAPI });
-    mapsAPI.addScriptToDOM(mapsUrl, this.loadGoogleMap);
+    mapsAPI.addScriptToDOM(process.env.REACT_APP_MAPS_URL, this.loadGoogleMap);
   }
 
   /**
