@@ -1,23 +1,152 @@
 @charset "utf-8";
 
 $mdc-theme-primary: #0288d1;
+$mdc-theme-primary-light: #5eb8ff;
+$mdc-theme-primary-dark: #005b9f;
 $mdc-theme-secondary: #f9a825;
+$mdc-theme-secondary-light: #ffd95a;
+$mdc-theme-secondary-dark: #c17900;
 $mdc-theme-background: #fff;
+
+$table-row-light: #ffffff;
+$table-row-dark: #e2f5ff;
 
 @import "../../node_modules/material-components-web/dist/material-components-web.min.css";
 
 /* ============= HTML Tag Attribute overrides ============== */
 
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+th {
+  background-color: $mdc-theme-primary;
+  color: white;
+  font-size: 1rem;
+  font-weight: 400;
+  height: 1.5rem;
+  width: 100%;
+}
+
+td, tr {
+  font-weight: 400;
+  height: 1.5rem;
+  width: 100%;
+  min-width: 4rem;
+}
+
+/* Alternate row shading for table rows */
+tr:nth-child(even) {background: $table-row-dark;}
+tr:nth-child(odd) {background: $table-row-light;}
+
 /* ============== Material Design overrides ================ */
 
-.mdc-layout-grid__cell {
-  margin-top: 1em;
+.mdc-top-app-bar {
+  background-color: $mdc-theme-primary-dark;
+}
+
+.mdc-layout-grid {
+  padding-bottom: 0;
+}
+
+.mdc-layout-grid__inner {
+  margin-top: 1rem;
+}
+
+.mdc-floating-label--float-above {
+  color: $mdc-theme-primary !important;
+  margin-bottom: .5rem !important;
+}
+
+/*
+ * Note that this is used for alignment rather than <DataTableCell alignEnd>
+ * since the latter seems to have no affect on alignment at this point in
+ * time
+ */
+#dt-rating {
+  text-align: right;
 }
 
 /* ======================= Map Area ======================== */@at-root
+
+.map-container .mdc-layout-grid {
+  padding: 0;
+}
+
 #map {
   margin: 0;
   padding: 0;
   height: 100vw;
   width: 90vw;
+}
+
+/* =================== Map Infowindow ===================== */
+
+/* Google Maps API class overrides */
+
+.gm-style-iw {
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 140px !important;
+  display: block !important;
+ }
+
+.full-width {
+  margin: 0 2rem 0 0 !important;
+  width: 100% !important;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  background-color: $mdc-theme-primary !important;
+  color: white !important;
+  font-size: 1.2rem !important;
+  font-weight: 600 !important;
+  border-bottom: 1px solid black;
+  width: 100% !important;
+  height: 3.25rem !important;
+  padding: 0 0 0 .5rem !important;
+  margin: 0 1.75rem .5rem 0 !important;
+}
+
+.address-line {
+  font-size: 1rem !important;
+  margin: 0 0 0 .5rem !important;
+}
+
+.view-link {
+  font-size: 1rem !important;
+  margin: .5rem 0 0 .5rem;
+}
+
+/* Classes for app-specific infowindow components */
+
+.iw-attrs {
+  margin: .5rem .5rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.iw-chip {
+  align-content: center;
+  border: 1px solid grey;
+  border-radius: 10px;
+  color: black;
+  background-color: $mdc-theme-secondary-light;
+  display: flex;
+  font-size: .8rem;
+  font-weight: 400;
+  margin: .5rem 0 .25rem .5rem;
+  padding: .25rem .5rem .2rem .5rem;
+  height: 1rem;
+}
+
+.iw-rating {
+  font-size: 1rem;
 }
