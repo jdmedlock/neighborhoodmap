@@ -58,7 +58,7 @@ class MapsAPI {
    * at lease the `location` and `radius` attributes.
    * @memberof MapsAPI
    */
-  static searchNearby (map, placesService, setSearchResults, options) {
+  static searchNearby(map, placesService, setSearchResults, options) {
     placesService.nearbySearch(options, (results, status) => {
       if (status === window.google.maps.places.PlacesServiceStatus.OK) {
         setSearchResults(results);
@@ -123,10 +123,11 @@ class MapsAPI {
   static addInfoWindowToMarker(map, placesService, place, marker) {
     placesService.getDetails({
       placeId: place.place_id
-    }, (placeDetails, status) => {
-      const infoWindow = new InfoWindow();
+    }, (placeDetail, status) => {
+      console.log('addInfoWindowToMarker - status:', status);
+      console.log('addInfoWindowToMarker - placeDetail: ', placeDetail);
       const infowindow = new window.google.maps.InfoWindow({
-        content: infoWindow.create(placeDetails)
+        content: InfoWindow.create(placeDetail)
       });
       marker.addListener('click', () => {
         infowindow.open(map, marker);

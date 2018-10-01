@@ -70,25 +70,26 @@ class Place {
   /**
    * @description Get the price level of the place
    * @static
-   * @param {PlaceDetails} placeDetails Characteristics of the selected place
+   * @param {PlaceDetail} placeDetail Characteristics of the selected place
    * @returns {String} Price level
    * @memberof Place
    */
-  static getPriceLevel(placeDetails) {
-    if (placeDetails.price_level === undefined) {
+  static getPriceLevel(placeDetail) {
+    console.log('')
+    if (placeDetail.price_level === undefined) {
       return '';
     }
-    return placeDetails.price_level;
+    return placeDetail.price_level;
   }
 
   /**
    * @description Create HTML elements containing the price level
-   * @param {PlaceDetails} placeDetails Characteristics of the selected place
+   * @param {PlaceDetail} placeDetail Characteristics of the selected place
    * @returns {String} Formatted price level for the place
    * @memberof Place
    */
-  static createPriceLevelHTML(placeDetails) {
-    const priceLevel = this.getPriceLevel(placeDetails);
+  static createPriceLevelHTML(placeDetail) {
+    const priceLevel = this.getPriceLevel(placeDetail);
     if (priceLevel === '') {
       return '';
     }
@@ -100,26 +101,26 @@ class Place {
 
   /**
    * @description Get the popularity rating for the place
-   * @param {PlaceDetails} placeDetails Characteristics of the selected place
+   * @param {PlaceDetail} placeDetail Characteristics of the selected place
    * @returns {String} Place rating
    * @memberof Place
    */
-  static getRating(placeDetails) {
+  static getRating(placeDetail) {
     // Translate the numerical place rating to a graphical star rating
-    if (placeDetails.rating === undefined) {
+    if (placeDetail.rating === undefined) {
       return 0;
     }
-    return placeDetails.rating;
+    return placeDetail.rating;
   }
 
   /**
    * @description Create HTML elements containing the rating
-   * @param {PlaceDetails} placeDetails Characteristics of the selected place
+   * @param {PlaceDetail} placeDetail Characteristics of the selected place
    * @returns {String} Formatted popularity rating of the place
    * @memberof Place
    */
-  static createRatingHTML(placeDetails) {
-    const rating = this.getRating(placeDetails);
+  static createRatingHTML(placeDetail) {
+    const rating = this.getRating(placeDetail);
     if (rating === 0) {
       return '';
     }
@@ -147,26 +148,26 @@ class Place {
   /**
    * @description Get the open/closed status of the place
    * @static
-   * @param {PlaceDetails} placeDetails Characteristics of the selected place
+   * @param {PlaceDetail} placeDetail Characteristics of the selected place
    * @returns {String} Open/close status of the place
    * @memberof InfoWindow
    */
-  static getStatus(placeDetails) {
-    if (placeDetails.opening_hours === undefined) {
+  static getStatus(placeDetail) {
+    if (placeDetail.opening_hours === undefined) {
       return '';
     }
-    return placeDetails.opening_hours.open_now ? 'Open' : 'Closed';
+    return placeDetail.opening_hours.open_now ? 'Open' : 'Closed';
   }
 
   /**
    * @description Create HTML elements containing the place's status
    * @static
-   * @param {PlaceDetails} placeDetails Characteristics of the selected place
+   * @param {PlaceDetail} placeDetail Characteristics of the selected place
    * @returns {String} Formatted open/close status of the place
    * @memberof Place
    */
-  static createStatusHTML(placeDetails) {
-    const status = this.getStatus(placeDetails);
+  static createStatusHTML(placeDetail) {
+    const status = this.getStatus(placeDetail);
     return (
       `<span class="iw-chip">${status}</span>`
     );
@@ -175,27 +176,27 @@ class Place {
     /**
    * @description Get the place's first type categorization
    * @static
-   * @param {PlaceDetails} placeDetails Characteristics of the selected place
+   * @param {PlaceDetail} placeDetail Characteristics of the selected place
    * @returns {String} Formatted place category
    * @memberof Place
    */
-  static getFirstType(placeDetails) {
-    if (placeDetails.types === undefined) {
+  static getFirstType(placeDetail) {
+    if (placeDetail.types === undefined) {
       return '';
     }
-    return placeDetails.types[0];
+    return placeDetail.types[0];
   }
 
   /**
    * @description Create an HTML element containing the place's first type
    * @static
-   * @param {PlaceDetails} placeDetails Characteristics of the selected place
+   * @param {PlaceDetail} placeDetail Characteristics of the selected place
    * @returns {String} Formatted first type of the place
    * @memberof Place
    */
-  static createFirstTypeHTML(placeDetails) {
+  static createFirstTypeHTML(placeDetail) {
     // Return only the first type associated with the place
-    const firstType = this.getFirstType(placeDetails);
+    const firstType = this.getFirstType(placeDetail);
     return (
       `<span class="iw-chip">
         ${firstType.charAt(0).toUpperCase() + removeSpecialChars(firstType.slice(1))}

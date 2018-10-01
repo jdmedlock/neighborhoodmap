@@ -34,7 +34,6 @@ class SearchInput extends React.Component {
    */
   componentDidMount() {
     // Default to search for local attractions
-    /*
     MapsAPI.searchNearby(this.props.map, this.state.placesService,
       this.props.setSearchResults, {
         location: this.props.home,
@@ -42,7 +41,7 @@ class SearchInput extends React.Component {
         keyword: [ 'Kennedy' ]
       }
     );
-    */
+
     MapsAPI.createSearchBox(this.props.map,
       'search-text', this.handlePlaceChange);
   };

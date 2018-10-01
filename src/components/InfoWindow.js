@@ -5,23 +5,23 @@ class InfoWindow {
 
   /**
    * @description Create HTML-formatted content to be placed in the Infowindow
-   * @param {PlaceDetails} placeDetails Characteristics of the selected place
+   * @param {PlaceDetail} placeDetail Characteristics of the selected place
    * @returns {String} HTML-formatted content
    * @memberof InfoWindow
    */
-  create(placeDetails) {
+  static create(placeDetail) {
     return (
       `<div class="gm-style-iw full-width">
-        <div class="title full-width">${placeDetails.name}</div>
+        <div class="title full-width">${placeDetail.name}</div>
         <div class="address-line full-width">
-          ${Place.createFormattedAddressHTML(placeDetails)}
-          ${Place.createFormattedPhoneNoHTML(placeDetails)}
+          ${Place.createFormattedAddressHTML(placeDetail)}
+          ${Place.createFormattedPhoneNoHTML(placeDetail)}
         <div/>
         <div class="iw-attrs full-width">
-          ${Place.createFirstTypeHTML(placeDetails)}
-          ${Place.createPriceLevelHTML(placeDetails)}
-          ${Place.createRatingHTML(placeDetails)}
-          ${Place.createStatusHTML(placeDetails)}
+          ${Place.createFirstTypeHTML(placeDetail)}
+          ${Place.createPriceLevelHTML(placeDetail)}
+          ${Place.createRatingHTML(placeDetail)}
+          ${Place.createStatusHTML(placeDetail)}
         </div>
       </div>`);
   }
