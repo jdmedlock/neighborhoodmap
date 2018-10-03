@@ -131,7 +131,11 @@ class MapsAPI {
         marker.addListener('click', () => {
           infowindow.open(map, marker);
         });
+      } else {
+        // Remove the marker from the map if an error occurred
+        marker.setMap(null);
       }
+
     });
   }
 }
