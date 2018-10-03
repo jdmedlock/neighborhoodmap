@@ -82,7 +82,7 @@ class NeighborhoodMap extends React.Component {
                         home={ this.state.home }
                         searchRadius={ this.state.searchRadius }
                         map={ this.state.map }
-                        setSearchResults={ this.setSearchResults } />
+                      />
                       )}/>
                     <Route exact path='/search' render={() => (
                       <PlacePage />
