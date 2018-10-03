@@ -38,7 +38,7 @@ class SearchInput extends React.Component {
       this.props.setSearchResults, {
         location: this.props.home,
         radius: this.props.searchRadius,
-        keyword: [ 'Kennedy' ]
+        keyword: [ 'nasa' ]
       }
     );
 

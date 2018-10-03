@@ -124,14 +124,14 @@ class MapsAPI {
     placesService.getDetails({
       placeId: place.place_id
     }, (placeDetail, status) => {
-      console.log('addInfoWindowToMarker - status:', status);
-      console.log('addInfoWindowToMarker - placeDetail: ', placeDetail);
-      const infowindow = new window.google.maps.InfoWindow({
-        content: InfoWindow.create(placeDetail)
-      });
-      marker.addListener('click', () => {
-        infowindow.open(map, marker);
-      });
+      if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+        const infowindow = new window.google.maps.InfoWindow({
+          content: InfoWindow.create(placeDetail)
+        });
+        marker.addListener('click', () => {
+          infowindow.open(map, marker);
+        });
+      }
     });
   }
 }

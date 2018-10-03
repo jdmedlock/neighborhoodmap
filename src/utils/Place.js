@@ -68,6 +68,20 @@ class Place {
   }
 
   /**
+   * @description Retrieve the place name
+   * @static
+   * @param {PlaceDetail} placeDetail Characteristics of a specific place
+   * @returns {String} Place name
+   * @memberof Place
+   */
+  static getName(placeDetail) {
+    if (placeDetail.name === undefined) {
+      return '';
+    }
+    return placeDetail.name;
+  }
+
+  /**
    * @description Get the price level of the place
    * @static
    * @param {PlaceDetail} placeDetail Characteristics of the selected place
@@ -75,7 +89,6 @@ class Place {
    * @memberof Place
    */
   static getPriceLevel(placeDetail) {
-    console.log('')
     if (placeDetail.price_level === undefined) {
       return '';
     }

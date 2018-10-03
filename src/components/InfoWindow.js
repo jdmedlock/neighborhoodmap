@@ -12,7 +12,7 @@ class InfoWindow {
   static create(placeDetail) {
     return (
       `<div class="gm-style-iw full-width">
-        <div class="title full-width">${placeDetail.name}</div>
+        <div class="title full-width">${Place.getName(placeDetail)}</div>
         <div class="address-line full-width">
           ${Place.createFormattedAddressHTML(placeDetail)}
           ${Place.createFormattedPhoneNoHTML(placeDetail)}
