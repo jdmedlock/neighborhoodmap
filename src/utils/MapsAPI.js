@@ -54,17 +54,38 @@ class MapsAPI {
    * @param {Object} map Map
    * @param {Object} placesService Reference to the places service
    * @param {Function} setSearchResults Callback to receive the search results
+   * @param {Number} searchResultLimit Maximum number of results to display
    * @param {Object} options Google Places SearchNearby options. Must included
    * at lease the `location` and `radius` attributes.
    * @memberof MapsAPI
    */
-  static searchNearby(map, placesService, setSearchResults, options) {
+  static searchNearby(map, placesService, setSearchResults, searchResultsLimit, options) {
     placesService.nearbySearch(options, (results, status) => {
       if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-        setSearchResults(results);
-        this.addPlacesToMap(map, placesService, results);
+        // Sort the results in descending rating sequence and limit the 
+        // number of entries displayed
+        let sortedResultsByRating = results.sort(this.sortByRating);
+        if (sortedResultsByRating.length > searchResultsLimit) {
+          sortedResultsByRating.length = searchResultsLimit;
+        }
+        // Add the places to the map
+        setSearchResults(sortedResultsByRating);
+        this.addPlacesToMap(map, placesService, sortedResultsByRating);
       }
     });
+  }
+
+  /**
+   * @description Sort comparater to sort the array in descending sequence
+   * @static
+   * @param {PlaceResult} a object to compare
+   * @param {PlaceResult} b object to compare
+   * @returns {Number} Less than, equal to, or greater than zero to denote
+   * whether b.ranking is greater than a.ranking
+   * @memberof MapsAPI
+   */
+  static sortByRating(a, b) {
+    return b.rating - a.rating;
   }
 
   /**

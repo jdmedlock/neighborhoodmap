@@ -35,10 +35,12 @@ class SearchInput extends React.Component {
   componentDidMount() {
     // Default to search for local attractions
     MapsAPI.searchNearby(this.props.map, this.state.placesService,
-      this.props.setSearchResults, {
+      this.props.setSearchResults, this.props.searchResultsLimit, {
         location: this.props.home,
         radius: this.props.searchRadius,
-        keyword: [ 'nasa' ]
+        rankBy: window.google.maps.places.RankBy.PROMINENCE,
+        keyword: [ 'nasa' ],
+        type: [ 'point_of_interest' ]
       }
     );
 
@@ -63,8 +65,8 @@ class SearchInput extends React.Component {
    * @memberof SearchInput
    */
   handlePlaceChange = () => {
-    MapsAPI.searchNearby(this.props.map, this.state.placesService,
-      this.props.setSearchResults, {
+    MapsAPI.searchNearby(this.props.map, this.state.placesService, 
+      this.props.setSearchResults, this.props.searchResultsLimit, {
         location: this.props.home,
         radius: this.props.searchRadius,
         keyword: this.state.searchText
@@ -103,6 +105,7 @@ class SearchInput extends React.Component {
 SearchInput.propTypes = {
   home: PropTypes.object.isRequired,
   searchRadius: PropTypes.number.isRequired,
+  searchResultsLimit: PropTypes.number.isRequired,
   map: PropTypes.object.isRequired,
   setSearchResults: PropTypes.func.isRequired
 };

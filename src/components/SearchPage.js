@@ -14,6 +14,7 @@ class SearchPage extends React.Component {
   static propTypes = {
     home: PropTypes.object.isRequired,
     searchRadius: PropTypes.number.isRequired,
+    searchResultsLimit: PropTypes.number.isRequired,
     map: PropTypes.object.isRequired,
   }
 
@@ -48,8 +49,10 @@ class SearchPage extends React.Component {
             <SearchInput handleChange={ this.handleChange }
               home={ this.props.home }
               searchRadius={ this.props.searchRadius }
+              searchResultsLimit={ this.props.searchResultsLimit }
               map={ this.props.map }
-              setSearchResults={ this.setSearchResults } />
+              setSearchResults={ this.setSearchResults }
+            />
             <SearchResults searchResults={ this.state.searchResults }/>
           </GridCell>
         </Grid>

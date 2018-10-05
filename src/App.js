@@ -26,6 +26,7 @@ class NeighborhoodMap extends React.Component {
       },
       // Maximum search radius in meters
       searchRadius: Number.parseInt(process.env.REACT_APP_SEARCH_RADIUS,10),
+      searchResultsLimit: Number.parseInt(process.env.REACT_APP_SEARCH_RESULTS_LIMIT, 10),
       map: {},
       mapIsLoaded: false,
     };
@@ -81,6 +82,7 @@ class NeighborhoodMap extends React.Component {
                       <SearchPage
                         home={ this.state.home }
                         searchRadius={ this.state.searchRadius }
+                        searchResultsLimit={ this.state.searchResultsLimit }
                         map={ this.state.map }
                       />
                       )}/>
