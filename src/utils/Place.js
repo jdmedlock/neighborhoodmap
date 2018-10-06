@@ -123,7 +123,7 @@ class Place {
     if (placeDetail.rating === undefined) {
       return 0;
     }
-    return placeDetail.rating;
+    return placeDetail.rating.toFixed(1);
   }
 
   /**
@@ -181,6 +181,9 @@ class Place {
    */
   static createStatusHTML(placeDetail) {
     const status = this.getStatus(placeDetail);
+    if (status === '') {
+      return '';
+    }
     return (
       `<span class="iw-chip">${status}</span>`
     );
@@ -194,10 +197,11 @@ class Place {
    * @memberof Place
    */
   static getFirstType(placeDetail) {
-    if (placeDetail.types === undefined) {
+    if (placeDetail.types === undefined || placeDetail.types.length === 0) {
       return '';
     }
-    return placeDetail.types[0];
+    return placeDetail.types[0].charAt(0).toUpperCase() + 
+      removeSpecialChars(placeDetail.types[0].slice(1));
   }
 
   /**
@@ -210,9 +214,12 @@ class Place {
   static createFirstTypeHTML(placeDetail) {
     // Return only the first type associated with the place
     const firstType = this.getFirstType(placeDetail);
+    if (firstType === '') {
+      return '';
+    }
     return (
       `<span class="iw-chip">
-        ${firstType.charAt(0).toUpperCase() + removeSpecialChars(firstType.slice(1))}
+        ${ firstType }
       </span>`
     );
   }

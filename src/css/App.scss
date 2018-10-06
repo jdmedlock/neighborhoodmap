@@ -69,6 +69,17 @@ tr:nth-child(odd) {background: $table-row-light;}
   text-align: right;
 }
 
+/* ===================== Search Area ======================= */
+
+#search-text {
+  height: 3rem;
+}
+
+#top-attractions-btn {
+  background-color: $mdc-theme-secondary-dark !important;
+  height: 3rem;
+}
+
 /* ======================= Map Area ======================== */
 
 .map-container .mdc-layout-grid {

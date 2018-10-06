@@ -6,7 +6,7 @@ import { DataTable, DataTableContent, DataTableHead, DataTableBody,
   DataTableHeadCell, DataTableRow, DataTableCell } from '@rmwc/data-table';
 
 // Application Components
-import { removeSpecialChars } from '../utils/utilFunctions';
+import Place from '../utils/Place';
 import '../css/App.css';
 
 const SearchResults = (props) => {
@@ -38,13 +38,12 @@ const SearchResults = (props) => {
                   // methods. For this reason we iterate over the results here.
                   props.searchResults.map((place) => (
                     <DataTableRow key={ place.id }>
-                      <DataTableCell>{ place.name }</DataTableCell>
+                      <DataTableCell>{ Place.getName(place) }</DataTableCell>
                       <DataTableCell>
-                        { place.types[0].charAt(0).toUpperCase() + 
-                          removeSpecialChars(place.types[0].slice(1)) }
+                        { Place.getFirstType(place) }
                       </DataTableCell>
                       <DataTableCell id="dt-rating" alignMiddle>
-                        { place.rating.toFixed(1) }
+                        { Place.getRating(place) }
                       </DataTableCell>
                     </DataTableRow >
                   ))}

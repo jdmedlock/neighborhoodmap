@@ -3,6 +3,8 @@ import debounce from "lodash.debounce";
 import PropTypes from 'prop-types';
 
 // React Material Web Components
+import { Button } from '@rmwc/button';
+import { Grid, GridCell } from '@rmwc/grid';
 import { TextField, TextFieldIcon } from '@rmwc/textfield';
 
 // Application Components
@@ -25,6 +27,7 @@ class SearchInput extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.showTopAttractions = this.showTopAttractions.bind(this);
     this.emitChangeDebounce = debounce(this.queryLocation, 150);
   }
 
@@ -34,15 +37,7 @@ class SearchInput extends React.Component {
    */
   componentDidMount() {
     // Default to search for local attractions
-    MapsAPI.searchNearby(this.props.map, this.state.placesService,
-      this.props.setSearchResults, this.props.searchResultsLimit, {
-        location: this.props.home,
-        radius: this.props.searchRadius,
-        rankBy: window.google.maps.places.RankBy.PROMINENCE,
-        keyword: [ 'nasa' ],
-        type: [ 'point_of_interest' ]
-      }
-    );
+    this.showTopAttractions();
 
     MapsAPI.createSearchBox(this.props.map,
       'search-text', this.handlePlaceChange);
@@ -84,6 +79,24 @@ class SearchInput extends React.Component {
   };
 
   /**
+   * @description Search for the top attractions in the neighborhood
+   *
+   * @memberof SearchInput
+   */
+  showTopAttractions() {
+    this.queryLocation("");
+    MapsAPI.searchNearby(this.props.map, this.state.placesService,
+      this.props.setSearchResults, this.props.searchResultsLimit, {
+        location: this.props.home,
+        radius: this.props.searchRadius,
+        rankBy: window.google.maps.places.RankBy.PROMINENCE,
+        keyword: [ 'nasa' ],
+        type: [ 'point_of_interest' ]
+      }
+    );
+  };
+
+  /**
    * @description Capture search terms entered by the user to locate places
    * and locations on our neighborhood map
    * @returns {HTMLDivElement} Search text field
@@ -92,11 +105,20 @@ class SearchInput extends React.Component {
   render() {
     return (
       <div>
-        <TextField id="search-text" box
-          withTrailingIcon={<TextFieldIcon icon='search' />}
-          fullwidth type="text" onChange={this.handleChange}
-          label="Enter the place you want to find..."
-          placeholder="" />
+        <Grid>
+          <GridCell span="8">
+            <TextField id="search-text" box
+              withTrailingIcon={<TextFieldIcon icon='search' />}
+              fullwidth type="text" onChange={this.handleChange}
+              label="Enter the place you want to find..."
+              placeholder=""
+              value={ this.state.searchText } />
+          </GridCell>
+          <GridCell span="4">
+            <Button id="top-attractions-btn" onClick={ this.showTopAttractions }
+              raised theme="secondary-bg on-secondary">Top 10</Button>
+          </GridCell>
+        </Grid>
       </div>
     )
   };
