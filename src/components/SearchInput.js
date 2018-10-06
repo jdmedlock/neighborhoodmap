@@ -12,9 +12,16 @@ import MapsAPI from '../utils/MapsAPI';
 import '../css/App.css';
 
 class SearchInput extends React.Component {
+
+  static propTypes = {
+    home: PropTypes.object.isRequired,
+    searchRadius: PropTypes.number.isRequired,
+    map: PropTypes.object.isRequired,
+    setSearchResults: PropTypes.func.isRequired
+  };
+
   /**
-   * @description Establish the state for this component and define the
-   * `emitChangeDebounce` function on the class.
+   * @description Establish the state for this component
    * @param {*} props
    */
   constructor(props) {
@@ -62,7 +69,7 @@ class SearchInput extends React.Component {
    */
   handlePlaceChange = () => {
     MapsAPI.searchNearby(this.props.map, this.state.placesService,
-      this.props.setSearchResults, this.props.searchResultsLimit, {
+      this.props.setSearchResults, {
         location: this.props.home,
         radius: this.props.searchRadius,
         keyword: this.state.searchText
@@ -87,7 +94,7 @@ class SearchInput extends React.Component {
   showTopAttractions() {
     this.queryLocation("");
     MapsAPI.searchNearby(this.props.map, this.state.placesService,
-      this.props.setSearchResults, this.props.searchResultsLimit, {
+      this.props.setSearchResults, {
         location: this.props.home,
         radius: this.props.searchRadius,
         rankBy: window.google.maps.places.RankBy.PROMINENCE,
@@ -124,13 +131,5 @@ class SearchInput extends React.Component {
     )
   };
 }
-
-SearchInput.propTypes = {
-  home: PropTypes.object.isRequired,
-  searchRadius: PropTypes.number.isRequired,
-  searchResultsLimit: PropTypes.number.isRequired,
-  map: PropTypes.object.isRequired,
-  setSearchResults: PropTypes.func.isRequired
-};
 
 export default SearchInput;

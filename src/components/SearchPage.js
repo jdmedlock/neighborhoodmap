@@ -18,6 +18,10 @@ class SearchPage extends React.Component {
     map: PropTypes.object.isRequired,
   }
 
+  /**
+   * @description Establish the state for this component
+   * @param {*} props
+   */
   constructor(props) {
     super(props);
 
@@ -49,11 +53,12 @@ class SearchPage extends React.Component {
             <SearchInput handleChange={ this.handleChange }
               home={ this.props.home }
               searchRadius={ this.props.searchRadius }
-              searchResultsLimit={ this.props.searchResultsLimit }
               map={ this.props.map }
               setSearchResults={ this.setSearchResults }
             />
-            <SearchResults searchResults={ this.state.searchResults }/>
+            <SearchResults searchResults={ this.state.searchResults }
+              searchResultsLimit={ this.props.searchResultsLimit }
+            />
           </GridCell>
         </Grid>
       </div>

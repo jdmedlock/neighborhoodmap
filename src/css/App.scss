@@ -90,14 +90,16 @@ tr:nth-child(odd) {background: $table-row-light;}
   min-width: 11rem;
 }
 
+#page-up-btn,
 #page-down-btn {
   background-color: $mdc-theme-secondary-dark !important;
   border-radius: 50%;
-  height: 2.5rem;
-  width: 2.5rem;
+  height: 2rem;
+  width: 2rem;
   color: white;
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin-top: 1rem;
+  margin-right: 1rem;
 }
 
 /* ======================= Map Area ======================== */
