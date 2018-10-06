@@ -153,7 +153,6 @@ class MapsAPI {
         // Remove the marker from the map if an error occurred
         marker.setMap(null);
       }
-
     });
   }
 }

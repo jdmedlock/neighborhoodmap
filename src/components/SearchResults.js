@@ -26,6 +26,8 @@ class SearchResults extends React.Component {
 
     this.state = {
       currentPlaceInResults: 0,
+      pageForwardDisabled: false,
+      pageBackDisabled: false
     };
 
     // Bind 'this' to the event handlers so they'll have the proper context
@@ -40,10 +42,13 @@ class SearchResults extends React.Component {
    */
   pageForwardResults() {
     if ( this.state.currentPlaceInResults < this.props.searchResults.length ) {
+      this.setState({ pageForwardDisabled: false });
       this.setState((prevState) => {
         return { currentPlaceInResults:  prevState.currentPlaceInResults +
           this.props.searchResultsLimit };
       });
+    } else {
+      this.setState({ pageForwardDisabled: true });
     }
   }
 
@@ -54,11 +59,15 @@ class SearchResults extends React.Component {
    */
   pageBackResults() {
     if ( this.state.currentPlaceInResults > 0 ) {
+      this.setState({ pageBackDisabled: false });
       this.setState((prevState) => {
         return { currentPlaceInResults:  prevState.currentPlaceInResults -
           this.props.searchResultsLimit };
       });
+    } else {
+      this.setState({ pageBackDisabled: true });
     }
+
   }
 
   /**
@@ -71,8 +80,9 @@ class SearchResults extends React.Component {
     return this.props.searchResults
       .reduce((resultsToDisplay, currentPlace, currentIndex) => {
         if (currentIndex >= this.state.currentPlaceInResults && 
-          currentIndex <= (this.state.currentPlaceInResults + this.props.searchResultsLimit - 1) ) {
-            resultsToDisplay.push(currentPlace)
+          currentIndex <= (this.state.currentPlaceInResults + 
+            this.props.searchResultsLimit - 1) ) {
+          resultsToDisplay.push(currentPlace)
         }
         return resultsToDisplay;
       }, []);
@@ -122,9 +132,11 @@ class SearchResults extends React.Component {
               </DataTable>
               <div className="center-contents">
                 <ButtonIcon id="page-up-btn"  onClick={ this.pageBackResults }
+                  disabled={ this.state.pageBackDisabled }
                   icon="arrow_upward" aria-label="Page up results">
                 </ButtonIcon>
                 <ButtonIcon id="page-down-btn"  onClick={ this.pageForwardResults }
+                  disabled={ this.state.pageForwardDisabled } 
                   icon="arrow_downward" aria-label="Page down results">
                 </ButtonIcon>
               </div>
