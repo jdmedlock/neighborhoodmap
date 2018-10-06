@@ -53,8 +53,8 @@ const SearchResults = (props) => {
               </DataTableContent>
             </DataTable>
             <div className="center-contents">
-              <ButtonIcon id="show-more-btn" onClick={ this.showMorePlaces }
-                icon="arrow_drop_down_circle" aria-label="Show more places">
+              <ButtonIcon id="page-down-btn"  onClick={ this.showMorePlaces }
+                icon="arrow_downward" aria-label="Show more places">
               </ButtonIcon>
             </div>
           </div>
