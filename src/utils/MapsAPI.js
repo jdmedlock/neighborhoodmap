@@ -123,7 +123,7 @@ class MapsAPI {
       map: map,
       icon: image,
       title: place.name,
-      position: place.geometry.location
+      position: place.geometry.location,
     });
 
     bounds.extend(place.geometry.location);
@@ -147,6 +147,7 @@ class MapsAPI {
           content: InfoWindow.create(placeDetail)
         });
         marker.addListener('click', () => {
+          this.bounceMarker(marker);
           infowindow.open(map, marker);
         });
       } else {
@@ -154,6 +155,14 @@ class MapsAPI {
         marker.setMap(null);
       }
     });
+  }
+
+
+  static bounceMarker(marker) {
+    marker.setAnimation(window.google.maps.Animation.BOUNCE);
+    setTimeout(() => {
+      marker.setAnimation(null);
+    }, 1000);
   }
 }
 
