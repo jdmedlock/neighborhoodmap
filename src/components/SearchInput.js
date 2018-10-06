@@ -3,7 +3,7 @@ import debounce from "lodash.debounce";
 import PropTypes from 'prop-types';
 
 // React Material Web Components
-import { Button } from '@rmwc/button';
+import { Fab } from '@rmwc/fab';
 import { Grid, GridCell } from '@rmwc/grid';
 import { TextField, TextFieldIcon } from '@rmwc/textfield';
 
@@ -60,7 +60,7 @@ class SearchInput extends React.Component {
    * @memberof SearchInput
    */
   handlePlaceChange = () => {
-    MapsAPI.searchNearby(this.props.map, this.state.placesService, 
+    MapsAPI.searchNearby(this.props.map, this.state.placesService,
       this.props.setSearchResults, this.props.searchResultsLimit, {
         location: this.props.home,
         radius: this.props.searchRadius,
@@ -115,8 +115,9 @@ class SearchInput extends React.Component {
               value={ this.state.searchText } />
           </GridCell>
           <GridCell span="4">
-            <Button id="top-attractions-btn" onClick={ this.showTopAttractions }
-              raised theme="secondary-bg on-secondary">Top 10</Button>
+            <Fab id="top-attractions-btn" onClick={ this.showTopAttractions }
+              raised="true" theme="secondary-bg on-secondary" icon="thumb_up_alt"
+              label="Top Places..."></Fab>
           </GridCell>
         </Grid>
       </div>

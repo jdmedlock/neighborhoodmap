@@ -48,6 +48,14 @@ tr:nth-child(odd) {
 #dt-rating {
   text-align: right; }
 
+/* ===================== Search Area ======================= */
+#search-text {
+  height: 3rem; }
+
+#top-attractions-btn {
+  background-color: #c17900 !important;
+  height: 3rem; }
+
 /* ======================= Map Area ======================== */
 .map-container .mdc-layout-grid {
   padding: 0; }
