@@ -26,6 +26,12 @@ tr:nth-child(even) {
 tr:nth-child(odd) {
   background: #ffffff; }
 
+/* =================== Common Elements ===================== */
+.center-contents {
+  display: flex;
+  justify-content: center;
+  width: 100%; }
+
 /* ============== Material Design overrides ================ */
 .mdc-top-app-bar {
   background-color: #005b9f; }
@@ -54,7 +60,12 @@ tr:nth-child(odd) {
 
 #top-attractions-btn {
   background-color: #c17900 !important;
-  height: 3rem; }
+  height: 2rem;
+  margin-top: .5rem;
+  min-width: 11rem; }
+
+#show-more-btn {
+  font-size: 40px; }
 
 /* ======================= Map Area ======================== */
 .map-container .mdc-layout-grid {

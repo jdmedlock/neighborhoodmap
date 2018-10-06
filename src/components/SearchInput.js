@@ -26,6 +26,7 @@ class SearchInput extends React.Component {
       placesService: new window.google.maps.places.PlacesService(this.props.map)
     };
 
+    // Bind 'this' to the event handlers so they'll have the proper context
     this.handleChange = this.handleChange.bind(this);
     this.showTopAttractions = this.showTopAttractions.bind(this);
     this.emitChangeDebounce = debounce(this.queryLocation, 150);
@@ -116,8 +117,7 @@ class SearchInput extends React.Component {
           </GridCell>
           <GridCell span="4">
             <Fab id="top-attractions-btn" onClick={ this.showTopAttractions }
-              raised="true" theme="secondary-bg on-secondary" icon="thumb_up_alt"
-              label="Top Places..."></Fab>
+              raised="true" icon="thumb_up_alt" label="Top Places..."></Fab>
           </GridCell>
         </Grid>
       </div>

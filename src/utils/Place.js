@@ -30,8 +30,8 @@ class Place {
     // Return the address separated into two lines
     const firstComma = address.indexOf(',');
     return (
-      `<div>${address.slice(0,firstComma)}</div>
-      <div>${address.slice(firstComma+1)}</div>`
+      `<div>${ address.slice(0,firstComma) }</div>
+      <div>${ address.slice(firstComma+1) }</div>`
     );
   }
 
@@ -63,7 +63,7 @@ class Place {
     }
 
     return (
-      `<div>${phoneNo}</div>`
+      `<div>${ phoneNo }</div>`
     );
   }
 
@@ -108,7 +108,7 @@ class Place {
     }
     const priceLevelText = ['$ Free', '$ Inexpensive', '$ Moderate', '$ Expensive', '$ Very Expensive'];
     return (
-      `<span class="iw-chip">${priceLevelText[priceLevel]}</span>`
+      `<span class="iw-chip">${ priceLevelText[priceLevel] }</span>`
     );
   }
 
@@ -153,7 +153,7 @@ class Place {
 
     return (
       `<span class="iw-chip">
-        <i class="material-icons iw-rating">${starRating}</i>
+        <i class="material-icons iw-rating">${ starRating }</i>
       </span>`
     );
   }
@@ -185,7 +185,7 @@ class Place {
       return '';
     }
     return (
-      `<span class="iw-chip">${status}</span>`
+      `<span class="iw-chip">${ status }</span>`
     );
   }
 
@@ -200,7 +200,7 @@ class Place {
     if (placeDetail.types === undefined || placeDetail.types.length === 0) {
       return '';
     }
-    return placeDetail.types[0].charAt(0).toUpperCase() + 
+    return placeDetail.types[0].charAt(0).toUpperCase() +
       removeSpecialChars(placeDetail.types[0].slice(1));
   }
 
