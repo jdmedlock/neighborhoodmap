@@ -9,6 +9,7 @@ import { Grid, GridCell } from '@rmwc/grid';
 import Map from './components/Map';
 import PlacePage from './components/PlacePage';
 import SearchPage from './components/SearchPage';
+import MapsAPI from './utils/MapsAPI';
 import './css/App.css';
 
 class NeighborhoodMap extends React.Component {
@@ -19,9 +20,13 @@ class NeighborhoodMap extends React.Component {
     // App state
     this.state = {
       // Coordinates of the center of our neighborhood
-      home: { lat: 28.5729, lng: -80.6490 },
+      home: {
+        lat: Number.parseFloat(process.env.REACT_APP_LAT),
+        lng: Number.parseFloat(process.env.REACT_APP_LNG)
+      },
       // Maximum search radius in meters
-      searchRadius: '16000',
+      searchRadius: Number.parseInt(process.env.REACT_APP_SEARCH_RADIUS,10),
+      searchResultsLimit: Number.parseInt(process.env.REACT_APP_SEARCH_RESULTS_LIMIT, 10),
       map: {},
       mapIsLoaded: false,
     };
@@ -33,10 +38,7 @@ class NeighborhoodMap extends React.Component {
    * @memberof NeighborhoodMap
    */
   componentDidMount() {
-    this.loadGoogleMap().then((map) => {
-      this.setState({ map: map });
-      this.setState({ mapIsLoaded: true });
-    });
+    MapsAPI.addScriptToDOM(process.env.REACT_APP_MAPS_URL, this.loadGoogleMap);
   }
 
   /**
@@ -44,15 +46,10 @@ class NeighborhoodMap extends React.Component {
    * @returns {Promise} Promise that will be resolved when the map is loaded
    * @memberof NeighborhoodMap
    */
-  loadGoogleMap() {
-    return new Promise((resolve, reject) => {
-      const map = new window.google.maps.Map(document.getElementById('map'), {
-        center: { lat: this.state.home.lat, lng: this.state.home.lng },
-        zoom: 10,
-        mapTypeId: 'roadmap'
-      });
-      resolve(map);
-    });
+  loadGoogleMap = () => {
+    const map = MapsAPI.createMap(this.state.home);
+    this.setState({ map: map });
+    this.setState({ mapIsLoaded: true });
   }
 
   /**
@@ -85,8 +82,9 @@ class NeighborhoodMap extends React.Component {
                       <SearchPage
                         home={ this.state.home }
                         searchRadius={ this.state.searchRadius }
+                        searchResultsLimit={ this.state.searchResultsLimit }
                         map={ this.state.map }
-                        setSearchResults={ this.setSearchResults } />
+                      />
                       )}/>
                     <Route exact path='/search' render={() => (
                       <PlacePage />

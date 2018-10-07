@@ -54,6 +54,20 @@ command line to
 start the application environment. The application will automatically open a
 new tab in your browser with the url `localhost:3000`.
 
+Environment variables that control the operation of the app are defined in the
+`.env` file in the application root. These variables and their usage are shown
+in the following table. It's important to keep in mind that when these settings
+in the `.env` file are changed `npm run build` must be run before they will
+take effect.
+
+| Environment Variable    | Description | Example Setting |
+|:------------------------|:------------|:----------------|
+| REACT_APP_LAT           | Latitude of the neighborhood | REACT_APP_LAT=28.4812299 |
+| REACT_APP_LNG           | Longitude of the neighborhood | REACT_APP_LNG=-80.8883962 |
+| REACT_APP_MAPS_URL      | Google Maps URL with API key | REACT_APP_MAPS_URL="https://maps.googleapis.com/maps/api/js?libraries=places&key=\<YOUR-API-KEY\>" |
+| REACT_APP_SEARCH_RADIUS | Radius, in meters, searches are constrained to | REACT_APP_SEARCH_RADIUS=16000 |
+
+
 ## Dependencies
 
 This app has the following dependencies
@@ -66,7 +80,6 @@ This app has the following dependencies
 | babel-loader   | Development | Compiles JavaScript files using babel | N/a |
 | babel-preset-es2015 | Development | Preset for compiling es2015 | N/a |
 | css-loader     | Development | Resolves CSS @import and url() paths | N/a |
-| dotenv         | Runtime     | Load environment variables | `.env` |
 | extract-loader | Development | Extracts the CSS into a .css file | N/a |
 | file-loader    | Development | Serves the .css file as a public URL | N/a |
 | lodash.debounce | Runtime    | _debounce text input | N/a  |

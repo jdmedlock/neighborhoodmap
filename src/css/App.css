@@ -26,6 +26,12 @@ tr:nth-child(even) {
 tr:nth-child(odd) {
   background: #ffffff; }
 
+/* =================== Common Elements ===================== */
+.center-contents {
+  display: flex;
+  justify-content: center;
+  width: 100%; }
+
 /* ============== Material Design overrides ================ */
 .mdc-top-app-bar {
   background-color: #005b9f; }
@@ -47,6 +53,27 @@ tr:nth-child(odd) {
  */
 #dt-rating {
   text-align: right; }
+
+/* ===================== Search Area ======================= */
+#search-text {
+  height: 3rem; }
+
+#top-attractions-btn {
+  background-color: #c17900 !important;
+  height: 2rem;
+  margin-top: .5rem;
+  min-width: 11rem; }
+
+#page-up-btn,
+#page-down-btn {
+  background-color: #c17900 !important;
+  border-radius: 50%;
+  height: 2rem;
+  width: 2rem;
+  color: white;
+  font-size: 2rem;
+  margin-top: 1rem;
+  margin-right: 1rem; }
 
 /* ======================= Map Area ======================== */
 .map-container .mdc-layout-grid {

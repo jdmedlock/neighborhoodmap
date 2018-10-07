@@ -41,6 +41,14 @@ td, tr {
 tr:nth-child(even) {background: $table-row-dark;}
 tr:nth-child(odd) {background: $table-row-light;}
 
+/* =================== Common Elements ===================== */
+
+.center-contents {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 /* ============== Material Design overrides ================ */
 
 .mdc-top-app-bar {
@@ -69,7 +77,32 @@ tr:nth-child(odd) {background: $table-row-light;}
   text-align: right;
 }
 
-/* ======================= Map Area ======================== */@at-root
+/* ===================== Search Area ======================= */
+
+#search-text {
+  height: 3rem;
+}
+
+#top-attractions-btn {
+  background-color: $mdc-theme-secondary-dark !important;
+  height: 2rem;
+  margin-top: .5rem;
+  min-width: 11rem;
+}
+
+#page-up-btn,
+#page-down-btn {
+  background-color: $mdc-theme-secondary-dark !important;
+  border-radius: 50%;
+  height: 2rem;
+  width: 2rem;
+  color: white;
+  font-size: 2rem;
+  margin-top: 1rem;
+  margin-right: 1rem;
+}
+
+/* ======================= Map Area ======================== */
 
 .map-container .mdc-layout-grid {
   padding: 0;

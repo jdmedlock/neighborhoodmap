@@ -13,10 +13,15 @@ class SearchPage extends React.Component {
 
   static propTypes = {
     home: PropTypes.object.isRequired,
-    searchRadius: PropTypes.string.isRequired,
+    searchRadius: PropTypes.number.isRequired,
+    searchResultsLimit: PropTypes.number.isRequired,
     map: PropTypes.object.isRequired,
   }
 
+  /**
+   * @description Establish the state for this component
+   * @param {*} props
+   */
   constructor(props) {
     super(props);
 
@@ -30,7 +35,7 @@ class SearchPage extends React.Component {
    * @param {*} searchResults Array of place results
    * @memberof NeighborhoodMap
    */
-  setSearchResults = (searchResults) => {
+  saveSearchResults = (searchResults) => {
     this.setState({ searchResults: searchResults });
   }
 
@@ -49,8 +54,11 @@ class SearchPage extends React.Component {
               home={ this.props.home }
               searchRadius={ this.props.searchRadius }
               map={ this.props.map }
-              setSearchResults={ this.setSearchResults } />
-            <SearchResults searchResults={ this.state.searchResults }/>
+              saveSearchResults={ this.saveSearchResults }
+            />
+            <SearchResults searchResults={ this.state.searchResults }
+              searchResultsLimit={ this.props.searchResultsLimit }
+            />
           </GridCell>
         </Grid>
       </div>
