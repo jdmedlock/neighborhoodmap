@@ -58,15 +58,15 @@ class MapsAPI {
    * at lease the `location` and `radius` attributes.
    * @memberof MapsAPI
    */
-  static searchNearby(map, placesService, setSearchResults, options) {
+  static searchNearby(map, placesService, saveSearchResults, options) {
     placesService.nearbySearch(options, (results, status) => {
       if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-        // Sort the results in descending rating sequence and limit the 
+        // Sort the results in descending rating sequence and limit the
         // number of entries displayed
         let sortedResultsByRating = results.sort(this.sortByRating);
 
         // Add the places to the map
-        setSearchResults(sortedResultsByRating);
+        saveSearchResults(sortedResultsByRating);
         this.addPlacesToMap(map, placesService, sortedResultsByRating);
       }
     });

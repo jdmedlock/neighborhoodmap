@@ -35,7 +35,7 @@ class SearchPage extends React.Component {
    * @param {*} searchResults Array of place results
    * @memberof NeighborhoodMap
    */
-  setSearchResults = (searchResults) => {
+  saveSearchResults = (searchResults) => {
     this.setState({ searchResults: searchResults });
   }
 
@@ -54,7 +54,7 @@ class SearchPage extends React.Component {
               home={ this.props.home }
               searchRadius={ this.props.searchRadius }
               map={ this.props.map }
-              setSearchResults={ this.setSearchResults }
+              saveSearchResults={ this.saveSearchResults }
             />
             <SearchResults searchResults={ this.state.searchResults }
               searchResultsLimit={ this.props.searchResultsLimit }
