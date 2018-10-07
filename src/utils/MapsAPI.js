@@ -27,7 +27,7 @@ class MapsAPI {
   static createMap(home) {
     return new window.google.maps.Map(document.getElementById('map'), {
       center: { lat: home.lat, lng: home.lng },
-      zoom: 10,
+      zoom: 12,
       mapTypeId: 'roadmap'
     });
   }
@@ -58,14 +58,14 @@ class MapsAPI {
    * at lease the `location` and `radius` attributes.
    * @memberof MapsAPI
    */
-  static searchNearby(map, placesService, saveSearchResults, options) {
+  static searchNearby(map, placesService, saveSearchResults, saveInfoWindow, options) {
     placesService.nearbySearch(options, (results, status) => {
       if (status === window.google.maps.places.PlacesServiceStatus.OK) {
         // Sort the results in descending rating sequence and limit the
         // number of entries displayed
         let sortedResultsByRating = results.sort(this.sortByRating);
         // Add the places to the map
-        this.addPlacesToMap(map, placesService, sortedResultsByRating);
+        this.addPlacesToMap(map, placesService, sortedResultsByRating, saveInfoWindow);
         saveSearchResults(sortedResultsByRating);
       }
     });
@@ -92,14 +92,14 @@ class MapsAPI {
    * @param {PlaceResults} places Array of places returned from a search
    * @memberof SearchInput
    */
-  static addPlacesToMap(map, placesService, places) {
+  static addPlacesToMap(map, placesService, places, saveInfoWindow) {
     const bounds = new window.google.maps.LatLngBounds();
     places.forEach((place) => {
       const marker = this.addMarkerToMap(map, place, bounds);
       // Add the marker to the place in the places object array reference
       // passed from the caller
       place["marker"] = marker;
-      this.addInfoWindowToMarker(map, placesService, place.place_id, marker);
+      this.addInfoWindowToMarker(map, placesService, place.place_id, marker, saveInfoWindow);
     });
     map.fitBounds(bounds);
   }
@@ -135,13 +135,13 @@ class MapsAPI {
    * @description Add an infowindow to the specified marker
    * @param {Object} map Map
    * @param {Object} placesService Reference to the places service
-   * @param {Object} placeId Place identifier
+   * @param {Object} place_id Place identifier
    * @param {Object} marker Marker the place is to be associated with
    * @memberof SearchInput
    */
-  static addInfoWindowToMarker(map, placesService, placeId, marker) {
+  static addInfoWindowToMarker(map, placesService, place_id, marker, saveInfoWindow) {
     marker.addListener('click', () => {
-      this.openInfoWindow(map, placesService, placeId, marker);
+      this.openInfoWindow(map, placesService, place_id, marker, saveInfoWindow);
     });
   }
 
@@ -154,20 +154,20 @@ class MapsAPI {
    * @param {Object} marker Marker the place is to be associated with
    * @memberof MapsAPI
    */
-  static openInfoWindow(map, placesService, placeId, marker) {
+  static openInfoWindow(map, placesService, place_id, marker, saveInfoWindow) {
     this.bounceMarker(marker);
     // Retrieve all details about the place and open the infowindow
     placesService.getDetails({
-      placeId: placeId
+      placeId: place_id
     }, (placeDetail, status) => {
       if (status === window.google.maps.places.PlacesServiceStatus.OK) {
         const infowindow = new window.google.maps.InfoWindow({
           content: InfoWindow.create(placeDetail)
         });
         infowindow.open(map, marker);
+        saveInfoWindow(infowindow);
       } else {
         // Remove the marker from the map if an error occurred
-        console.log('openInfoWindow - error status: ', status);
         marker.setMap(null);
       }
     });

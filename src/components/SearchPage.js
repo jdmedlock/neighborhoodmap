@@ -26,7 +26,9 @@ class SearchPage extends React.Component {
     super(props);
 
     this.state = {
-      searchResults: []
+      searchResults: [],
+      isInfoWindowOpen: false,
+      infoWindow: 0,
     };
   }
 
@@ -37,7 +39,20 @@ class SearchPage extends React.Component {
    */
   saveSearchResults = (searchResults) => {
     this.setState({ searchResults: searchResults });
-  }
+  };
+
+  /**
+   * @description Save the reference to an open infowindow in the state
+   * @param {Object} infowindow InfoWindow object reference
+   * @memberof SearchPage
+   */
+  saveInfoWindow = (infowindow) => {
+    if (this.state.isInfoWindowOpen) {
+      this.state.infoWindow.close();
+    }
+    this.setState({ isInfoWindowOpen: true });
+    this.setState({ infoWindow: infowindow });
+  };
 
   /**
    * @description Create the search page which provides the user with the means
@@ -55,10 +70,12 @@ class SearchPage extends React.Component {
               searchRadius={ this.props.searchRadius }
               map={ this.props.map }
               saveSearchResults={ this.saveSearchResults }
+              saveInfoWindow={ this.saveInfoWindow }
             />
             <SearchResults map={ this.props.map }
               searchResults={ this.state.searchResults }
               searchResultsLimit={ this.props.searchResultsLimit }
+              saveInfoWindow={ this.saveInfoWindow }
             />
           </GridCell>
         </Grid>

@@ -17,6 +17,7 @@ class SearchResults extends React.Component {
     map: PropTypes.object.isRequired,
     searchResults: PropTypes.array.isRequired,
     searchResultsLimit: PropTypes.number.isRequired,
+    saveInfoWindow: PropTypes.func.isRequired,
   }
 
   /**
@@ -93,9 +94,10 @@ class SearchResults extends React.Component {
 
   showPlaceInfo(place) {
     const marker = this.props.searchResults.find((element) => {
-      return element.id === place.place.id;
+      return element.place_id === place.place.place_id;
     }).marker;
-    MapsAPI.openInfoWindow(this.props.map, this.state.placesService, place.place.place_id, marker);
+    MapsAPI.openInfoWindow(this.props.map, this.state.placesService,
+      place.place.place_id, marker, this.props.saveInfoWindow);
   }
 
   /**
