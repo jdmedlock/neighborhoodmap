@@ -138,6 +138,23 @@ class MapsAPI {
    * @memberof SearchInput
    */
   static addInfoWindowToMarker(map, placesService, place, marker) {
+    marker.addListener('click', () => {
+      this.openInfoWindow(map, placesService, place, marker);
+    });
+  }
+
+  /**
+   * @description Open an InfoWindow
+   * @static
+   * @param {Object} map Map
+   * @param {Object} placesService Reference to the places service
+   * @param {Object} place Place result
+   * @param {Object} marker Marker the place is to be associated with
+   * @memberof MapsAPI
+   */
+  static openInfoWindow(map, placesService, place, marker) {
+    this.bounceMarker(marker);
+    // Retrieve all details about the place and open the infowindow
     placesService.getDetails({
       placeId: place.place_id
     }, (placeDetail, status) => {
@@ -145,10 +162,7 @@ class MapsAPI {
         const infowindow = new window.google.maps.InfoWindow({
           content: InfoWindow.create(placeDetail)
         });
-        marker.addListener('click', () => {
-          this.bounceMarker(marker);
-          infowindow.open(map, marker);
-        });
+        infowindow.open(map, marker);
       } else {
         // Remove the marker from the map if an error occurred
         marker.setMap(null);
@@ -156,7 +170,12 @@ class MapsAPI {
     });
   }
 
-
+  /**
+   * @description Animate a marker by bouncing it in place
+   * @static
+   * @param {Object} marker Google Maps place marker
+   * @memberof MapsAPI
+   */
   static bounceMarker(marker) {
     marker.setAnimation(window.google.maps.Animation.BOUNCE);
     setTimeout(() => {
