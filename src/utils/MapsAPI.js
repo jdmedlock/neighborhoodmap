@@ -54,6 +54,7 @@ class MapsAPI {
    * @param {Object} map Map
    * @param {Object} placesService Reference to the places service
    * @param {Function} setSearchResults Callback to receive the search results
+   * @param {Callback} saveInfoWindow Callback to save the infowindow
    * @param {Object} options Google Places SearchNearby options. Must included
    * at lease the `location` and `radius` attributes.
    * @memberof MapsAPI
@@ -90,6 +91,7 @@ class MapsAPI {
    * @param {Object} map Map
    * @param {Object} placesService Reference to the places service
    * @param {PlaceResults} places Array of places returned from a search
+   * @param {Callback} saveInfoWindow Callback to save the infowindow
    * @memberof SearchInput
    */
   static addPlacesToMap(map, placesService, places, saveInfoWindow) {
@@ -137,6 +139,7 @@ class MapsAPI {
    * @param {Object} placesService Reference to the places service
    * @param {Object} place_id Place identifier
    * @param {Object} marker Marker the place is to be associated with
+   * @param {Callback} saveInfoWindow Callback to save the infowindow
    * @memberof SearchInput
    */
   static addInfoWindowToMarker(map, placesService, place_id, marker, saveInfoWindow) {
@@ -152,6 +155,7 @@ class MapsAPI {
    * @param {Object} placesService Reference to the places service
    * @param {String} placeId Place identification
    * @param {Object} marker Marker the place is to be associated with
+   * @param {Callback} saveInfoWindow Callback to save the infowindow
    * @memberof MapsAPI
    */
   static openInfoWindow(map, placesService, place_id, marker, saveInfoWindow) {

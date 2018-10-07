@@ -92,6 +92,11 @@ class SearchResults extends React.Component {
       }, []);
   }
 
+  /**
+   * @description Show an detailed information about a place
+   * @param {Object} place Place information
+   * @memberof SearchResults
+   */
   showPlaceInfo(place) {
     const marker = this.props.searchResults.find((element) => {
       return element.place_id === place.place.place_id;
