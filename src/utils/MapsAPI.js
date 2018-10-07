@@ -64,10 +64,9 @@ class MapsAPI {
         // Sort the results in descending rating sequence and limit the
         // number of entries displayed
         let sortedResultsByRating = results.sort(this.sortByRating);
-
         // Add the places to the map
-        saveSearchResults(sortedResultsByRating);
         this.addPlacesToMap(map, placesService, sortedResultsByRating);
+        saveSearchResults(sortedResultsByRating);
       }
     });
   }
@@ -97,9 +96,9 @@ class MapsAPI {
     const bounds = new window.google.maps.LatLngBounds();
     places.forEach((place) => {
       const marker = this.addMarkerToMap(map, place, bounds);
+      place["marker"] = marker;
       this.addInfoWindowToMarker(map, placesService, place, marker);
     });
-
     map.fitBounds(bounds);
   }
 

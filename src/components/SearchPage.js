@@ -31,7 +31,7 @@ class SearchPage extends React.Component {
   }
 
   /**
-   * @description Replace the search results in our state
+   * @description Replace the search results in the state
    * @param {*} searchResults Array of place results
    * @memberof NeighborhoodMap
    */
