@@ -56,7 +56,8 @@ class SearchPage extends React.Component {
               map={ this.props.map }
               saveSearchResults={ this.saveSearchResults }
             />
-            <SearchResults searchResults={ this.state.searchResults }
+            <SearchResults map={ this.props.map }
+              searchResults={ this.state.searchResults }
               searchResultsLimit={ this.props.searchResultsLimit }
             />
           </GridCell>

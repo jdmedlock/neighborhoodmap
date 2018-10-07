@@ -7,12 +7,14 @@ import { DataTable, DataTableContent, DataTableHead, DataTableBody,
 import { ButtonIcon } from '@rmwc/button';
 
 // Application Components
+import MapsAPI from '../utils/MapsAPI';
 import Place from '../utils/Place';
 import '../css/App.css';
 
 class SearchResults extends React.Component {
- 
+
   static propTypes = {
+    map: PropTypes.object.isRequired,
     searchResults: PropTypes.array.isRequired,
     searchResultsLimit: PropTypes.number.isRequired,
   }
@@ -27,16 +29,18 @@ class SearchResults extends React.Component {
     this.state = {
       currentPlaceInResults: 0,
       pageForwardDisabled: false,
-      pageBackDisabled: false
+      pageBackDisabled: false,
+      placesService: new window.google.maps.places.PlacesService(this.props.map)
     };
 
     // Bind 'this' to the event handlers so they'll have the proper context
     this.pageForwardResults = this.pageForwardResults.bind(this);
     this.pageBackResults = this.pageBackResults.bind(this);
+    this.showPlaceInfo = this.showPlaceInfo.bind(this);
   }
 
   /**
-   * @description Page forward to the prior set of search results by updating 
+   * @description Page forward to the prior set of search results by updating
    * the index of the starting display point in the search results
    * @memberof SearchResults
    */
@@ -67,7 +71,6 @@ class SearchResults extends React.Component {
     } else {
       this.setState({ pageBackDisabled: true });
     }
-
   }
 
   /**
@@ -79,13 +82,20 @@ class SearchResults extends React.Component {
   getPlacesToDisplay() {
     return this.props.searchResults
       .reduce((resultsToDisplay, currentPlace, currentIndex) => {
-        if (currentIndex >= this.state.currentPlaceInResults && 
-          currentIndex <= (this.state.currentPlaceInResults + 
+        if (currentIndex >= this.state.currentPlaceInResults &&
+          currentIndex <= (this.state.currentPlaceInResults +
             this.props.searchResultsLimit - 1) ) {
           resultsToDisplay.push(currentPlace)
         }
         return resultsToDisplay;
       }, []);
+  }
+
+  showPlaceInfo(place) {
+    const marker = this.props.searchResults.find((element) => {
+      return element.id === place.place.id;
+    }).marker;
+    MapsAPI.openInfoWindow(this.props.map, this.state.placesService, place.place.place_id, marker);
   }
 
   /**
@@ -117,7 +127,9 @@ class SearchResults extends React.Component {
                       // methods. For this reason we iterate over the results here.
                       this.getPlacesToDisplay().map((place) => (
                         <DataTableRow key={ place.id }>
-                          <DataTableCell>{ Place.getName(place) }</DataTableCell>
+                          <DataTableCell onClick={ () => this.showPlaceInfo({ place }) }>
+                            { Place.getName(place) }
+                          </DataTableCell>
                           <DataTableCell>
                             { Place.getFirstType(place) }
                           </DataTableCell>
@@ -136,7 +148,7 @@ class SearchResults extends React.Component {
                   icon="arrow_upward" aria-label="Page up results">
                 </ButtonIcon>
                 <ButtonIcon id="page-down-btn"  onClick={ this.pageForwardResults }
-                  disabled={ this.state.pageForwardDisabled } 
+                  disabled={ this.state.pageForwardDisabled }
                   icon="arrow_downward" aria-label="Page down results">
                 </ButtonIcon>
               </div>

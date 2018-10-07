@@ -96,8 +96,10 @@ class MapsAPI {
     const bounds = new window.google.maps.LatLngBounds();
     places.forEach((place) => {
       const marker = this.addMarkerToMap(map, place, bounds);
+      // Add the marker to the place in the places object array reference
+      // passed from the caller
       place["marker"] = marker;
-      this.addInfoWindowToMarker(map, placesService, place, marker);
+      this.addInfoWindowToMarker(map, placesService, place.place_id, marker);
     });
     map.fitBounds(bounds);
   }
@@ -133,13 +135,13 @@ class MapsAPI {
    * @description Add an infowindow to the specified marker
    * @param {Object} map Map
    * @param {Object} placesService Reference to the places service
-   * @param {Object} place Place result
+   * @param {Object} placeId Place identifier
    * @param {Object} marker Marker the place is to be associated with
    * @memberof SearchInput
    */
-  static addInfoWindowToMarker(map, placesService, place, marker) {
+  static addInfoWindowToMarker(map, placesService, placeId, marker) {
     marker.addListener('click', () => {
-      this.openInfoWindow(map, placesService, place, marker);
+      this.openInfoWindow(map, placesService, placeId, marker);
     });
   }
 
@@ -148,15 +150,15 @@ class MapsAPI {
    * @static
    * @param {Object} map Map
    * @param {Object} placesService Reference to the places service
-   * @param {Object} place Place result
+   * @param {String} placeId Place identification
    * @param {Object} marker Marker the place is to be associated with
    * @memberof MapsAPI
    */
-  static openInfoWindow(map, placesService, place, marker) {
+  static openInfoWindow(map, placesService, placeId, marker) {
     this.bounceMarker(marker);
     // Retrieve all details about the place and open the infowindow
     placesService.getDetails({
-      placeId: place.place_id
+      placeId: placeId
     }, (placeDetail, status) => {
       if (status === window.google.maps.places.PlacesServiceStatus.OK) {
         const infowindow = new window.google.maps.InfoWindow({
@@ -165,6 +167,7 @@ class MapsAPI {
         infowindow.open(map, marker);
       } else {
         // Remove the marker from the map if an error occurred
+        console.log('openInfoWindow - error status: ', status);
         marker.setMap(null);
       }
     });
