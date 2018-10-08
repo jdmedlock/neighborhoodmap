@@ -7,7 +7,7 @@ html, body {
 
 th {
   background-color: #0288d1;
-  color: white;
+  color: black;
   font-size: 1rem;
   font-weight: 400;
   height: 1.5rem;
@@ -36,6 +36,10 @@ tr:nth-child(odd) {
 .mdc-top-app-bar {
   background-color: #005b9f; }
 
+.mdc-top-app-bar__title {
+  color: white;
+  font-size: 1.75rem; }
+
 .mdc-layout-grid {
   padding-bottom: 0; }
 
@@ -51,7 +55,7 @@ tr:nth-child(odd) {
  * since the latter seems to have no affect on alignment at this point in
  * time
  */
-#dt-rating {
+.dt-rating {
   text-align: right; }
 
 /* ===================== Search Area ======================= */
@@ -60,8 +64,9 @@ tr:nth-child(odd) {
 
 #top-attractions-btn {
   background-color: #c17900 !important;
-  height: 2rem;
-  margin-top: .5rem;
+  color: black;
+  height: 2.25rem;
+  margin: .5rem .25rem .75rem .25rem;
   min-width: 11rem; }
 
 #page-up-btn,
@@ -70,7 +75,7 @@ tr:nth-child(odd) {
   border-radius: 50%;
   height: 2rem;
   width: 2rem;
-  color: white;
+  color: black;
   font-size: 2rem;
   margin-top: 1rem;
   margin-right: 1rem; }
@@ -90,7 +95,7 @@ tr:nth-child(odd) {
 .gm-style-iw {
   top: 0 !important;
   left: 0 !important;
-  width: 100% !important;
+  width: 90% !important;
   height: 100% !important;
   min-height: 140px !important;
   display: block !important; }
@@ -110,7 +115,7 @@ tr:nth-child(odd) {
   width: 100% !important;
   height: 3.25rem !important;
   padding: 0 0 0 .5rem !important;
-  margin: 0 1.75rem .5rem 0 !important; }
+  margin: 0 0 .5rem 0 !important; }
 
 .address-line {
   font-size: 1rem !important;

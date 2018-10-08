@@ -23,7 +23,7 @@ class SearchInput extends React.Component {
 
   /**
    * @description Establish the state for this component
-   * @param {*} props
+   * @param {Object} props
    */
   constructor(props) {
     super(props);
@@ -116,17 +116,19 @@ class SearchInput extends React.Component {
       <div>
         <Grid>
           <GridCell span="8">
-            <TextField id="search-text" tabindex="0" box
+            <TextField id="search-text" tabIndex="0" box
               withTrailingIcon={<TextFieldIcon icon='search' />}
               fullwidth type="text" onChange={this.handleChange}
               label="Enter the place you want to find..."
               placeholder=""
-              value={ this.state.searchText } />
+              value={ this.state.searchText }
+              aria-label="Enter search terms for places search" />
           </GridCell>
           <GridCell span="4">
-            <Fab id="top-attractions-btn" tabindex="0"
+            <Fab id="top-attractions-btn" tabIndex="0"
               onClick={ this.showTopAttractions }
-              raised="true" icon="thumb_up_alt" label="Top Places..."></Fab>
+              raised="true" icon="thumb_up_alt" label="Top Places...">
+              aria-label="Show top places"</Fab>
           </GridCell>
         </Grid>
       </div>
