@@ -116,7 +116,7 @@ class SearchInput extends React.Component {
       <div>
         <Grid>
           <GridCell span="8">
-            <TextField id="search-text" box
+            <TextField id="search-text" tabindex="0" box
               withTrailingIcon={<TextFieldIcon icon='search' />}
               fullwidth type="text" onChange={this.handleChange}
               label="Enter the place you want to find..."
@@ -124,7 +124,8 @@ class SearchInput extends React.Component {
               value={ this.state.searchText } />
           </GridCell>
           <GridCell span="4">
-            <Fab id="top-attractions-btn" onClick={ this.showTopAttractions }
+            <Fab id="top-attractions-btn" tabindex="0"
+              onClick={ this.showTopAttractions }
               raised="true" icon="thumb_up_alt" label="Top Places..."></Fab>
           </GridCell>
         </Grid>

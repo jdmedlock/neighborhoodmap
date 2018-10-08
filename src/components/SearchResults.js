@@ -134,13 +134,14 @@ class SearchResults extends React.Component {
                       // methods. For this reason we iterate over the results here.
                       this.getPlacesToDisplay().map((place) => (
                         <DataTableRow key={ place.id }>
-                          <DataTableCell onClick={ () => this.showPlaceInfo({ place }) }>
+                          <DataTableCell tabIndex="0"
+                            onClick={ () => this.showPlaceInfo({ place }) }>
                             { Place.getName(place) }
                           </DataTableCell>
                           <DataTableCell>
                             { Place.getFirstType(place) }
                           </DataTableCell>
-                          <DataTableCell id="dt-rating" alignMiddle>
+                          <DataTableCell className="dt-rating" alignMiddle>
                             { Place.getRating(place) }
                           </DataTableCell>
                         </DataTableRow >
@@ -150,11 +151,13 @@ class SearchResults extends React.Component {
                 </DataTableContent>
               </DataTable>
               <div className="center-contents">
-                <ButtonIcon id="page-up-btn"  onClick={ this.pageBackResults }
+                <ButtonIcon id="page-up-btn" tabIndex="0"
+                  onClick={ this.pageBackResults }
                   disabled={ this.state.pageBackDisabled }
                   icon="arrow_upward" aria-label="Page up results">
                 </ButtonIcon>
-                <ButtonIcon id="page-down-btn"  onClick={ this.pageForwardResults }
+                <ButtonIcon id="page-down-btn" tabIndex="0"
+                  onClick={ this.pageForwardResults }
                   disabled={ this.state.pageForwardDisabled }
                   icon="arrow_downward" aria-label="Page down results">
                 </ButtonIcon>
