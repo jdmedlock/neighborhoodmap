@@ -150,13 +150,13 @@ class SearchResults extends React.Component {
                   </DataTableBody>
                 </DataTableContent>
               </DataTable>
-              <div className="center-contents">
-                <ButtonIcon id="page-up-btn" tabIndex="0"
+              <div className="center-contents"> 
+                <ButtonIcon id="page-up-btn" tabIndex="0" role="button"
                   onClick={ this.pageBackResults }
                   disabled={ this.state.pageBackDisabled }
                   icon="arrow_upward" aria-label="Page up results">
                 </ButtonIcon>
-                <ButtonIcon id="page-down-btn" tabIndex="0"
+                <ButtonIcon id="page-down-btn" tabIndex="0" role="button"
                   onClick={ this.pageForwardResults }
                   disabled={ this.state.pageForwardDisabled }
                   icon="arrow_downward" aria-label="Page down results">

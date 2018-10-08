@@ -120,15 +120,16 @@ class SearchInput extends React.Component {
               withTrailingIcon={<TextFieldIcon icon='search' />}
               fullwidth type="text" onChange={this.handleChange}
               label="Enter the place you want to find..."
-              placeholder=""
-              value={ this.state.searchText }
-              aria-label="Enter search terms for places search" />
+              placeholder="" value={ this.state.searchText }
+              aria-label="Enter search terms for places search"
+              role=""/>
           </GridCell>
           <GridCell span="4">
             <Fab id="top-attractions-btn" tabIndex="0"
               onClick={ this.showTopAttractions }
               raised="true" icon="thumb_up_alt" label="Top Places...">
-              aria-label="Show top places"</Fab>
+              aria-label="Show top places"
+              role="button"</Fab>
           </GridCell>
         </Grid>
       </div>
