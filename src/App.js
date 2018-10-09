@@ -7,7 +7,6 @@ import { Grid, GridCell } from '@rmwc/grid';
 
 // Application Components
 import Map from './components/Map';
-import PlacePage from './components/PlacePage';
 import SearchPage from './components/SearchPage';
 import MapsAPI from './utils/MapsAPI';
 import './css/App.css';
@@ -86,9 +85,6 @@ class NeighborhoodMap extends React.Component {
                         map={ this.state.map }
                       />
                       )}/>
-                    <Route exact path='/search' render={() => (
-                      <PlacePage />
-                    )}/>
                   </Switch>
                 ) : ('')
               }

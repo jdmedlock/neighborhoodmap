@@ -122,7 +122,7 @@ class SearchInput extends React.Component {
               label="Enter the place you want to find..."
               placeholder="" value={ this.state.searchText }
               aria-label="Enter search terms for places search"
-              role=""/>
+            />
           </GridCell>
           <GridCell span="4">
             <Fab id="top-attractions-btn" tabIndex="0"

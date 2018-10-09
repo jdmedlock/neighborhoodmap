@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // React Material Web Components
+import { ButtonIcon } from '@rmwc/button';
 import { DataTable, DataTableContent, DataTableHead, DataTableBody,
   DataTableHeadCell, DataTableRow, DataTableCell } from '@rmwc/data-table';
-import { ButtonIcon } from '@rmwc/button';
 
-// Application Components
+  // Application Components
 import MapsAPI from '../utils/MapsAPI';
 import Place from '../utils/Place';
 import '../css/App.css';
@@ -116,7 +116,7 @@ class SearchResults extends React.Component {
         <h3>Search Results...</h3>
         {
           this.props.searchResults.length > 0 ? (
-            <div>
+            <div>        
               <DataTable>
                 <DataTableContent>
                   <DataTableHead className="table-heading">
