@@ -2,8 +2,11 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 // React Material Web Components
-import { TopAppBar, TopAppBarRow, TopAppBarSection, TopAppBarTitle } from '@rmwc/top-app-bar';
+import { Button } from '@rmwc/button';
+import { Drawer, DrawerAppContent, DrawerHeader, DrawerContent, DrawerTitle, DrawerSubtitle } from '@rmwc/drawer';
 import { Grid, GridCell } from '@rmwc/grid';
+import { TopAppBar, TopAppBarRow, TopAppBarSection, TopAppBarTitle } from '@rmwc/top-app-bar';
+import { Typography } from '@rmwc/typography';
 
 // Application Components
 import Map from './components/Map';
@@ -28,6 +31,7 @@ class NeighborhoodMap extends React.Component {
       searchResultsLimit: Number.parseInt(process.env.REACT_APP_SEARCH_RESULTS_LIMIT, 10),
       map: {},
       mapIsLoaded: false,
+      isPlaceDrawerOpen: false,
     };
   }
 
@@ -52,6 +56,15 @@ class NeighborhoodMap extends React.Component {
   }
 
   /**
+   * @description Save the selected place in the state
+   * @param {Object} place Place object
+   * @memberof SearchPage
+   */
+  showSelectedPlace = (place) => {
+    this.setState({ isPlaceDrawerOpen: this.state.isPlaceDrawerOpen === undefined ? false : !this.state.isPlaceDrawerOpen })
+  }
+
+  /**
    * @description Create the HTML for the following application pages:
    * - Search page to allow the user to search for locations and places
    * - Details page showing detail information about a specific location
@@ -61,6 +74,7 @@ class NeighborhoodMap extends React.Component {
   render() {
     return (
       <div>
+        
         <header>
           <TopAppBar>
             <TopAppBarRow>
@@ -71,34 +85,51 @@ class NeighborhoodMap extends React.Component {
           </TopAppBar>
         </header>
 
-        <Grid>
-          <GridCell span="8">
-            <section>
-              {
-                this.state.mapIsLoaded ? (
-                  <Switch>
-                    <Route exact path='/' render={() => (
-                      <SearchPage
-                        home={ this.state.home }
-                        searchRadius={ this.state.searchRadius }
-                        searchResultsLimit={ this.state.searchResultsLimit }
-                        map={ this.state.map }
-                      />
-                      )}/>
-                  </Switch>
-                ) : ('')
-              }
-            </section>
-          </GridCell>
+        <Drawer dismissible open={ this.state.isPlaceDrawerOpen === undefined ? true : this.state.isPlaceDrawerOpen }>
+          <DrawerHeader id="place-drawer-header">
+            <DrawerTitle>DrawerHeader</DrawerTitle>
+          </DrawerHeader>
+          <DrawerContent id="place-detail-content">
+            <Typography use="body1">
+              This is a paragraph describing this awesome freakin place
+            </Typography>
+            <Button id="place-drawer-close-btn"
+              onClick={() => this.setState({ isPlaceDrawerOpen: this.state.isPlaceDrawerOpen === undefined ? false : !this.state.isPlaceDrawerOpen })}
+              raised>
+              Close
+            </Button>
+          </DrawerContent>
+        </Drawer>
 
-          <GridCell span="8">
-            <section className="map-container">
-              <Map />
-            </section>
-          </GridCell>
+        <DrawerAppContent id="place-detail-drawer">
+          <Grid>
+            <GridCell span="8">
+              <section>
+                {
+                  this.state.mapIsLoaded ? (
+                    <Switch>
+                      <Route exact path='/' render={() => (
+                        <SearchPage
+                          home={ this.state.home} 
+                          searchRadius={ this.state.searchRadius }
+                          searchResultsLimit={ this.state.searchResultsLimit }
+                          map={ this.state.map }
+                          showSelectedPlace={ this.showSelectedPlace }
+                        />
+                      )} />
+                    </Switch>
+                  ) : ('')
+                }
+              </section>
+            </GridCell>
 
-        </Grid>
-
+            <GridCell span="8">
+              <section className="map-container">
+                <Map />
+              </section>
+            </GridCell>
+          </Grid>
+        </DrawerAppContent>
       </div>
     )
   }

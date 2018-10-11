@@ -108,6 +108,10 @@ tr:nth-child(odd) {background: $table-row-light;}
   margin-right: 1rem;
 }
 
+/* ==================== Search Results ===================== */
+
+
+
 /* ======================= Map Area ======================== */
 
 .map-container .mdc-layout-grid {
@@ -189,4 +193,26 @@ tr:nth-child(odd) {background: $table-row-light;}
 
 .iw-rating {
   font-size: 1rem;
+}
+
+/* ================= Place Detail Drawer ================== */
+
+#place-detail-drawer {
+  min-height: 15rem;
+}
+
+#place-drawer-header {
+  background-color: $mdc-theme-primary-light;
+  height: 1.5rem;
+  width: 100%;
+}
+
+#place-detail-content {
+  margin: 1rem;
+}
+
+#place-details-close-btn {
+  background-color: $mdc-theme-secondary-dark !important;
+  color: black !important;
+  margin: 1rem;
 }

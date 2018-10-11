@@ -9,7 +9,7 @@ th {
   background-color: #0288d1;
   color: black;
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 600;
   height: 1.5rem;
   width: 100%; }
 
@@ -80,6 +80,11 @@ tr:nth-child(odd) {
   margin-top: 1rem;
   margin-right: 1rem; }
 
+/* ==================== Search Results ===================== */
+.show-details-btn {
+  background-color: #c17900 !important;
+  color: black !important; }
+
 /* ======================= Map Area ======================== */
 .map-container .mdc-layout-grid {
   padding: 0; }
@@ -95,7 +100,8 @@ tr:nth-child(odd) {
 .gm-style-iw {
   top: 0 !important;
   left: 0 !important;
-  width: 90% !important;
+  width: 100% !important;
+  min-width: 100% !important;
   height: 100% !important;
   min-height: 140px !important;
   display: block !important; }

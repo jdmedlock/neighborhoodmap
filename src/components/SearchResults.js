@@ -18,6 +18,7 @@ class SearchResults extends React.Component {
     searchResults: PropTypes.array.isRequired,
     searchResultsLimit: PropTypes.number.isRequired,
     saveInfoWindow: PropTypes.func.isRequired,
+    showSelectedPlace: PropTypes.func.isRequired
   }
 
   /**
@@ -135,7 +136,7 @@ class SearchResults extends React.Component {
                       this.getPlacesToDisplay().map((place) => (
                         <DataTableRow key={ place.id }>
                           <DataTableCell tabIndex="0"
-                            onClick={ () => this.showPlaceInfo({ place }) }>
+                            onClick={ () => this.props.showSelectedPlace({ place }) }>
                             { Place.getName(place) }
                           </DataTableCell>
                           <DataTableCell>

@@ -16,6 +16,7 @@ class SearchPage extends React.Component {
     searchRadius: PropTypes.number.isRequired,
     searchResultsLimit: PropTypes.number.isRequired,
     map: PropTypes.object.isRequired,
+    showSelectedPlace: PropTypes.func.isRequired,
   }
 
   /**
@@ -33,15 +34,6 @@ class SearchPage extends React.Component {
   }
 
   /**
-   * @description Replace the search results in the state
-   * @param {*} searchResults Array of place results
-   * @memberof NeighborhoodMap
-   */
-  saveSearchResults = (searchResults) => {
-    this.setState({ searchResults: searchResults });
-  };
-
-  /**
    * @description Save the reference to an open infowindow in the state
    * @param {Object} infowindow InfoWindow object reference
    * @memberof SearchPage
@@ -52,6 +44,15 @@ class SearchPage extends React.Component {
     }
     this.setState({ isInfoWindowOpen: true });
     this.setState({ infoWindow: infowindow });
+  };
+
+  /**
+   * @description Replace the search results in the state
+   * @param {Object[]} searchResults Array of place results
+   * @memberof NeighborhoodMap
+   */
+  saveSearchResults = (searchResults) => {
+    this.setState({ searchResults: searchResults });
   };
 
   /**
@@ -76,6 +77,7 @@ class SearchPage extends React.Component {
               searchResults={ this.state.searchResults }
               searchResultsLimit={ this.props.searchResultsLimit }
               saveInfoWindow={ this.saveInfoWindow }
+              showSelectedPlace={ this.props.showSelectedPlace }
             />
           </GridCell>
         </Grid>
