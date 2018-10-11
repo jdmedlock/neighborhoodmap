@@ -3,13 +3,14 @@ import { Route, Switch } from 'react-router-dom';
 
 // React Material Web Components
 import { Button } from '@rmwc/button';
-import { Drawer, DrawerAppContent, DrawerHeader, DrawerContent, DrawerTitle, DrawerSubtitle } from '@rmwc/drawer';
+import { Drawer, DrawerAppContent, DrawerHeader, DrawerContent, DrawerTitle } from '@rmwc/drawer';
 import { Grid, GridCell } from '@rmwc/grid';
 import { TopAppBar, TopAppBarRow, TopAppBarSection, TopAppBarTitle } from '@rmwc/top-app-bar';
 import { Typography } from '@rmwc/typography';
 
 // Application Components
 import Map from './components/Map';
+import PlaceDetail from  './components/PlaceDetail';
 import SearchPage from './components/SearchPage';
 import MapsAPI from './utils/MapsAPI';
 import './css/App.css';
@@ -61,7 +62,11 @@ class NeighborhoodMap extends React.Component {
    * @memberof SearchPage
    */
   showSelectedPlace = (place) => {
-    this.setState({ isPlaceDrawerOpen: this.state.isPlaceDrawerOpen === undefined ? false : !this.state.isPlaceDrawerOpen })
+    this.setState({ isPlaceDrawerOpen: this.state.isPlaceDrawerOpen === undefined ? false : !this.state.isPlaceDrawerOpen });
+  }
+
+  closePlaceDrawer = () => {
+    this.setState({ isPlaceDrawerOpen: this.state.isPlaceDrawerOpen === undefined ? false : !this.state.isPlaceDrawerOpen });
   }
 
   /**
@@ -90,14 +95,7 @@ class NeighborhoodMap extends React.Component {
             <DrawerTitle>DrawerHeader</DrawerTitle>
           </DrawerHeader>
           <DrawerContent id="place-detail-content">
-            <Typography use="body1">
-              This is a paragraph describing this awesome freakin place
-            </Typography>
-            <Button id="place-drawer-close-btn"
-              onClick={() => this.setState({ isPlaceDrawerOpen: this.state.isPlaceDrawerOpen === undefined ? false : !this.state.isPlaceDrawerOpen })}
-              raised>
-              Close
-            </Button>
+            <PlaceDetail closePlaceDrawer={ this.closePlaceDrawer } />
           </DrawerContent>
         </Drawer>
 
