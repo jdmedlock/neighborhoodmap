@@ -2,11 +2,9 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 // React Material Web Components
-import { Button } from '@rmwc/button';
 import { Drawer, DrawerAppContent, DrawerHeader, DrawerContent, DrawerTitle } from '@rmwc/drawer';
 import { Grid, GridCell } from '@rmwc/grid';
 import { TopAppBar, TopAppBarRow, TopAppBarSection, TopAppBarTitle } from '@rmwc/top-app-bar';
-import { Typography } from '@rmwc/typography';
 
 // Application Components
 import Map from './components/Map';
@@ -54,7 +52,7 @@ class NeighborhoodMap extends React.Component {
     const map = MapsAPI.createMap(this.state.home);
     this.setState({ map: map });
     this.setState({ mapIsLoaded: true });
-  }
+  };
 
   /**
    * @description Save the selected place in the state
@@ -63,11 +61,15 @@ class NeighborhoodMap extends React.Component {
    */
   showSelectedPlace = (place) => {
     this.setState({ isPlaceDrawerOpen: this.state.isPlaceDrawerOpen === undefined ? false : !this.state.isPlaceDrawerOpen });
-  }
+  };
 
+  /**
+   * @description Close the drawer containing the selected place details
+   * @memberof NeighborhoodMap
+   */
   closePlaceDrawer = () => {
     this.setState({ isPlaceDrawerOpen: this.state.isPlaceDrawerOpen === undefined ? false : !this.state.isPlaceDrawerOpen });
-  }
+  };
 
   /**
    * @description Create the HTML for the following application pages:
