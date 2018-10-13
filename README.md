@@ -8,6 +8,7 @@
 
 * [Overview](#overview)
 * [Usage](#usage)
+* [FAQ](#frequently-asked-questions)
 * [Dependencies](#dependencies)
 * [Application Structure](#application-structure)
 * [Change Log](#change-log)
@@ -66,9 +67,42 @@ take effect.
 | REACT_APP_LNG           | Longitude of the neighborhood | REACT_APP_LNG=-80.8883962 |
 | REACT_APP_MAPS_URL      | Google Maps URL with API key | REACT_APP_MAPS_URL="https://maps.googleapis.com/maps/api/js?libraries=places&key=\<YOUR-API-KEY\>" |
 | REACT_APP_SEARCH_RADIUS | Radius, in meters, searches are constrained to | REACT_APP_SEARCH_RADIUS=16000 |
+| REACT_APP_FS_CLIENT_ID  | Foursquare API client id | REACT_APP_FS_CLIENT_ID=ADADEAFDF4ADFADFAA5ADADFAFAD |
+| REACT_APP_FS_CLIENT_SECRET | Foursquaer API client secret | REACT_APP_FS_CLIENT_SECRET=ADADEAFDF4ADFADFAA5ADADFAFAD |
 
+## Frequently Asked Questions
+
+1. Why is a native Google Maps API used instead of a library like [react-google-maps](https://github.com/tomchentw/react-google-maps)?
+
+First of all, `react-google-maps` is a well done library and this project
+could have been developed more quickly had it been used. However, since one
+goal of this project is to be a learning tool it was felt that a great amount
+of value could be derived from pursuing an "old school" approach.
+
+A secondary reason is that there are already a large number of dependencies
+in the app on various libraries. So, a native approach was chosen to help
+reduce the number of dependencies.
+
+2. Why are the API's implemented as `static` functions rather than as an
+instantiated class?
+
+The simple reason is they don't have to be. This was implemented in this
+manner to eliminate the need to maintain yet another state. The map and other
+data elements could have been carried in a stateful API, but it was felt that
+the additional level of insulation this would have provided wasn't necessary.
+
+3. Aren't you just showing off by using both Google Maps and Foursquare as
+sources for information about places?
+
+Yes, but since this is a "learning" app the benefit has been to expand our
+experience using different data sources and to improve the user experience by
+using the best source for a particular context. For example, the purpose of
+the info window is to provide a general description of the place while the
+place details drawer is intended to provide more indepth information.
 
 ## Dependencies
+
+### Libraries
 
 This app has the following dependencies
 
@@ -95,6 +129,16 @@ This app has the following dependencies
 | sass-loader    | Development | Loads a Sass file and compiles it to CSS | N/a |
 | webpack        | Development | Module bundler | `webpack.config.js` |
 | webpack-dev-server | Development | Development server | N/a |
+
+### External Dependencies
+
+In addition to libraries Neighborhood Maps also depends on webservices to
+provide with details about places. The [Google Maps Javascript API](https://developers.google.com/maps/documentation/javascript/tutorial)
+used for basic
+searching and to populate information windows on the map with basic information.
+
+Detailed information about a place, displayed when the user clicks the `Details...`
+button in an information window on the map, is obtained from [FourSquare](https://developer.foursquare.com/docs/api).
 
 ## Application Structure
 

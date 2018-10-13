@@ -8,6 +8,7 @@ import { Grid, GridCell } from '@rmwc/grid';
 import { TextField, TextFieldIcon } from '@rmwc/textfield';
 
 // Application Components
+import FSAPI from '../utils/FoursquareAPI';
 import MapsAPI from '../utils/MapsAPI';
 import '../css/App.css';
 
@@ -94,6 +95,10 @@ class SearchInput extends React.Component {
    * @memberof SearchInput
    */
   showTopAttractions() {
+    FSAPI.search(this.props.home.lat, this.props.home.lng,this.props.searchRadius, 'nasa')
+    .then(payload => console.log(payload))
+    .catch(reason => console.log(reason.message));
+
     this.queryLocation("");
     MapsAPI.searchNearby(this.props.map, this.state.placesService,
       this.props.saveSearchResults, this.props.saveInfoWindow, this.props.showPlaceDetails, {

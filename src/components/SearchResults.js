@@ -38,7 +38,7 @@ class SearchResults extends React.Component {
     // Bind 'this' to the event handlers so they'll have the proper context
     this.pageForwardResults = this.pageForwardResults.bind(this);
     this.pageBackResults = this.pageBackResults.bind(this);
-    this.showPlaceInfo = this.showPlaceInfo.bind(this);
+    this.showInfoWindow = this.showInfoWindow.bind(this);
   }
 
   /**
@@ -94,16 +94,16 @@ class SearchResults extends React.Component {
   }
 
   /**
-   * @description Show an detailed information about a place
+   * @description Show the infowindow for the selected place
    * @param {Object} place Place information
    * @memberof SearchResults
    */
-  showPlaceInfo(place) {
+  showInfoWindow(place) {
     const marker = this.props.searchResults.find((element) => {
       return element.place_id === place.place.place_id;
     }).marker;
     MapsAPI.openInfoWindow(this.props.map, this.state.placesService,
-      place.place.place_id, marker, this.props.saveInfoWindow);
+      place.place.place_id, marker, this.props.saveInfoWindow, this.props.showPlaceDetails);
   }
 
   /**
@@ -136,7 +136,7 @@ class SearchResults extends React.Component {
                       this.getPlacesToDisplay().map((place) => (
                         <DataTableRow key={ place.id }>
                           <DataTableCell tabIndex="0"
-                            onClick={ () => this.props.showPlaceDetails({ place }) }>
+                            onClick={ () => this.showInfoWindow({ place }) }>
                             { Place.getName(place) }
                           </DataTableCell>
                           <DataTableCell>
