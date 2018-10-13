@@ -59,8 +59,11 @@ class NeighborhoodMap extends React.Component {
    * @param {Object} place Place object
    * @memberof SearchPage
    */
-  showSelectedPlace = (place) => {
-    this.setState({ isPlaceDrawerOpen: this.state.isPlaceDrawerOpen === undefined ? false : !this.state.isPlaceDrawerOpen });
+  showPlaceDetails = (place) => {
+    console.log('App - showPlaceDetails invoked');
+    this.setState({ isPlaceDrawerOpen: this.state.isPlaceDrawerOpen === undefined
+      ? false
+      : !this.state.isPlaceDrawerOpen });
   };
 
   /**
@@ -68,7 +71,9 @@ class NeighborhoodMap extends React.Component {
    * @memberof NeighborhoodMap
    */
   closePlaceDrawer = () => {
-    this.setState({ isPlaceDrawerOpen: this.state.isPlaceDrawerOpen === undefined ? false : !this.state.isPlaceDrawerOpen });
+    this.setState({ isPlaceDrawerOpen: this.state.isPlaceDrawerOpen === undefined
+      ? false
+      : !this.state.isPlaceDrawerOpen });
   };
 
   /**
@@ -81,7 +86,7 @@ class NeighborhoodMap extends React.Component {
   render() {
     return (
       <div>
-        
+
         <header>
           <TopAppBar>
             <TopAppBarRow>
@@ -110,11 +115,11 @@ class NeighborhoodMap extends React.Component {
                     <Switch>
                       <Route exact path='/' render={() => (
                         <SearchPage
-                          home={ this.state.home} 
+                          home={ this.state.home}
                           searchRadius={ this.state.searchRadius }
                           searchResultsLimit={ this.state.searchResultsLimit }
                           map={ this.state.map }
-                          showSelectedPlace={ this.showSelectedPlace }
+                          showPlaceDetails={ this.showPlaceDetails }
                         />
                       )} />
                     </Switch>

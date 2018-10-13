@@ -24,6 +24,9 @@ class InfoWindow {
           ${Place.createRatingHTML(placeDetail)}
           ${Place.createStatusHTML(placeDetail)}
         </div>
+        <div>
+          <button class="iw-details-btn">Details...</button>
+        <div>
       </div>`);
   }
 

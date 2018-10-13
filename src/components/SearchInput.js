@@ -19,6 +19,7 @@ class SearchInput extends React.Component {
     map: PropTypes.object.isRequired,
     saveSearchResults: PropTypes.func.isRequired,
     saveInfoWindow: PropTypes.func.isRequired,
+    showPlaceDetails: PropTypes.func.isRequired,
   };
 
   /**
@@ -70,7 +71,7 @@ class SearchInput extends React.Component {
    */
   handlePlaceChange = () => {
     MapsAPI.searchNearby(this.props.map, this.state.placesService,
-      this.props.saveSearchResults, this.props.saveInfoWindow, {
+      this.props.saveSearchResults, this.props.saveInfoWindow, this.props.showPlaceDetails, {
         location: this.props.home,
         radius: this.props.searchRadius,
         keyword: this.state.searchText
@@ -95,7 +96,7 @@ class SearchInput extends React.Component {
   showTopAttractions() {
     this.queryLocation("");
     MapsAPI.searchNearby(this.props.map, this.state.placesService,
-      this.props.saveSearchResults, this.props.saveInfoWindow, {
+      this.props.saveSearchResults, this.props.saveInfoWindow, this.props.showPlaceDetails, {
         location: this.props.home,
         radius: this.props.searchRadius,
         rankBy: window.google.maps.places.RankBy.PROMINENCE,

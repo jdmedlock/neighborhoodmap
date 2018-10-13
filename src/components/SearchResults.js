@@ -18,7 +18,7 @@ class SearchResults extends React.Component {
     searchResults: PropTypes.array.isRequired,
     searchResultsLimit: PropTypes.number.isRequired,
     saveInfoWindow: PropTypes.func.isRequired,
-    showSelectedPlace: PropTypes.func.isRequired
+    showPlaceDetails: PropTypes.func.isRequired
   }
 
   /**
@@ -117,7 +117,7 @@ class SearchResults extends React.Component {
         <h3>Search Results...</h3>
         {
           this.props.searchResults.length > 0 ? (
-            <div>        
+            <div>
               <DataTable>
                 <DataTableContent>
                   <DataTableHead className="table-heading">
@@ -136,7 +136,7 @@ class SearchResults extends React.Component {
                       this.getPlacesToDisplay().map((place) => (
                         <DataTableRow key={ place.id }>
                           <DataTableCell tabIndex="0"
-                            onClick={ () => this.props.showSelectedPlace({ place }) }>
+                            onClick={ () => this.props.showPlaceDetails({ place }) }>
                             { Place.getName(place) }
                           </DataTableCell>
                           <DataTableCell>
@@ -151,7 +151,7 @@ class SearchResults extends React.Component {
                   </DataTableBody>
                 </DataTableContent>
               </DataTable>
-              <div className="center-contents"> 
+              <div className="center-contents">
                 <ButtonIcon id="page-up-btn" tabIndex="0" role="button"
                   onClick={ this.pageBackResults }
                   disabled={ this.state.pageBackDisabled }
