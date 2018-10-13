@@ -19,11 +19,12 @@ class SearchInput extends React.Component {
     map: PropTypes.object.isRequired,
     saveSearchResults: PropTypes.func.isRequired,
     saveInfoWindow: PropTypes.func.isRequired,
+    showPlaceDetails: PropTypes.func.isRequired,
   };
 
   /**
    * @description Establish the state for this component
-   * @param {*} props
+   * @param {Object} props
    */
   constructor(props) {
     super(props);
@@ -70,7 +71,7 @@ class SearchInput extends React.Component {
    */
   handlePlaceChange = () => {
     MapsAPI.searchNearby(this.props.map, this.state.placesService,
-      this.props.saveSearchResults, this.props.saveInfoWindow, {
+      this.props.saveSearchResults, this.props.saveInfoWindow, this.props.showPlaceDetails, {
         location: this.props.home,
         radius: this.props.searchRadius,
         keyword: this.state.searchText
@@ -95,7 +96,7 @@ class SearchInput extends React.Component {
   showTopAttractions() {
     this.queryLocation("");
     MapsAPI.searchNearby(this.props.map, this.state.placesService,
-      this.props.saveSearchResults, this.props.saveInfoWindow, {
+      this.props.saveSearchResults, this.props.saveInfoWindow, this.props.showPlaceDetails, {
         location: this.props.home,
         radius: this.props.searchRadius,
         rankBy: window.google.maps.places.RankBy.PROMINENCE,
@@ -116,16 +117,20 @@ class SearchInput extends React.Component {
       <div>
         <Grid>
           <GridCell span="8">
-            <TextField id="search-text" box
+            <TextField id="search-text" tabIndex="0" box
               withTrailingIcon={<TextFieldIcon icon='search' />}
               fullwidth type="text" onChange={this.handleChange}
               label="Enter the place you want to find..."
-              placeholder=""
-              value={ this.state.searchText } />
+              placeholder="" value={ this.state.searchText }
+              aria-label="Enter search terms for places search"
+            />
           </GridCell>
           <GridCell span="4">
-            <Fab id="top-attractions-btn" onClick={ this.showTopAttractions }
-              raised="true" icon="thumb_up_alt" label="Top Places..."></Fab>
+            <Fab id="top-attractions-btn" tabIndex="0"
+              onClick={ this.showTopAttractions }
+              raised="true" icon="thumb_up_alt" label="Top Places...">
+              aria-label="Show top places"
+              role="button"</Fab>
           </GridCell>
         </Grid>
       </div>

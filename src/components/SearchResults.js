@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // React Material Web Components
+import { ButtonIcon } from '@rmwc/button';
 import { DataTable, DataTableContent, DataTableHead, DataTableBody,
   DataTableHeadCell, DataTableRow, DataTableCell } from '@rmwc/data-table';
-import { ButtonIcon } from '@rmwc/button';
 
-// Application Components
+  // Application Components
 import MapsAPI from '../utils/MapsAPI';
 import Place from '../utils/Place';
 import '../css/App.css';
@@ -18,6 +18,7 @@ class SearchResults extends React.Component {
     searchResults: PropTypes.array.isRequired,
     searchResultsLimit: PropTypes.number.isRequired,
     saveInfoWindow: PropTypes.func.isRequired,
+    showPlaceDetails: PropTypes.func.isRequired
   }
 
   /**
@@ -134,13 +135,14 @@ class SearchResults extends React.Component {
                       // methods. For this reason we iterate over the results here.
                       this.getPlacesToDisplay().map((place) => (
                         <DataTableRow key={ place.id }>
-                          <DataTableCell onClick={ () => this.showPlaceInfo({ place }) }>
+                          <DataTableCell tabIndex="0"
+                            onClick={ () => this.props.showPlaceDetails({ place }) }>
                             { Place.getName(place) }
                           </DataTableCell>
                           <DataTableCell>
                             { Place.getFirstType(place) }
                           </DataTableCell>
-                          <DataTableCell id="dt-rating" alignMiddle>
+                          <DataTableCell className="dt-rating" alignMiddle>
                             { Place.getRating(place) }
                           </DataTableCell>
                         </DataTableRow >
@@ -150,11 +152,13 @@ class SearchResults extends React.Component {
                 </DataTableContent>
               </DataTable>
               <div className="center-contents">
-                <ButtonIcon id="page-up-btn"  onClick={ this.pageBackResults }
+                <ButtonIcon id="page-up-btn" tabIndex="0" role="button"
+                  onClick={ this.pageBackResults }
                   disabled={ this.state.pageBackDisabled }
                   icon="arrow_upward" aria-label="Page up results">
                 </ButtonIcon>
-                <ButtonIcon id="page-down-btn"  onClick={ this.pageForwardResults }
+                <ButtonIcon id="page-down-btn" tabIndex="0" role="button"
+                  onClick={ this.pageForwardResults }
                   disabled={ this.state.pageForwardDisabled }
                   icon="arrow_downward" aria-label="Page down results">
                 </ButtonIcon>

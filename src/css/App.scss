@@ -23,9 +23,9 @@ html, body {
 
 th {
   background-color: $mdc-theme-primary;
-  color: white;
+  color: black;
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 600;
   height: 1.5rem;
   width: 100%;
 }
@@ -55,6 +55,11 @@ tr:nth-child(odd) {background: $table-row-light;}
   background-color: $mdc-theme-primary-dark;
 }
 
+.mdc-top-app-bar__title {
+  color: white;
+  font-size: 1.75rem;
+}
+
 .mdc-layout-grid {
   padding-bottom: 0;
 }
@@ -73,7 +78,7 @@ tr:nth-child(odd) {background: $table-row-light;}
  * since the latter seems to have no affect on alignment at this point in
  * time
  */
-#dt-rating {
+.dt-rating {
   text-align: right;
 }
 
@@ -85,8 +90,9 @@ tr:nth-child(odd) {background: $table-row-light;}
 
 #top-attractions-btn {
   background-color: $mdc-theme-secondary-dark !important;
-  height: 2rem;
-  margin-top: .5rem;
+  color: black;
+  height: 2.25rem;
+  margin: .5rem .25rem .75rem .25rem;
   min-width: 11rem;
 }
 
@@ -96,11 +102,15 @@ tr:nth-child(odd) {background: $table-row-light;}
   border-radius: 50%;
   height: 2rem;
   width: 2rem;
-  color: white;
+  color: black;
   font-size: 2rem;
   margin-top: 1rem;
   margin-right: 1rem;
 }
+
+/* ==================== Search Results ===================== */
+
+
 
 /* ======================= Map Area ======================== */
 
@@ -123,6 +133,7 @@ tr:nth-child(odd) {background: $table-row-light;}
   top: 0 !important;
   left: 0 !important;
   width: 100% !important;
+  min-width: 100% !important;
   height: 100% !important;
   min-height: 140px !important;
   display: block !important;
@@ -144,7 +155,7 @@ tr:nth-child(odd) {background: $table-row-light;}
   width: 100% !important;
   height: 3.25rem !important;
   padding: 0 0 0 .5rem !important;
-  margin: 0 1.75rem .5rem 0 !important;
+  margin: 0 0 .5rem 0 !important;
 }
 
 .address-line {
@@ -182,4 +193,26 @@ tr:nth-child(odd) {background: $table-row-light;}
 
 .iw-rating {
   font-size: 1rem;
+}
+
+/* ================= Place Detail Drawer ================== */
+
+#place-detail-drawer {
+  min-height: 15rem;
+}
+
+#place-drawer-header {
+  background-color: $mdc-theme-primary-light;
+  height: 1.5rem;
+  width: 100%;
+}
+
+#place-detail-content {
+  margin: 1rem;
+}
+
+#place-details-close-btn {
+  background-color: $mdc-theme-secondary-dark !important;
+  color: black !important;
+  margin: 1rem;
 }

@@ -54,19 +54,19 @@ class MapsAPI {
    * @param {Object} map Map
    * @param {Object} placesService Reference to the places service
    * @param {Function} setSearchResults Callback to receive the search results
-   * @param {Callback} saveInfoWindow Callback to save the infowindow
+   * @param {Function} saveInfoWindow Callback to save the infowindow
    * @param {Object} options Google Places SearchNearby options. Must included
    * at lease the `location` and `radius` attributes.
    * @memberof MapsAPI
    */
-  static searchNearby(map, placesService, saveSearchResults, saveInfoWindow, options) {
+  static searchNearby(map, placesService, saveSearchResults, saveInfoWindow, showPlaceDetails, options) {
     placesService.nearbySearch(options, (results, status) => {
       if (status === window.google.maps.places.PlacesServiceStatus.OK) {
         // Sort the results in descending rating sequence and limit the
         // number of entries displayed
         let sortedResultsByRating = results.sort(this.sortByRating);
         // Add the places to the map
-        this.addPlacesToMap(map, placesService, sortedResultsByRating, saveInfoWindow);
+        this.addPlacesToMap(map, placesService, sortedResultsByRating, saveInfoWindow, showPlaceDetails);
         saveSearchResults(sortedResultsByRating);
       }
     });
@@ -91,17 +91,18 @@ class MapsAPI {
    * @param {Object} map Map
    * @param {Object} placesService Reference to the places service
    * @param {PlaceResults} places Array of places returned from a search
-   * @param {Callback} saveInfoWindow Callback to save the infowindow
+   * @param {Function} saveInfoWindow Callback to save the infowindow
    * @memberof SearchInput
    */
-  static addPlacesToMap(map, placesService, places, saveInfoWindow) {
+  static addPlacesToMap(map, placesService, places, saveInfoWindow, showPlaceDetails) {
     const bounds = new window.google.maps.LatLngBounds();
     places.forEach((place) => {
       const marker = this.addMarkerToMap(map, place, bounds);
       // Add the marker to the place in the places object array reference
       // passed from the caller
       place["marker"] = marker;
-      this.addInfoWindowToMarker(map, placesService, place.place_id, marker, saveInfoWindow);
+      this.addInfoWindowToMarker(map, placesService, place.place_id, marker,
+        saveInfoWindow, showPlaceDetails);
     });
     map.fitBounds(bounds);
   }
@@ -139,12 +140,12 @@ class MapsAPI {
    * @param {Object} placesService Reference to the places service
    * @param {Object} place_id Place identifier
    * @param {Object} marker Marker the place is to be associated with
-   * @param {Callback} saveInfoWindow Callback to save the infowindow
+   * @param {Function} saveInfoWindow Callback to save the infowindow
    * @memberof SearchInput
    */
-  static addInfoWindowToMarker(map, placesService, place_id, marker, saveInfoWindow) {
+  static addInfoWindowToMarker(map, placesService, place_id, marker, saveInfoWindow, showPlaceDetails) {
     marker.addListener('click', () => {
-      this.openInfoWindow(map, placesService, place_id, marker, saveInfoWindow);
+      this.openInfoWindow(map, placesService, place_id, marker, saveInfoWindow, showPlaceDetails);
     });
   }
 
@@ -155,10 +156,10 @@ class MapsAPI {
    * @param {Object} placesService Reference to the places service
    * @param {String} placeId Place identification
    * @param {Object} marker Marker the place is to be associated with
-   * @param {Callback} saveInfoWindow Callback to save the infowindow
+   * @param {Function} saveInfoWindow Callback to save the infowindow
    * @memberof MapsAPI
    */
-  static openInfoWindow(map, placesService, place_id, marker, saveInfoWindow) {
+  static openInfoWindow(map, placesService, place_id, marker, saveInfoWindow, showPlaceDetails) {
     this.bounceMarker(marker);
     // Retrieve all details about the place and open the infowindow
     placesService.getDetails({
@@ -169,6 +170,18 @@ class MapsAPI {
           content: InfoWindow.create(placeDetail)
         });
         infowindow.open(map, marker);
+        // Add a listener for the infowindow 'Details...' button only after
+        // the info window is open and ready
+        window.google.maps.event.addListenerOnce(infowindow, 'domready', () => {
+          const detailsButtons = [...document.getElementsByClassName('iw-details-btn')];
+          if (detailsButtons !== null) {
+            detailsButtons.forEach((button) => {
+              button.addEventListener('click', function() {
+                showPlaceDetails(placeDetail);
+              });
+            });
+          }
+        });
         saveInfoWindow(infowindow);
       } else {
         // Remove the marker from the map if an error occurred

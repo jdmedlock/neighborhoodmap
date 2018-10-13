@@ -6,6 +6,7 @@ class InfoWindow {
   /**
    * @description Create HTML-formatted content to be placed in the Infowindow
    * @param {PlaceDetail} placeDetail Characteristics of the selected place
+   * @param {Function} showSelectedPlace Callback to show the place details
    * @returns {String} HTML-formatted content
    * @memberof InfoWindow
    */
@@ -23,6 +24,9 @@ class InfoWindow {
           ${Place.createRatingHTML(placeDetail)}
           ${Place.createStatusHTML(placeDetail)}
         </div>
+        <div>
+          <button class="iw-details-btn">Details...</button>
+        <div>
       </div>`);
   }
 

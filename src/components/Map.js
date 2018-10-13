@@ -6,12 +6,14 @@ import { Grid, GridCell } from '@rmwc/grid';
 // Application Components
 import '../css/App.css';
 
-const Map = (props) => {
+class Map extends React.Component {
+
   /**
    * @description Create the map area containing the map of our neighborhood
    * @returns {HTMLDivElement} Main application page
    * @memberof Map
    */
+  render() {
     return (
       <div>
         <Grid>
@@ -21,6 +23,7 @@ const Map = (props) => {
         </Grid>
       </div>
     )
-};
+  }
+}
 
 export default Map;
