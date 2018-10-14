@@ -39,7 +39,7 @@ class SearchPage extends React.Component {
    * @memberof SearchPage
    */
   saveInfoWindow = (infowindow) => {
-    if (this.state.isInfoWindowOpen) {
+    if (this.state.isInfoWindowOpen && this.state.infoWindow !== 0) {
       this.state.infoWindow.close();
     }
     this.setState({ isInfoWindowOpen: true });

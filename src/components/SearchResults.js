@@ -8,7 +8,7 @@ import { DataTable, DataTableContent, DataTableHead, DataTableBody,
 
   // Application Components
 import MapsAPI from '../utils/MapsAPI';
-import Place from '../utils/Place';
+import Place from '../utils/VenueInfo';
 import '../css/App.css';
 
 class SearchResults extends React.Component {

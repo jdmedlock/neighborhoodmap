@@ -9,36 +9,23 @@ class FourSquareAPI {
    * @returns {Object[]} Array of result venues
    * @memberof FourSquareAPI
    */
-  static async searchForMatch(latitude, longitude, radius, limit, query) {
+  static async searchForNearby(latitude, longitude, radius, limit, query) {
     let url = `https://api.foursquare.com/v2/venues/explore` +
       `?v=20180323` +
       `&client_id=${process.env.REACT_APP_FS_CLIENT_ID}` +
       `&client_secret=${process.env.REACT_APP_FS_CLIENT_SECRET}` +
       `&ll=${latitude},${longitude}` +
-      `&intent=match` +
-      `&radius=${radius}` +
-      `&limit=1`;
+      `&intent=browse` +
+      `&radius=${radius}`;
     url = query === undefined ? url : url + `&query=${query}`;
     let response = await fetch(url);
     let payload = await response.json();
     let venues = payload.response.groups[0].items;
-    console.log('venues: ', venues);
-
-    // Retrieve the details for each venue
-    let venuesWithDetails = [];
-    for (let i = 0; i < venues.length; i += 1) {
-      this.getVenueDetails(venues[i].venue.id)
-      .then(venueDetail => {
-        venuesWithDetails.push(venueDetail);
-      })
-      .catch(reason => console.log(reason.message));
-    };
 
     // Sort the results in descending rating sequence and limit the
     // number of entries displayed
-    let sortedResultsByRating = venuesWithDetails.sort(this.sortByRating);
+    let sortedResultsByRating = venues.sort(this.sortByRating);
 
-    console.log('sortedResultsByRating: ', sortedResultsByRating);
     return sortedResultsByRating;
   }
 

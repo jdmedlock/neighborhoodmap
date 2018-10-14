@@ -1,4 +1,4 @@
-import Place from '../utils/Place';
+import Venue from '../utils/VenueInfo';
 import '../css/App.css';
 
 class InfoWindow {
@@ -10,23 +10,22 @@ class InfoWindow {
    * @returns {String} HTML-formatted content
    * @memberof InfoWindow
    */
-  static create(placeDetail) {
+  static create(venueDetail) {
     return (
       `<div class="gm-style-iw full-width">
-        <div class="title full-width">${Place.getName(placeDetail)}</div>
+        <div class="title full-width">${Venue.getName(venueDetail)}</div>
         <div class="address-line full-width">
-          ${Place.createFormattedAddressHTML(placeDetail)}
-          ${Place.createFormattedPhoneNoHTML(placeDetail)}
+          ${Venue.createFormattedAddressHTML(venueDetail)}
         <div/>
         <div class="iw-attrs full-width">
-          ${Place.createFirstTypeHTML(placeDetail)}
-          ${Place.createPriceLevelHTML(placeDetail)}
-          ${Place.createRatingHTML(placeDetail)}
-          ${Place.createStatusHTML(placeDetail)}
+          ${Venue.createFirstCategoryHTML(venueDetail)}
+          ${Venue.createHereNowHTML(venueDetail)}
         </div>
         <div>
           <button class="iw-details-btn">Details...</button>
         <div>
+        <div>
+          <p class="footnote">Venue info via Foursquare</p>
       </div>`);
   }
 

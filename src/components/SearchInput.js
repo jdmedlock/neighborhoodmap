@@ -103,6 +103,21 @@ class SearchInput extends React.Component {
     // Retrieve a list of popular location from Google Places within the
     // search radius
     this.queryLocation("");
+    FSAPI.searchForNearby(this.props.home.lat, this.props.home.lng,
+        this.props.searchRadius, this.props.searchResultsLimit, 'NASA')
+      .then(venues => {
+        venues.forEach(aVenue => {
+          console.log('Foursquare venue: ', aVenue);
+          const mapBounds = new window.google.maps.LatLngBounds();
+          const marker = MapsAPI.addMarkerToMap(this.props.map, aVenue.name, 
+            aVenue.venue.location.lat, aVenue.venue.location.lng, mapBounds);
+          MapsAPI.addInfoWindowToMarker(this.props.map,
+            aVenue, marker, this.props.saveInfoWindow, this.props.showPlaceDetails);
+       });
+      })
+      .catch(reason => console.log(reason));
+
+    /*
     MapsAPI.searchNearby(this.props.map, this.state.placesService,
       this.props.saveInfoWindow, this.props.showPlaceDetails, {
         location: this.props.home,
@@ -125,6 +140,7 @@ class SearchInput extends React.Component {
       this.props.saveSearchResults(searchResults);
     })
     .catch(error => console.log(error));
+    */
   };
 
   /**
