@@ -56,8 +56,8 @@ class MapsAPI {
    * @description Conduct a nearby search
    * @param {Object} map Map
    * @param {Object} placesService Reference to the places service
-   * @param {Function} setSearchResults Callback to receive the search results
    * @param {Function} saveInfoWindow Callback to save the infowindow
+   * @param {Function} showPlaceDetails Callback to open details drawer
    * @param {Object} options Google Places SearchNearby options. Must included
    * at lease the `location` and `radius` attributes.
    * @returns {Promise} Promise containing the sorted results if resolved or
@@ -101,6 +101,7 @@ class MapsAPI {
    * @param {Object} placesService Reference to the places service
    * @param {PlaceResults} places Array of places returned from a search
    * @param {Function} saveInfoWindow Callback to save the infowindow
+   * @param {Function} showPlaceDetails Callback to open details drawer
    * @memberof SearchInput
    */
   static addPlacesToMap(map, placesService, places, saveInfoWindow, showPlaceDetails) {
@@ -141,6 +142,7 @@ class MapsAPI {
    * @param {Object} place_id Place identifier
    * @param {Object} marker Marker the place is to be associated with
    * @param {Function} saveInfoWindow Callback to save the infowindow
+   * @param {Function} showPlaceDetails Callback to open details drawer
    * @memberof SearchInput
    */
   static addInfoWindowToMarker(map, placesService, place_id, marker, saveInfoWindow, showPlaceDetails) {
@@ -157,6 +159,7 @@ class MapsAPI {
    * @param {String} placeId Place identification
    * @param {Object} marker Marker the place is to be associated with
    * @param {Function} saveInfoWindow Callback to save the infowindow
+   * @param {Function} showPlaceDetails Callback to open details drawer
    * @memberof MapsAPI
    */
   static openInfoWindow(map, placesService, place_id, marker, saveInfoWindow, showPlaceDetails) {

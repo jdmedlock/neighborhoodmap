@@ -99,7 +99,7 @@ tr:nth-child(odd) {
   width: 100% !important;
   min-width: 100% !important;
   height: 100% !important;
-  min-height: 140px !important;
+  min-height: 10rem !important;
   display: block !important; }
 
 .full-width {
@@ -115,7 +115,7 @@ tr:nth-child(odd) {
   font-weight: 600 !important;
   border-bottom: 1px solid black;
   width: 100% !important;
-  height: 3.25rem !important;
+  height: 3.75rem !important;
   padding: 0 0 0 .5rem !important;
   margin: 0 0 .5rem 0 !important; }
 
