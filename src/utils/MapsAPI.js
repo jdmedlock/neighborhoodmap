@@ -94,8 +94,8 @@ class MapsAPI {
    * @param {Object} map Map
    * @param {String} venue Venue object from Foursquare
    * @param {Object} marker Marker the place is to be associated with
+   * @param {Function} saveInfoWindow Callback to save the open InfoWindow
    * @param {Function} showPlaceDetails Callback to open details drawer
-   * @returns {Promise} Promise containing InfoWindow reference from Google Maps
    * when resolved.
    * @memberof MapsAPI
    */

@@ -29,7 +29,7 @@ class SearchResults extends React.Component {
     super(props);
 
     this.state = {
-      currentPlaceInResults: 0,
+      currentVenueInResults: 0,
       pageForwardDisabled: false,
       pageBackDisabled: false,
       placesService: new window.google.maps.places.PlacesService(this.props.map)
@@ -47,10 +47,10 @@ class SearchResults extends React.Component {
    * @memberof SearchResults
    */
   pageForwardResults() {
-    if ( this.state.currentPlaceInResults < this.props.searchResults.length ) {
+    if ( this.state.currentVenueInResults < this.props.searchResults.length ) {
       this.setState({ pageForwardDisabled: false });
       this.setState((prevState) => {
-        return { currentPlaceInResults:  prevState.currentPlaceInResults +
+        return { currentVenueInResults:  prevState.currentVenueInResults +
           this.props.searchResultsLimit };
       });
     } else {
@@ -67,7 +67,7 @@ class SearchResults extends React.Component {
     if ( this.state.currentPlaceInResults > 0 ) {
       this.setState({ pageBackDisabled: false });
       this.setState((prevState) => {
-        return { currentPlaceInResults:  prevState.currentPlaceInResults -
+        return { currentVenueInResults:  prevState.currentVenueInResults -
           this.props.searchResultsLimit };
       });
     } else {
@@ -81,29 +81,29 @@ class SearchResults extends React.Component {
    * to display
    * @memberof SearchResults
    */
-  getPlacesToDisplay() {
+  getVenuesToDisplay() {
     return this.props.searchResults
-      .reduce((resultsToDisplay, currentPlace, currentIndex) => {
-        if (currentIndex >= this.state.currentPlaceInResults &&
-          currentIndex <= (this.state.currentPlaceInResults +
+      .reduce((resultsToDisplay, currentVenue, currentIndex) => {
+        if (currentIndex >= this.state.currentVenueInResults &&
+          currentIndex <= (this.state.currentVenueInResults +
             this.props.searchResultsLimit - 1) ) {
-          resultsToDisplay.push(currentPlace)
+          resultsToDisplay.push(currentVenue)
         }
         return resultsToDisplay;
       }, []);
   }
 
   /**
-   * @description Show the infowindow for the selected place
-   * @param {Object} place Place information
+   * @description Show the infowindow for the selected venue
+   * @param {Object} aVenue Venue information
    * @memberof SearchResults
    */
-  showInfoWindow(place) {
+  showInfoWindow(aVenue) {
     const marker = this.props.searchResults.find((element) => {
-      return element.place_id === place.place.place_id;
+      return element.venue.id === aVenue.venue.id;
     }).marker;
-    MapsAPI.openInfoWindow(this.props.map, this.state.placesService,
-      place.place.place_id, marker, this.props.saveInfoWindow, this.props.showPlaceDetails);
+    MapsAPI.openInfoWindow(this.props.map, aVenue, marker,
+      this.props.saveInfoWindow, this.props.showPlaceDetails);
   }
 
   /**
@@ -131,11 +131,11 @@ class SearchResults extends React.Component {
                       // errors are emitted when RMWC Data Table elements are
                       // subdivided by <div>'s, which is required in render()
                       // methods. For this reason we iterate over the results here.
-                      this.getPlacesToDisplay().map((place) => (
-                        <DataTableRow key={ place.id }>
+                      this.getVenuesToDisplay().map((aVenue) => (
+                        <DataTableRow key={ aVenue.venue.id }>
                           <DataTableCell tabIndex="0"
-                            onClick={ () => this.showInfoWindow({ place }) }>
-                            { Venue.getName(place) }
+                            onClick={ () => this.showInfoWindow({ aVenue }) }>
+                            { Venue.getName(aVenue) }
                           </DataTableCell>
                         </DataTableRow >
                       ))

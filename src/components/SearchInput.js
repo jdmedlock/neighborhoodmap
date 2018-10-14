@@ -72,17 +72,14 @@ class SearchInput extends React.Component {
    * @memberof SearchInput
    */
   handlePlaceChange = () => {
-    MapsAPI.searchNearby(this.props.map, this.state.placesService,
-      this.props.saveInfoWindow, this.props.showPlaceDetails, {
-        location: this.props.home,
-        radius: this.props.searchRadius,
-        keyword: this.state.searchText
-      }
-    )
-    .then(searchResults => {
-      this.props.saveSearchResults(searchResults);
+    FSAPI.searchForNearby(this.props.home.lat, this.props.home.lng,
+      this.props.searchRadius, this.state.searchText)
+    .then(venues => {
+      this.props.saveSearchResults(venues);
+      FSAPI.addVenuesToMap(this.props.map, venues, this.props.saveInfoWindow,
+        this.props.showPlaceDetails);
     })
-    .catch(error => console.log(error));
+    .catch(reason => console.log(reason));
   };
 
   /**
@@ -96,7 +93,6 @@ class SearchInput extends React.Component {
 
   /**
    * @description Search for the top attractions in the neighborhood
-   *
    * @memberof SearchInput
    */
   showTopAttractions() {
@@ -104,17 +100,11 @@ class SearchInput extends React.Component {
     // search radius
     this.queryLocation("");
     FSAPI.searchForNearby(this.props.home.lat, this.props.home.lng,
-        this.props.searchRadius, this.props.searchResultsLimit, 'NASA')
+        this.props.searchRadius, 'NASA')
       .then(venues => {
         this.props.saveSearchResults(venues);
-        venues.forEach(aVenue => {
-          console.log('Foursquare venue: ', aVenue);
-          const mapBounds = new window.google.maps.LatLngBounds();
-          const marker = MapsAPI.addMarkerToMap(this.props.map, aVenue.name, 
-            aVenue.venue.location.lat, aVenue.venue.location.lng, mapBounds);
-          MapsAPI.addInfoWindowToMarker(this.props.map,
-            aVenue, marker, this.props.saveInfoWindow, this.props.showPlaceDetails);
-       });
+        FSAPI.addVenuesToMap(this.props.map, venues, this.props.saveInfoWindow,
+          this.props.showPlaceDetails);
       })
       .catch(reason => console.log(reason));
   };

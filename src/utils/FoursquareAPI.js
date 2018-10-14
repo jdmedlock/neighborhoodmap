@@ -1,3 +1,5 @@
+import MapsAPI from '../utils/MapsAPI';
+
 class FourSquareAPI {
   /**
    * @description Search for nearby places
@@ -9,15 +11,14 @@ class FourSquareAPI {
    * @returns {Object[]} Array of result venues
    * @memberof FourSquareAPI
    */
-  static async searchForNearby(latitude, longitude, radius, limit, query) {
+  static async searchForNearby(latitude, longitude, radius, query) {
     let url = `https://api.foursquare.com/v2/venues/explore` +
       `?v=20180323` +
       `&client_id=${process.env.REACT_APP_FS_CLIENT_ID}` +
       `&client_secret=${process.env.REACT_APP_FS_CLIENT_SECRET}` +
       `&ll=${latitude},${longitude}` +
       `&intent=browse` +
-      `&radius=${radius}` +
-      `&limit=${limit}`;
+      `&radius=${radius}`;
     url = query === undefined ? url : url + `&query=${query}`;
     let response = await fetch(url);
     let payload = await response.json();
@@ -27,6 +28,26 @@ class FourSquareAPI {
     let sortedResultsByRating = venues.sort(this.sortByRating);
 
     return sortedResultsByRating;
+  }
+
+  /**
+   * @description Add venues to the map
+   * @static
+   * @param {Object} map Map markers are to be placed on
+   * @param {Object[]} venues Venues to be added to the map
+   * @param {Function} saveInfoWindow Callback to save the active InfoWindow
+   * @param {Function} showPlaceDetails Callback to display venue details
+   * @memberof FourSquareAPI
+   */
+  static addVenuesToMap(map, venues, saveInfoWindow, showPlaceDetails) {
+    venues.forEach(aVenue => {
+      console.log('Foursquare venue: ', aVenue);
+      const mapBounds = new window.google.maps.LatLngBounds();
+      const marker = MapsAPI.addMarkerToMap(map, aVenue.name, 
+        aVenue.venue.location.lat, aVenue.venue.location.lng, mapBounds);
+      MapsAPI.addInfoWindowToMarker(map,
+        aVenue, marker, saveInfoWindow, showPlaceDetails);
+    });
   }
 
   /**
