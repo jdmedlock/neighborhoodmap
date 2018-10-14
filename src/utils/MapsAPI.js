@@ -68,7 +68,7 @@ class MapsAPI {
       position: placeLatLng,
     });
 
-    bounds.extend(placeLatLng);
+    bounds.extend(marker.position);
     return marker;
   }
 

@@ -46,6 +46,8 @@ class FourSquareAPI {
         aVenue.venue.location.lat, aVenue.venue.location.lng, mapBounds);
       aVenue["marker"] = marker;
       MapsAPI.addInfoWindowToMarker(map, aVenue, marker, saveInfoWindow, showPlaceDetails);
+      map.fitBounds(mapBounds);
+      map.setZoom(12);
     });
   }
 }

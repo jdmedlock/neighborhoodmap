@@ -119,6 +119,13 @@ tr:nth-child(odd) {
   padding: auto 0 auto 0;
   margin: 0 0 .5rem 0 !important; }
 
+.venue-name {
+  color: white !important;
+  font-size: 1.2rem !important;
+  font-weight: 600 !important;
+  margin: auto 0 auto .5rem;
+  width: 100%; }
+
 .address-line {
   font-size: 1rem !important;
   margin: 0 0 0 .5rem !important; }

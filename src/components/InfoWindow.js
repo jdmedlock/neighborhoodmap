@@ -13,7 +13,9 @@ class InfoWindow {
   static create(venueDetail) {
     return (
       `<div class="gm-style-iw full-width">
-        <div class="title full-width">${Venue.getName(venueDetail)}</div>
+        <div class="title full-width">
+          <p class="venue-name">${Venue.getName(venueDetail)}</p>
+        </div>
         <div class="address-line full-width">
           ${Venue.createFormattedAddressHTML(venueDetail)}
         <div/>
