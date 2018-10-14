@@ -8,7 +8,7 @@ import { DataTable, DataTableContent, DataTableHead, DataTableBody,
 
   // Application Components
 import MapsAPI from '../utils/MapsAPI';
-import Place from '../utils/VenueInfo';
+import Venue from '../utils/VenueInfo';
 import '../css/App.css';
 
 class SearchResults extends React.Component {
@@ -123,7 +123,6 @@ class SearchResults extends React.Component {
                   <DataTableHead className="table-heading">
                     <DataTableRow>
                       <DataTableHeadCell>Name</DataTableHeadCell>
-                      <DataTableHeadCell>Rating</DataTableHeadCell>
                     </DataTableRow>
                   </DataTableHead>
                   <DataTableBody>
@@ -136,10 +135,7 @@ class SearchResults extends React.Component {
                         <DataTableRow key={ place.id }>
                           <DataTableCell tabIndex="0"
                             onClick={ () => this.showInfoWindow({ place }) }>
-                            { Place.getName(place) }
-                          </DataTableCell>
-                          <DataTableCell className="dt-rating" alignMiddle>
-                            { Place.getRating(place) }
+                            { Venue.getName(place) }
                           </DataTableCell>
                         </DataTableRow >
                       ))

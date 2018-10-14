@@ -99,7 +99,7 @@ tr:nth-child(odd) {
   width: 100% !important;
   min-width: 100% !important;
   height: 100% !important;
-  min-height: 12rem !important;
+  min-height: 9.25rem !important;
   display: block !important; }
 
 .full-width {
@@ -116,8 +116,8 @@ tr:nth-child(odd) {
   border-bottom: 1px solid black;
   width: 100% !important;
   height: 4rem !important;
-  padding: 0 .5rem 0 .5rem !important;
-  margin: 0 .25rem .5rem .25rem !important; }
+  padding: auto 0 auto 0;
+  margin: 0 0 .5rem 0 !important; }
 
 .address-line {
   font-size: 1rem !important;
@@ -126,6 +126,10 @@ tr:nth-child(odd) {
 .view-link {
   font-size: 1rem !important;
   margin: .5rem 0 0 .5rem; }
+
+.footnote {
+  font-size: .75rem;
+  margin: 1rem .5rem .25rem .5rem; }
 
 /* Classes for app-specific infowindow components */
 .iw-attrs {

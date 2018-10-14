@@ -16,14 +16,14 @@ class FourSquareAPI {
       `&client_secret=${process.env.REACT_APP_FS_CLIENT_SECRET}` +
       `&ll=${latitude},${longitude}` +
       `&intent=browse` +
-      `&radius=${radius}`;
+      `&radius=${radius}` +
+      `&limit=${limit}`;
     url = query === undefined ? url : url + `&query=${query}`;
     let response = await fetch(url);
     let payload = await response.json();
     let venues = payload.response.groups[0].items;
 
-    // Sort the results in descending rating sequence and limit the
-    // number of entries displayed
+    // Sort the results in descending rating sequence
     let sortedResultsByRating = venues.sort(this.sortByRating);
 
     return sortedResultsByRating;

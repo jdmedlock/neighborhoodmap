@@ -106,6 +106,7 @@ class SearchInput extends React.Component {
     FSAPI.searchForNearby(this.props.home.lat, this.props.home.lng,
         this.props.searchRadius, this.props.searchResultsLimit, 'NASA')
       .then(venues => {
+        this.props.saveSearchResults(venues);
         venues.forEach(aVenue => {
           console.log('Foursquare venue: ', aVenue);
           const mapBounds = new window.google.maps.LatLngBounds();
@@ -116,31 +117,6 @@ class SearchInput extends React.Component {
        });
       })
       .catch(reason => console.log(reason));
-
-    /*
-    MapsAPI.searchNearby(this.props.map, this.state.placesService,
-      this.props.saveInfoWindow, this.props.showPlaceDetails, {
-        location: this.props.home,
-        radius: this.props.searchRadius,
-        rankBy: window.google.maps.places.RankBy.PROMINENCE,
-        keyword: [ 'nasa' ],
-        type: [ 'point_of_interest' ]
-      }
-    )
-    .then(searchResults => {
-      // Retrieve venue details for each place in the search results
-      for (let i = 0; i < this.props.searchResultsLimit; i += 1) {
-        console.log('Place: ', searchResults[i]);
-        FSAPI.searchForMatch(searchResults[i].geometry.location.lat(),
-          searchResults[i].geometry.location.lng(),this.props.searchRadius,
-          this.props.searchResultsLimit)
-        .then(payload => console.log('Foursquare venue: ', payload))
-        .catch(reason => console.log(reason));
-      }
-      this.props.saveSearchResults(searchResults);
-    })
-    .catch(error => console.log(error));
-    */
   };
 
   /**

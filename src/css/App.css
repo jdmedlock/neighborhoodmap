@@ -116,7 +116,7 @@ tr:nth-child(odd) {
   border-bottom: 1px solid black;
   width: 100% !important;
   height: 4rem !important;
-  padding-left: .5rem;
+  padding: auto 0 auto 0;
   margin: 0 0 .5rem 0 !important; }
 
 .address-line {
