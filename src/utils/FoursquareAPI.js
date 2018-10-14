@@ -41,30 +41,12 @@ class FourSquareAPI {
    */
   static addVenuesToMap(map, venues, saveInfoWindow, showPlaceDetails) {
     venues.forEach(aVenue => {
-      console.log('Foursquare venue: ', aVenue);
       const mapBounds = new window.google.maps.LatLngBounds();
       const marker = MapsAPI.addMarkerToMap(map, aVenue.name, 
         aVenue.venue.location.lat, aVenue.venue.location.lng, mapBounds);
-      MapsAPI.addInfoWindowToMarker(map,
-        aVenue, marker, saveInfoWindow, showPlaceDetails);
+      aVenue["marker"] = marker;
+      MapsAPI.addInfoWindowToMarker(map, aVenue, marker, saveInfoWindow, showPlaceDetails);
     });
-  }
-
-  /**
-   * @description Retrieve detail information about for a venue
-   * @static
-   * @param {String} venueId Venue identifier
-   * @returns {Object} Venue details
-   * @memberof FourSquareAPI
-   */
-  static async getVenueDetails(venueId) {
-    const url = `https://api.foursquare.com/v2/venues/${venueId}` +
-      `?v=20180323` +
-      `&client_id=${process.env.REACT_APP_FS_CLIENT_ID}` +
-      `&client_secret=${process.env.REACT_APP_FS_CLIENT_SECRET}`;
-    let response = await fetch(url);
-    let payload = await response.json();
-    return payload.response.venue;
   }
 }
 

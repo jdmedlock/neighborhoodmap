@@ -64,7 +64,7 @@ class SearchResults extends React.Component {
    * @memberof SearchResults
    */
   pageBackResults() {
-    if ( this.state.currentPlaceInResults > 0 ) {
+    if ( this.state.currentVenueInResults > 0 ) {
       this.setState({ pageBackDisabled: false });
       this.setState((prevState) => {
         return { currentVenueInResults:  prevState.currentVenueInResults -
@@ -99,10 +99,10 @@ class SearchResults extends React.Component {
    * @memberof SearchResults
    */
   showInfoWindow(aVenue) {
-    const marker = this.props.searchResults.find((element) => {
-      return element.venue.id === aVenue.venue.id;
+    const marker = this.props.searchResults.find(element => {
+      return element.venue.id === aVenue.aVenue.venue.id;
     }).marker;
-    MapsAPI.openInfoWindow(this.props.map, aVenue, marker,
+    MapsAPI.openInfoWindow(this.props.map, aVenue.aVenue, marker,
       this.props.saveInfoWindow, this.props.showPlaceDetails);
   }
 
