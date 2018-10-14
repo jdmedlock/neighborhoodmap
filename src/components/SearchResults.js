@@ -123,7 +123,6 @@ class SearchResults extends React.Component {
                   <DataTableHead className="table-heading">
                     <DataTableRow>
                       <DataTableHeadCell>Name</DataTableHeadCell>
-                      <DataTableHeadCell>Type</DataTableHeadCell>
                       <DataTableHeadCell>Rating</DataTableHeadCell>
                     </DataTableRow>
                   </DataTableHead>
@@ -138,9 +137,6 @@ class SearchResults extends React.Component {
                           <DataTableCell tabIndex="0"
                             onClick={ () => this.showInfoWindow({ place }) }>
                             { Place.getName(place) }
-                          </DataTableCell>
-                          <DataTableCell>
-                            { Place.getFirstType(place) }
                           </DataTableCell>
                           <DataTableCell className="dt-rating" alignMiddle>
                             { Place.getRating(place) }

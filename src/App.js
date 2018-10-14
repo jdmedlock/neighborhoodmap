@@ -63,7 +63,6 @@ class NeighborhoodMap extends React.Component {
    * @memberof SearchPage
    */
   showPlaceDetails = (place) => {
-    console.log('App - showPlaceDetails invoked');
     this.setState({ isPlaceDrawerOpen: this.state.isPlaceDrawerOpen === undefined
       ? false
       : !this.state.isPlaceDrawerOpen });
