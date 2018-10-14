@@ -70,6 +70,7 @@ class SearchPage extends React.Component {
               home={ this.props.home }
               searchRadius={ this.props.searchRadius }
               map={ this.props.map }
+              searchResultsLimit={ this.props.searchResultsLimit }
               saveSearchResults={ this.saveSearchResults }
               saveInfoWindow={ this.saveInfoWindow }
               showPlaceDetails={ this.props.showPlaceDetails }

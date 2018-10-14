@@ -25,10 +25,13 @@ class MapsAPI {
    * @memberof MapsAPI
    */
   static createMap(home) {
-    return new window.google.maps.Map(document.getElementById('map'), {
-      center: { lat: home.lat, lng: home.lng },
-      zoom: 12,
-      mapTypeId: 'roadmap'
+    return new Promise((resolve,reject) => {
+      const map = new window.google.maps.Map(document.getElementById('map'), {
+        center: { lat: home.lat, lng: home.lng },
+        zoom: 12,
+        mapTypeId: 'roadmap'
+      });
+      resolve(map);
     });
   }
 
@@ -57,18 +60,24 @@ class MapsAPI {
    * @param {Function} saveInfoWindow Callback to save the infowindow
    * @param {Object} options Google Places SearchNearby options. Must included
    * at lease the `location` and `radius` attributes.
+   * @returns {Promise} Promise containing the sorted results if resolved or
+   * the error status if rejected.
    * @memberof MapsAPI
    */
-  static searchNearby(map, placesService, saveSearchResults, saveInfoWindow, showPlaceDetails, options) {
-    placesService.nearbySearch(options, (results, status) => {
-      if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-        // Sort the results in descending rating sequence and limit the
-        // number of entries displayed
-        let sortedResultsByRating = results.sort(this.sortByRating);
-        // Add the places to the map
-        this.addPlacesToMap(map, placesService, sortedResultsByRating, saveInfoWindow, showPlaceDetails);
-        saveSearchResults(sortedResultsByRating);
-      }
+  static searchNearby(map, placesService, saveInfoWindow, showPlaceDetails, options) {
+    return new Promise((resolve,reject) => {
+      placesService.nearbySearch(options, (results, status) => {
+        if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+          // Sort the results in descending rating sequence and limit the
+          // number of entries displayed
+          let sortedResultsByRating = results.sort(this.sortByRating);
+          // Add the places to the map
+          this.addPlacesToMap(map, placesService, sortedResultsByRating, saveInfoWindow, showPlaceDetails);
+          resolve(sortedResultsByRating);
+        } else {
+          reject(new Error(`nearbySearch failed with status:${status}`));
+        }
+      });
     });
   }
 

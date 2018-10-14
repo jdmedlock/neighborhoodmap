@@ -49,9 +49,12 @@ class NeighborhoodMap extends React.Component {
    * @memberof NeighborhoodMap
    */
   loadGoogleMap = () => {
-    const map = MapsAPI.createMap(this.state.home);
-    this.setState({ map: map });
-    this.setState({ mapIsLoaded: true });
+    MapsAPI.createMap(this.state.home)
+    .then(map => {
+      this.setState({ map: map });
+      this.setState({ mapIsLoaded: true });
+    })
+    .catch(error => console.log('Failed to load map. Error: ', error));
   };
 
   /**

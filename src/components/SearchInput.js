@@ -18,6 +18,7 @@ class SearchInput extends React.Component {
     home: PropTypes.object.isRequired,
     searchRadius: PropTypes.number.isRequired,
     map: PropTypes.object.isRequired,
+    searchResultsLimit: PropTypes.number.isRequired,
     saveSearchResults: PropTypes.func.isRequired,
     saveInfoWindow: PropTypes.func.isRequired,
     showPlaceDetails: PropTypes.func.isRequired,
@@ -72,12 +73,16 @@ class SearchInput extends React.Component {
    */
   handlePlaceChange = () => {
     MapsAPI.searchNearby(this.props.map, this.state.placesService,
-      this.props.saveSearchResults, this.props.saveInfoWindow, this.props.showPlaceDetails, {
+      this.props.saveInfoWindow, this.props.showPlaceDetails, {
         location: this.props.home,
         radius: this.props.searchRadius,
         keyword: this.state.searchText
       }
-    );
+    )
+    .then(searchResults => {
+      this.props.saveSearchResults(searchResults);
+    })
+    .catch(error => console.log(error));
   };
 
   /**
@@ -95,20 +100,31 @@ class SearchInput extends React.Component {
    * @memberof SearchInput
    */
   showTopAttractions() {
-    FSAPI.search(this.props.home.lat, this.props.home.lng,this.props.searchRadius, 'nasa')
-    .then(payload => console.log(payload))
-    .catch(reason => console.log(reason.message));
-
+    // Retrieve a list of popular location from Google Places within the
+    // search radius
     this.queryLocation("");
     MapsAPI.searchNearby(this.props.map, this.state.placesService,
-      this.props.saveSearchResults, this.props.saveInfoWindow, this.props.showPlaceDetails, {
+      this.props.saveInfoWindow, this.props.showPlaceDetails, {
         location: this.props.home,
         radius: this.props.searchRadius,
         rankBy: window.google.maps.places.RankBy.PROMINENCE,
         keyword: [ 'nasa' ],
         type: [ 'point_of_interest' ]
       }
-    );
+    )
+    .then(searchResults => {
+      // Retrieve venue details for each place in the search results
+      for (let i = 0; i < this.props.searchResultsLimit; i += 1) {
+        console.log('Place: ', searchResults[i]);
+        FSAPI.searchForMatch(searchResults[i].geometry.location.lat(),
+          searchResults[i].geometry.location.lng(),this.props.searchRadius,
+          this.props.searchResultsLimit)
+        .then(payload => console.log('Foursquare venue: ', payload))
+        .catch(reason => console.log(reason));
+      }
+      this.props.saveSearchResults(searchResults);
+    })
+    .catch(error => console.log(error));
   };
 
   /**
