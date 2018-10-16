@@ -119,7 +119,7 @@ class SearchInput extends React.Component {
     return (
       <div>
         <Grid>
-          <GridCell span="8">
+          <GridCell span="4" tablet ="8" desktop="12">
             <TextField id="search-text" tabIndex="0" box
               withTrailingIcon={<TextFieldIcon icon='search' />}
               fullwidth type="text" onChange={this.handleChange}
@@ -128,7 +128,7 @@ class SearchInput extends React.Component {
               aria-label="Enter search terms for places search"
             />
           </GridCell>
-          <GridCell span="4">
+          <GridCell span="4" tablet="8" desktop="12">
             <Fab id="top-attractions-btn" tabIndex="0"
               onClick={ this.showTopAttractions }
               raised="true" icon="thumb_up_alt" label="Top Places...">

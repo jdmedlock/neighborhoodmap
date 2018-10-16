@@ -110,7 +110,7 @@ class NeighborhoodMap extends React.Component {
 
         <DrawerAppContent id="place-detail-drawer">
           <Grid>
-            <GridCell span="8">
+            <GridCell span="4" tablet="2" desktop="3">
               <section>
                 {
                   this.state.mapIsLoaded ? (
@@ -130,7 +130,7 @@ class NeighborhoodMap extends React.Component {
               </section>
             </GridCell>
 
-            <GridCell span="8">
+            <GridCell span="4" tablet="4" desktop="8">
               <section className="map-container">
                 <Map />
               </section>

@@ -86,7 +86,9 @@ class MapsAPI {
     marker.addListener('click', () => {
       this.openInfoWindow(map, venue, marker, saveInfoWindow, showPlaceDetails);
     });
-  }
+    map.fitBounds(map.getBounds());
+    map.setZoom(12);
+}
 
   /**
    * @description Open an InfoWindow
@@ -100,6 +102,7 @@ class MapsAPI {
    * @memberof MapsAPI
    */
   static openInfoWindow(map, venue, marker, saveInfoWindow, showPlaceDetails) {
+    map.panTo(marker.getPosition());
     this.bounceMarker(marker);
     const infoWindow = new window.google.maps.InfoWindow({
       content: InfoWindow.create(venue)

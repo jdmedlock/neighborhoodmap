@@ -65,7 +65,7 @@ class SearchPage extends React.Component {
     return (
       <div>
         <Grid>
-          <GridCell span="8">
+          <GridCell span="4" tablet="7" desktop="11">
             <SearchInput handleChange={ this.handleChange }
               home={ this.props.home }
               searchRadius={ this.props.searchRadius }
