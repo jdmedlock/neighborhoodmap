@@ -41,6 +41,7 @@ tr:nth-child(odd) {
   font-size: 1.75rem; }
 
 .mdc-layout-grid {
+  padding-left: .5rem;
   padding-bottom: 0; }
 
 .mdc-layout-grid__inner {
@@ -60,7 +61,8 @@ tr:nth-child(odd) {
 
 /* ===================== Search Area ======================= */
 #search-text {
-  height: 3rem; }
+  height: 3rem;
+  margin: 0 0 0 0; }
 
 #top-attractions-btn {
   background-color: #c17900 !important;
