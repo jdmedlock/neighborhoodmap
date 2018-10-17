@@ -8,6 +8,7 @@ import { Grid, GridCell } from '@rmwc/grid';
 import { TextField, TextFieldIcon } from '@rmwc/textfield';
 
 // Application Components
+import FSAPI from '../utils/FoursquareAPI';
 import MapsAPI from '../utils/MapsAPI';
 import '../css/App.css';
 
@@ -17,9 +18,9 @@ class SearchInput extends React.Component {
     home: PropTypes.object.isRequired,
     searchRadius: PropTypes.number.isRequired,
     map: PropTypes.object.isRequired,
+    searchResultsLimit: PropTypes.number.isRequired,
     saveSearchResults: PropTypes.func.isRequired,
     saveInfoWindow: PropTypes.func.isRequired,
-    showPlaceDetails: PropTypes.func.isRequired,
   };
 
   /**
@@ -70,13 +71,13 @@ class SearchInput extends React.Component {
    * @memberof SearchInput
    */
   handlePlaceChange = () => {
-    MapsAPI.searchNearby(this.props.map, this.state.placesService,
-      this.props.saveSearchResults, this.props.saveInfoWindow, this.props.showPlaceDetails, {
-        location: this.props.home,
-        radius: this.props.searchRadius,
-        keyword: this.state.searchText
-      }
-    );
+    FSAPI.searchForNearby(this.props.home.lat, this.props.home.lng,
+      this.props.searchRadius, this.state.searchText)
+    .then(venues => {
+      this.props.saveSearchResults(venues);
+      FSAPI.addVenuesToMap(this.props.map, venues, this.props.saveInfoWindow);
+    })
+    .catch(reason => console.log(reason));
   };
 
   /**
@@ -90,20 +91,19 @@ class SearchInput extends React.Component {
 
   /**
    * @description Search for the top attractions in the neighborhood
-   *
    * @memberof SearchInput
    */
   showTopAttractions() {
+    // Retrieve a list of popular location from Google Places within the
+    // search radius
     this.queryLocation("");
-    MapsAPI.searchNearby(this.props.map, this.state.placesService,
-      this.props.saveSearchResults, this.props.saveInfoWindow, this.props.showPlaceDetails, {
-        location: this.props.home,
-        radius: this.props.searchRadius,
-        rankBy: window.google.maps.places.RankBy.PROMINENCE,
-        keyword: [ 'nasa' ],
-        type: [ 'point_of_interest' ]
-      }
-    );
+    FSAPI.searchForNearby(this.props.home.lat, this.props.home.lng,
+        this.props.searchRadius, 'NASA')
+      .then(venues => {
+        this.props.saveSearchResults(venues);
+        FSAPI.addVenuesToMap(this.props.map, venues, this.props.saveInfoWindow);
+      })
+      .catch(reason => console.log(reason));
   };
 
   /**
@@ -116,7 +116,7 @@ class SearchInput extends React.Component {
     return (
       <div>
         <Grid>
-          <GridCell span="8">
+          <GridCell span="4" tablet ="8" desktop="12">
             <TextField id="search-text" tabIndex="0" box
               withTrailingIcon={<TextFieldIcon icon='search' />}
               fullwidth type="text" onChange={this.handleChange}
@@ -125,7 +125,7 @@ class SearchInput extends React.Component {
               aria-label="Enter search terms for places search"
             />
           </GridCell>
-          <GridCell span="4">
+          <GridCell span="4" tablet="8" desktop="12">
             <Fab id="top-attractions-btn" tabIndex="0"
               onClick={ this.showTopAttractions }
               raised="true" icon="thumb_up_alt" label="Top Places...">

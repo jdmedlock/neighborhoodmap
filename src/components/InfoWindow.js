@@ -1,32 +1,29 @@
-import Place from '../utils/Place';
+import VenueInfo from '../utils/VenueInfo';
 import '../css/App.css';
 
 class InfoWindow {
 
   /**
    * @description Create HTML-formatted content to be placed in the Infowindow
-   * @param {PlaceDetail} placeDetail Characteristics of the selected place
-   * @param {Function} showSelectedPlace Callback to show the place details
+   * @param {Object} venueDetail Object containing details about this venue
    * @returns {String} HTML-formatted content
    * @memberof InfoWindow
    */
-  static create(placeDetail) {
+  static create(venueDetail) {
     return (
-      `<div class="gm-style-iw full-width">
-        <div class="title full-width">${Place.getName(placeDetail)}</div>
-        <div class="address-line full-width">
-          ${Place.createFormattedAddressHTML(placeDetail)}
-          ${Place.createFormattedPhoneNoHTML(placeDetail)}
+      `<div class="full-width gm-style-iw">
+        <div class="title">
+          <p class="venue-name">${VenueInfo.getName(venueDetail)}</p>
+        </div>
+        <div class="address-line">
+          ${VenueInfo.createFormattedAddressHTML(venueDetail)}
         <div/>
-        <div class="iw-attrs full-width">
-          ${Place.createFirstTypeHTML(placeDetail)}
-          ${Place.createPriceLevelHTML(placeDetail)}
-          ${Place.createRatingHTML(placeDetail)}
-          ${Place.createStatusHTML(placeDetail)}
+        <div class="iw-attrs">
+          ${VenueInfo.createFirstCategoryHTML(venueDetail)}
+          ${VenueInfo.createHereNowHTML(venueDetail)}
         </div>
         <div>
-          <button class="iw-details-btn">Details...</button>
-        <div>
+          <p class="footnote">Venue info via Foursquare</p>
       </div>`);
   }
 

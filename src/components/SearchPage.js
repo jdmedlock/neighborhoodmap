@@ -16,7 +16,6 @@ class SearchPage extends React.Component {
     searchRadius: PropTypes.number.isRequired,
     searchResultsLimit: PropTypes.number.isRequired,
     map: PropTypes.object.isRequired,
-    showPlaceDetails: PropTypes.func.isRequired,
   }
 
   /**
@@ -39,7 +38,7 @@ class SearchPage extends React.Component {
    * @memberof SearchPage
    */
   saveInfoWindow = (infowindow) => {
-    if (this.state.isInfoWindowOpen) {
+    if (this.state.isInfoWindowOpen && this.state.infoWindow !== 0) {
       this.state.infoWindow.close();
     }
     this.setState({ isInfoWindowOpen: true });
@@ -65,20 +64,19 @@ class SearchPage extends React.Component {
     return (
       <div>
         <Grid>
-          <GridCell span="8">
+          <GridCell span="4" tablet="7" desktop="11">
             <SearchInput handleChange={ this.handleChange }
               home={ this.props.home }
               searchRadius={ this.props.searchRadius }
               map={ this.props.map }
+              searchResultsLimit={ this.props.searchResultsLimit }
               saveSearchResults={ this.saveSearchResults }
               saveInfoWindow={ this.saveInfoWindow }
-              showPlaceDetails={ this.props.showPlaceDetails }
             />
             <SearchResults map={ this.props.map }
               searchResults={ this.state.searchResults }
               searchResultsLimit={ this.props.searchResultsLimit }
               saveInfoWindow={ this.saveInfoWindow }
-              showPlaceDetails={ this.props.showPlaceDetails }
             />
           </GridCell>
         </Grid>
