@@ -11,14 +11,14 @@ class InfoWindow {
    */
   static create(venueDetail) {
     return (
-      `<div class="gm-style-iw full-width">
-        <div class="title full-width">
+      `<div class="full-width gm-style-iw">
+        <div class="title">
           <p class="venue-name">${VenueInfo.getName(venueDetail)}</p>
         </div>
-        <div class="address-line full-width">
+        <div class="address-line">
           ${VenueInfo.createFormattedAddressHTML(venueDetail)}
         <div/>
-        <div class="iw-attrs full-width">
+        <div class="iw-attrs">
           ${VenueInfo.createFirstCategoryHTML(venueDetail)}
           ${VenueInfo.createHereNowHTML(venueDetail)}
         </div>

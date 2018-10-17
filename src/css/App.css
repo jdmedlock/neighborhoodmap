@@ -91,7 +91,7 @@ tr:nth-child(odd) {
   margin: 0;
   padding: 0;
   height: 100vw;
-  width: 90vw; }
+  width: 100vw; }
 
 /* =================== Map Infowindow ===================== */
 /* Google Maps API class overrides */
@@ -99,10 +99,8 @@ tr:nth-child(odd) {
   top: 0 !important;
   left: 0 !important;
   width: 100% !important;
-  min-width: 100% !important;
   height: 100% !important;
-  min-height: 9.25rem !important;
-  display: block !important; }
+  min-height: 9.5rem !important; }
 
 .full-width {
   margin: 0 2rem 0 0 !important;
@@ -113,8 +111,6 @@ tr:nth-child(odd) {
   align-items: center;
   background-color: #0288d1 !important;
   color: white !important;
-  font-size: 1.2rem !important;
-  font-weight: 600 !important;
   border-bottom: 1px solid black;
   width: 100% !important;
   height: 4rem !important;
@@ -123,7 +119,7 @@ tr:nth-child(odd) {
 
 .venue-name {
   color: white !important;
-  font-size: 1.2rem !important;
+  font-size: 1rem !important;
   font-weight: 600 !important;
   margin: auto 0 auto .5rem;
   width: 100%; }
@@ -131,10 +127,6 @@ tr:nth-child(odd) {
 .address-line {
   font-size: 1rem !important;
   margin: 0 0 0 .5rem !important; }
-
-.view-link {
-  font-size: 1rem !important;
-  margin: .5rem 0 0 .5rem; }
 
 .footnote {
   font-size: .75rem;
@@ -154,14 +146,11 @@ tr:nth-child(odd) {
   color: black;
   background-color: #ffd95a;
   display: flex;
-  font-size: .8rem;
+  font-size: .75rem;
   font-weight: 400;
   margin: .5rem .5rem .25rem .5rem;
   padding: .25rem .5rem .2rem .5rem;
   height: 1rem; }
-
-.iw-rating {
-  font-size: 1rem; }
 
 /* ================= Place Detail Drawer ================== */
 #place-detail-drawer {
@@ -179,3 +168,7 @@ tr:nth-child(odd) {
   background-color: #c17900 !important;
   color: black !important;
   margin: 1rem; }
+
+/* ============== Device Specific Overrides ============== */
+/* Larger mobile devices */
+/* For laptops and desktops */

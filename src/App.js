@@ -79,28 +79,23 @@ class NeighborhoodMap extends React.Component {
         <main>
           <Grid>
             <GridCell span="4" tablet="2" desktop="3">
-              <section>
-                {
-                  this.state.mapIsLoaded ? (
-                    <Switch>
-                      <Route exact path='/' render={() => (
-                        <SearchPage
-                          home={ this.state.home}
-                          searchRadius={ this.state.searchRadius }
-                          searchResultsLimit={ this.state.searchResultsLimit }
-                          map={ this.state.map }
-                        />
-                      )} />
-                    </Switch>
-                  ) : ('')
-                }
-              </section>
+              {
+                this.state.mapIsLoaded ? (
+                  <Switch>
+                    <Route exact path='/' render={() => (
+                      <SearchPage
+                        home={ this.state.home}
+                        searchRadius={ this.state.searchRadius }
+                        searchResultsLimit={ this.state.searchResultsLimit }
+                        map={ this.state.map }
+                      />
+                    )} />
+                  </Switch>
+                ) : ('')
+              }
             </GridCell>
-
-            <GridCell span="4" tablet="4" desktop="8">
-              <section className="map-container">
-                <Map />
-              </section>
+            <GridCell className="map-container" span="4" tablet="4" desktop="8">
+              <Map />
             </GridCell>
           </Grid>
         </main>
