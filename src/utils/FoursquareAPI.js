@@ -38,7 +38,7 @@ class FourSquareAPI {
    * @param {Function} saveInfoWindow Callback to save the active InfoWindow
    * @memberof FourSquareAPI
    */
-  static addVenuesToMap(map, venues, saveInfoWindow, showPlaceDetails) {
+  static addVenuesToMap(map, venues, saveInfoWindow) {
     venues.forEach(aVenue => {
       const mapBounds = new window.google.maps.LatLngBounds();
       const marker = MapsAPI.addMarkerToMap(map, aVenue.name, 
