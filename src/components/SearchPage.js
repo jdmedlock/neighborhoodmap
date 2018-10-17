@@ -16,7 +16,6 @@ class SearchPage extends React.Component {
     searchRadius: PropTypes.number.isRequired,
     searchResultsLimit: PropTypes.number.isRequired,
     map: PropTypes.object.isRequired,
-    showPlaceDetails: PropTypes.func.isRequired,
   }
 
   /**
@@ -73,13 +72,11 @@ class SearchPage extends React.Component {
               searchResultsLimit={ this.props.searchResultsLimit }
               saveSearchResults={ this.saveSearchResults }
               saveInfoWindow={ this.saveInfoWindow }
-              showPlaceDetails={ this.props.showPlaceDetails }
             />
             <SearchResults map={ this.props.map }
               searchResults={ this.state.searchResults }
               searchResultsLimit={ this.props.searchResultsLimit }
               saveInfoWindow={ this.saveInfoWindow }
-              showPlaceDetails={ this.props.showPlaceDetails }
             />
           </GridCell>
         </Grid>

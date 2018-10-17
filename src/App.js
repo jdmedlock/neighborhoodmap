@@ -2,13 +2,11 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 // React Material Web Components
-import { Drawer, DrawerAppContent, DrawerHeader, DrawerContent, DrawerTitle } from '@rmwc/drawer';
 import { Grid, GridCell } from '@rmwc/grid';
 import { TopAppBar, TopAppBarRow, TopAppBarSection, TopAppBarTitle } from '@rmwc/top-app-bar';
 
 // Application Components
 import Map from './components/Map';
-import PlaceDetail from  './components/PlaceDetail';
 import SearchPage from './components/SearchPage';
 import MapsAPI from './utils/MapsAPI';
 import './css/App.css';
@@ -58,27 +56,6 @@ class NeighborhoodMap extends React.Component {
   };
 
   /**
-   * @description Save the selected place in the state
-   * @param {Object} place Place object
-   * @memberof SearchPage
-   */
-  showPlaceDetails = (place) => {
-    this.setState({ isPlaceDrawerOpen: this.state.isPlaceDrawerOpen === undefined
-      ? false
-      : !this.state.isPlaceDrawerOpen });
-  };
-
-  /**
-   * @description Close the drawer containing the selected place details
-   * @memberof NeighborhoodMap
-   */
-  closePlaceDrawer = () => {
-    this.setState({ isPlaceDrawerOpen: this.state.isPlaceDrawerOpen === undefined
-      ? false
-      : !this.state.isPlaceDrawerOpen });
-  };
-
-  /**
    * @description Create the HTML for the following application pages:
    * - Search page to allow the user to search for locations and places
    * - Details page showing detail information about a specific location
@@ -99,16 +76,7 @@ class NeighborhoodMap extends React.Component {
           </TopAppBar>
         </header>
 
-        <Drawer dismissible open={ this.state.isPlaceDrawerOpen === undefined ? true : this.state.isPlaceDrawerOpen }>
-          <DrawerHeader id="place-drawer-header">
-            <DrawerTitle>DrawerHeader</DrawerTitle>
-          </DrawerHeader>
-          <DrawerContent id="place-detail-content">
-            <PlaceDetail closePlaceDrawer={ this.closePlaceDrawer } />
-          </DrawerContent>
-        </Drawer>
-
-        <DrawerAppContent id="place-detail-drawer">
+        <main>
           <Grid>
             <GridCell span="4" tablet="2" desktop="3">
               <section>
@@ -121,7 +89,6 @@ class NeighborhoodMap extends React.Component {
                           searchRadius={ this.state.searchRadius }
                           searchResultsLimit={ this.state.searchResultsLimit }
                           map={ this.state.map }
-                          showPlaceDetails={ this.showPlaceDetails }
                         />
                       )} />
                     </Switch>
@@ -136,7 +103,7 @@ class NeighborhoodMap extends React.Component {
               </section>
             </GridCell>
           </Grid>
-        </DrawerAppContent>
+        </main>
       </div>
     )
   }

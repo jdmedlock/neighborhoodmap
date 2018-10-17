@@ -21,7 +21,6 @@ class SearchInput extends React.Component {
     searchResultsLimit: PropTypes.number.isRequired,
     saveSearchResults: PropTypes.func.isRequired,
     saveInfoWindow: PropTypes.func.isRequired,
-    showPlaceDetails: PropTypes.func.isRequired,
   };
 
   /**
@@ -76,8 +75,7 @@ class SearchInput extends React.Component {
       this.props.searchRadius, this.state.searchText)
     .then(venues => {
       this.props.saveSearchResults(venues);
-      FSAPI.addVenuesToMap(this.props.map, venues, this.props.saveInfoWindow,
-        this.props.showPlaceDetails);
+      FSAPI.addVenuesToMap(this.props.map, venues, this.props.saveInfoWindow);
     })
     .catch(reason => console.log(reason));
   };
@@ -103,8 +101,7 @@ class SearchInput extends React.Component {
         this.props.searchRadius, 'NASA')
       .then(venues => {
         this.props.saveSearchResults(venues);
-        FSAPI.addVenuesToMap(this.props.map, venues, this.props.saveInfoWindow,
-          this.props.showPlaceDetails);
+        FSAPI.addVenuesToMap(this.props.map, venues, this.props.saveInfoWindow);
       })
       .catch(reason => console.log(reason));
   };

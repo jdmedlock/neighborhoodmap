@@ -232,3 +232,13 @@ tr:nth-child(odd) {background: $table-row-light;}
   color: black !important;
   margin: 1rem;
 }
+
+/* ============== Device Specific Overrides ============== */
+
+
+/* Larger mobile devices */
+@media screen and (min-width: 425px) and (max-width: 1023px) {
+}
+
+/* For laptops and desktops */
+@media screen and (min-width: 1024px) {

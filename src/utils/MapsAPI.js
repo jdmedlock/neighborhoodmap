@@ -79,12 +79,11 @@ class MapsAPI {
    * @param {Object} marker Marker the place is to be associated with
    * @param {Function} saveInfoWindow Callback to save the reference to the
    * InfoWindow
-   * @param {Function} showPlaceDetails Callback to open details drawer
    * @memberof SearchInput
    */
-  static addInfoWindowToMarker(map, venue, marker, saveInfoWindow, showPlaceDetails) {
+  static addInfoWindowToMarker(map, venue, marker, saveInfoWindow) {
     marker.addListener('click', () => {
-      this.openInfoWindow(map, venue, marker, saveInfoWindow, showPlaceDetails);
+      this.openInfoWindow(map, venue, marker, saveInfoWindow);
     });
     map.fitBounds(map.getBounds());
     map.setZoom(12);
@@ -97,11 +96,10 @@ class MapsAPI {
    * @param {String} venue Venue object from Foursquare
    * @param {Object} marker Marker the place is to be associated with
    * @param {Function} saveInfoWindow Callback to save the open InfoWindow
-   * @param {Function} showPlaceDetails Callback to open details drawer
    * when resolved.
    * @memberof MapsAPI
    */
-  static openInfoWindow(map, venue, marker, saveInfoWindow, showPlaceDetails) {
+  static openInfoWindow(map, venue, marker, saveInfoWindow) {
     map.panTo(marker.getPosition());
     this.bounceMarker(marker);
     const infoWindow = new window.google.maps.InfoWindow({
@@ -109,18 +107,6 @@ class MapsAPI {
     });
     saveInfoWindow(infoWindow);
     infoWindow.open(map, marker);
-    // Add a listener for the infowindow 'Details...' button only after
-    // the info window is open and ready
-    window.google.maps.event.addListenerOnce(infoWindow, 'domready', () => {
-      const detailsButtons = [...document.getElementsByClassName('iw-details-btn')];
-      if (detailsButtons !== null) {
-        detailsButtons.forEach((button) => {
-          button.addEventListener('click', function() {
-            showPlaceDetails(venue);
-          });
-        });
-      }
-    });
   }
 
   /**

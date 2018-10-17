@@ -18,7 +18,6 @@ class SearchResults extends React.Component {
     searchResults: PropTypes.array.isRequired,
     searchResultsLimit: PropTypes.number.isRequired,
     saveInfoWindow: PropTypes.func.isRequired,
-    showPlaceDetails: PropTypes.func.isRequired
   }
 
   /**
@@ -103,7 +102,7 @@ class SearchResults extends React.Component {
       return element.venue.id === aVenue.aVenue.venue.id;
     }).marker;
     MapsAPI.openInfoWindow(this.props.map, aVenue.aVenue, marker,
-      this.props.saveInfoWindow, this.props.showPlaceDetails);
+      this.props.saveInfoWindow);
   }
 
   /**

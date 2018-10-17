@@ -36,7 +36,6 @@ class FourSquareAPI {
    * @param {Object} map Map markers are to be placed on
    * @param {Object[]} venues Venues to be added to the map
    * @param {Function} saveInfoWindow Callback to save the active InfoWindow
-   * @param {Function} showPlaceDetails Callback to display venue details
    * @memberof FourSquareAPI
    */
   static addVenuesToMap(map, venues, saveInfoWindow, showPlaceDetails) {
@@ -45,7 +44,7 @@ class FourSquareAPI {
       const marker = MapsAPI.addMarkerToMap(map, aVenue.name, 
         aVenue.venue.location.lat, aVenue.venue.location.lng, mapBounds);
       aVenue["marker"] = marker;
-      MapsAPI.addInfoWindowToMarker(map, aVenue, marker, saveInfoWindow, showPlaceDetails);
+      MapsAPI.addInfoWindowToMarker(map, aVenue, marker, saveInfoWindow);
     });
   }
 }
