@@ -78,7 +78,7 @@ class NeighborhoodMap extends React.Component {
 
         <main>
           <Grid>
-            <GridCell span="4" tablet="2" desktop="3">
+            <GridCell span="4" tablet="2" desktop="2">
               {
                 this.state.mapIsLoaded ? (
                   <Switch>

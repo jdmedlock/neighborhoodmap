@@ -8,12 +8,13 @@ html, body {
 th {
   background-color: #0288d1;
   color: black;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 600;
   height: 1.5rem;
   width: 100%; }
 
 td, tr {
+  font-size: 1.2rem;
   font-weight: 400;
   height: 1.5rem;
   width: 100%;
@@ -51,16 +52,9 @@ tr:nth-child(odd) {
   color: #0288d1 !important;
   margin-bottom: .5rem !important; }
 
-/*
- * Note that this is used for alignment rather than <DataTableCell alignEnd>
- * since the latter seems to have no affect on alignment at this point in
- * time
- */
-.dt-rating {
-  text-align: right; }
-
 /* ===================== Search Area ======================= */
 #search-text {
+  font-size: 1rem;
   height: 3rem;
   margin: 0 0 0 0; }
 
@@ -152,23 +146,44 @@ tr:nth-child(odd) {
   padding: .25rem .5rem .2rem .5rem;
   height: 1rem; }
 
-/* ================= Place Detail Drawer ================== */
-#place-detail-drawer {
-  min-height: 15rem; }
-
-#place-drawer-header {
-  background-color: #5eb8ff;
-  height: 1.5rem;
-  width: 100%; }
-
-#place-detail-content {
-  margin: 1rem; }
-
-#place-details-close-btn {
-  background-color: #c17900 !important;
-  color: black !important;
-  margin: 1rem; }
-
 /* ============== Device Specific Overrides ============== */
 /* Larger mobile devices */
+/*
+@media screen and (min-width: 425px) and (max-width: 1023px) {
+  .venue-name {
+    font-size: 1.2rem !important;
+  }
+
+  .address-line {
+    font-size: 1.2rem !important;
+  }
+
+  .iw-chip {
+    font-size: 1rem !important;
+  }
+
+  #search-text {
+    font-size: 1.2rem;
+  }
+}
+*/
 /* For laptops and desktops */
+/*
+@media screen and (min-width: 1024px) {
+  .venue-name {
+    font-size: 1.2rem !important;
+  }
+
+  .address-line {
+    font-size: 1.2rem !important;
+  }
+
+  .iw-chip {
+    font-size: 1rem !important;
+  }
+
+  #search-text {
+    font-size: 1.2rem;
+  }
+}
+*/
