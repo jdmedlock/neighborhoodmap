@@ -124,14 +124,14 @@ class SearchInput extends React.Component {
               placeholder="" value={ this.state.searchText }
               aria-label="Enter search terms for places search" />
           </GridCell>
-          <GridCell span="4" tablet="8" desktop="12">
+          <GridCell span="4" tablet="8" desktop="12" className="center-contents">
             <Fab id="top-attractions-btn" tabIndex="0"
               onClick={ this.showTopAttractions }
               raised="true" icon="thumb_up_alt" label="Top Places..."
               aria-label="Show top places"
               role="button" />
           </GridCell>
-        </Grid>
+         </Grid>
       </div>
     )
   };

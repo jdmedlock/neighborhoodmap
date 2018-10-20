@@ -43,10 +43,12 @@ tr:nth-child(odd) {
 
 .mdc-layout-grid {
   padding-left: .5rem;
-  padding-bottom: 0; }
+  padding-bottom: 0;
+  width: 100%; }
 
 .mdc-layout-grid__inner {
-  margin-top: 1rem; }
+  margin-top: 1rem;
+  width: 100%; }
 
 .mdc-floating-label--float-above {
   color: #0288d1 !important;
@@ -62,8 +64,7 @@ tr:nth-child(odd) {
   background-color: #c17900 !important;
   color: black;
   height: 2.25rem;
-  margin: .5rem .25rem .75rem .25rem;
-  min-width: 11rem; }
+  margin: .5rem .25rem .75rem .25rem; }
 
 #page-up-btn,
 #page-down-btn {
