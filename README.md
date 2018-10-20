@@ -4,6 +4,8 @@
 <br/>
 [![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)](https://github.com/jdmedlock/neighborhoodmap/)
 
+![Screenshot](https://github.com/jdmedlock/neighborhoodmap/blob/development/docs/nm_screenshot.png)
+
 ## Table of Contents
 
 * [Overview](#overview)
@@ -23,14 +25,10 @@ Javascript section of the [Udacity Front-End Web Developer Nanodegree Program](h
 purpose of this assignment is to demonstrate and solidify a basic
 understanding of React from the course lessons.
 
-You can find the project instructions here -->[Project Specification](https://jdmedlock.github.io/neighborhoodmap/PROJECT_STARTER.md).
-
 ## Usage
 
 ### UI Features
 
-
-![Screenshot](https://github.com/jdmedlock/neighborhoodmap/blob/development/docs/nm_screenshot.png)
 The requirements for this project are defined by he [Udacity Rubric](https://review.udacity.com/#!/rubrics/1351/view). However, the main requirements
 for the main page are:
 
