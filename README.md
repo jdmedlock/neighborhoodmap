@@ -4,13 +4,15 @@
 <br/>
 [![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)](https://github.com/jdmedlock/neighborhoodmap/)
 
+![Screenshot](https://github.com/jdmedlock/neighborhoodmap/blob/development/docs/nm_screenshot.png)
+
 ## Table of Contents
 
 * [Overview](#overview)
 * [Usage](#usage)
-* [FAQ](#frequently-asked-questions)
 * [Dependencies](#dependencies)
 * [Application Structure](#application-structure)
+* [FAQ](#frequently-asked-questions)
 * [Change Log](#change-log)
 * [Contributing](#contributing)
 * [Authors](#authors)
@@ -23,14 +25,10 @@ Javascript section of the [Udacity Front-End Web Developer Nanodegree Program](h
 purpose of this assignment is to demonstrate and solidify a basic
 understanding of React from the course lessons.
 
-You can find the project instructions here -->[Project Specification](https://jdmedlock.github.io/neighborhoodmap/PROJECT_STARTER.md).
-
 ## Usage
 
 ### UI Features
 
-
-![Screenshot](https://github.com/jdmedlock/neighborhoodmap/blob/development/docs/nm_screenshot.png)
 The requirements for this project are defined by he [Udacity Rubric](https://review.udacity.com/#!/rubrics/1351/view). However, the main requirements
 for the main page are:
 
@@ -41,8 +39,8 @@ the Kennedy Space Flight Center in Cape Canaveral, Florida.
 attractions to be redisplayed following a custom search.
 - Markers are placed on the map for both top attractions as well as places
 identified in a custom search.
-- More information about a location, from [Foursquare](foursquare.com) will
-be display by clicking on either a place name in the search results list or
+- More information about a location, from [Foursquare](http://www.foursquare.com)
+will be display by clicking on either a place name in the search results list or
 on a marker.
 - Up and down arrows at the bottom of the search results list allow the user
 to scroll through the results if there are more than will fit on a single page.
@@ -53,7 +51,7 @@ to scroll through the results if there are more than will fit on a single page.
 |:----------------|:--------------------------------------------------------|
 | Color           | Primary: #0288d1 - Light: #5eb8ff - Dark: #005b9f       |
 |                 | Secondary: #f9a825 - Light: #ffd95a - Dark: #c17900     |
-|                 | Text on primary: #000000 - secondary: #000000           |
+|                 | Text on primary: #ffffff - secondary: #000000           |
 | Typography      | Title: Roboto                                           |
 |                 | Subtitle: Open Sans                                     |
 |                 | Body: Roboto Slab                                       |
@@ -100,6 +98,53 @@ out of application code it does not make them secure.
 | REACT_APP_SEARCH_RADIUS | Radius, in meters, searches are constrained to | REACT_APP_SEARCH_RADIUS=16000 |
 | REACT_APP_FS_CLIENT_ID  | Foursquare API client id | REACT_APP_FS_CLIENT_ID=ADADEAFDF4ADFADFAA5ADADFAFAD |
 | REACT_APP_FS_CLIENT_SECRET | Foursquaer API client secret | REACT_APP_FS_CLIENT_SECRET=ADADEAFDF4ADFADFAA5ADADFAFAD |
+
+## Dependencies
+
+### Libraries
+
+This app has the following dependencies
+
+| Module/Library | Environment | Description | Related Files |
+|:---------------|:------------|:------------|:--------------|
+| autoprefixer   | Development | Parses CSS and adds vendor prefixes to CSS rules | N/a |
+| css-loader     | Development | Resolves CSS @import and url() paths | N/a |
+| extract-loader | Development | Extracts the CSS into a .css file | N/a |
+| file-loader    | Development | Serves the .css file as a public URL | N/a |
+| lodash.debounce | Runtime    | _debounce text input | N/a  |
+| node-sass-chokidar | Development | CSS complier | N/a |
+| NPM            | Development | Package manager | package.json |
+| npm-run-all    | Runtime     | Run multiple scripts | N/a |
+| postcss-loader | Deveopment  | Loader for Webpack used in conjunction with autoprefixer | N/a |
+| prop-types     | Runtime     | Type checking for props | N/a |
+| react          | Runtime     | UI Library  | N/a           |
+| react-dom      | Runtime     | DOM renderer for React | N/a |
+| react-router   | Runtime     | Declarative routing for React | N/a |
+| react-scripts  | Runtime     | scripts and configuration used by Create React App | N/a |
+| rmwc           | Runtime     | [React Material Web Components](https://jamesmfriedman.github.io/rmwc//) | N/a |
+| sass-loader    | Development | Loads a Sass file and compiles it to CSS | N/a |
+
+In addition to these libraries, which the app explicitly depends on,
+Create React App includes other libraries such as Babel and Webpack. For more
+information about Create React App and it's dependencies consult its
+[documentation](https://github.com/facebook/create-react-app).
+
+### External Dependencies
+
+In addition to libraries Neighborhood Maps also depends on webservices to
+provide with details about places. The [Google Maps Javascript API](https://developers.google.com/maps/documentation/javascript/tutorial)
+used for basic
+searching and to populate information windows on the map with basic information.
+
+Detailed information about a place, displayed when the user clicks the `Details...`
+button in an information window on the map, is obtained from [FourSquare](https://developer.foursquare.com/docs/api).
+
+## Application Structure
+
+The component structure of the neighborhoodmap application is shown in the following
+diagram.
+
+![neighborhoodmap Component Structure](https://github.com/jdmedlock/neighborhoodmap/blob/development/docs/nm_component_structure.png)
 
 ## Frequently Asked Questions
 
@@ -153,53 +198,6 @@ experience using different data sources and to improve the user experience by
 using the best source for a particular context. For example, the purpose of
 the info window is to provide a general description of the place while the
 place details drawer is intended to provide more indepth information.
-
-## Dependencies
-
-### Libraries
-
-This app has the following dependencies
-
-| Module/Library | Environment | Description | Related Files |
-|:---------------|:------------|:------------|:--------------|
-| autoprefixer   | Development | Parses CSS and adds vendor prefixes to CSS rules | N/a |
-| css-loader     | Development | Resolves CSS @import and url() paths | N/a |
-| extract-loader | Development | Extracts the CSS into a .css file | N/a |
-| file-loader    | Development | Serves the .css file as a public URL | N/a |
-| lodash.debounce | Runtime    | _debounce text input | N/a  |
-| node-sass-chokidar | Development | CSS complier | N/a |
-| NPM            | Development | Package manager | package.json |
-| npm-run-all    | Runtime     | Run multiple scripts | N/a |
-| postcss-loader | Deveopment  | Loader for Webpack used in conjunction with autoprefixer | N/a |
-| prop-types     | Runtime     | Type checking for props | N/a |
-| react          | Runtime     | UI Library  | N/a           |
-| react-dom      | Runtime     | DOM renderer for React | N/a |
-| react-router   | Runtime     | Declarative routing for React | N/a |
-| react-scripts  | Runtime     | scripts and configuration used by Create React App | N/a |
-| rmwc           | Runtime     | [React Material Web Components](https://jamesmfriedman.github.io/rmwc//) | N/a |
-| sass-loader    | Development | Loads a Sass file and compiles it to CSS | N/a |
-
-In addition to these libraries, which the app explicitly depends on,
-Create React App includes other libraries such as Babel and Webpack. For more
-information about Create React App and it's dependencies consult its
-[documentation](https://github.com/facebook/create-react-app)
-
-### External Dependencies
-
-In addition to libraries Neighborhood Maps also depends on webservices to
-provide with details about places. The [Google Maps Javascript API](https://developers.google.com/maps/documentation/javascript/tutorial)
-used for basic
-searching and to populate information windows on the map with basic information.
-
-Detailed information about a place, displayed when the user clicks the `Details...`
-button in an information window on the map, is obtained from [FourSquare](https://developer.foursquare.com/docs/api).
-
-## Application Structure
-
-The component structure of the neighborhoodmap application is shown in the following
-diagram.
-
-![neighborhoodmap Component Structure](https://github.com/jdmedlock/neighborhoodmap/blob/development/docs/neighborhoodmap%20Component%20Structure.png)
 
 ## Change Log
 
