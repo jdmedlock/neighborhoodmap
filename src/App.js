@@ -78,7 +78,7 @@ class NeighborhoodMap extends React.Component {
 
         <main>
           <Grid>
-            <GridCell span="4" tablet="2" desktop="2">
+            <GridCell span="4" tablet="3" desktop="4">
               {
                 this.state.mapIsLoaded ? (
                   <Switch>
@@ -95,7 +95,7 @@ class NeighborhoodMap extends React.Component {
               }
             </GridCell>
             <GridCell className="map-container" span="4" tablet="4" desktop="8">
-              <Map />
+              <Map id="map"/>
             </GridCell>
           </Grid>
         </main>
