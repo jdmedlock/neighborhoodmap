@@ -52,7 +52,7 @@ class SearchInput extends React.Component {
 
     MapsAPI.createSearchBox(this.props.map,
       'search-text', this.handlePlaceChange);
-  };
+  }
 
   /**
    * @description Add input entered by the user to the searchText element in
@@ -62,7 +62,7 @@ class SearchInput extends React.Component {
    */
   handleChange(event) {
     this.emitChangeDebounce(event.target.value);
-  };
+  }
 
   /**
    * @description Conduct a nearby search using the user-specified search
@@ -78,7 +78,7 @@ class SearchInput extends React.Component {
       FSAPI.addVenuesToMap(this.props.map, venues, this.props.saveInfoWindow);
     })
     .catch(reason => console.log(reason));
-  };
+  }
 
   /**
    * @description Search Google Maps for matching locations within our
@@ -104,7 +104,7 @@ class SearchInput extends React.Component {
         FSAPI.addVenuesToMap(this.props.map, venues, this.props.saveInfoWindow);
       })
       .catch(reason => console.log(reason));
-  };
+  }
 
   /**
    * @description Capture search terms entered by the user to locate places
@@ -119,20 +119,19 @@ class SearchInput extends React.Component {
           <GridCell span="4" tablet ="8" desktop="12">
             <TextField id="search-text" tabIndex="0" box
               withTrailingIcon={<TextFieldIcon icon='search' />}
-              fullwidth type="text" onChange={this.handleChange}
+              fullwidth type="text" onChange={ this.handleChange }
               label="Enter the place you want to find..."
               placeholder="" value={ this.state.searchText }
-              aria-label="Enter search terms for places search"
-            />
+              aria-label="Enter search terms for places search" />
           </GridCell>
-          <GridCell span="4" tablet="8" desktop="12">
+          <GridCell span="4" tablet="8" desktop="12" className="center-contents">
             <Fab id="top-attractions-btn" tabIndex="0"
               onClick={ this.showTopAttractions }
-              raised="true" icon="thumb_up_alt" label="Top Places...">
+              raised="true" icon="thumb_up_alt" label="Top Places..."
               aria-label="Show top places"
-              role="button"</Fab>
+              role="button" />
           </GridCell>
-        </Grid>
+         </Grid>
       </div>
     )
   };

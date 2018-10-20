@@ -14,6 +14,7 @@ th {
   width: 100%; }
 
 td, tr {
+  font-size: 1rem;
   font-weight: 400;
   height: 1.5rem;
   width: 100%;
@@ -42,25 +43,20 @@ tr:nth-child(odd) {
 
 .mdc-layout-grid {
   padding-left: .5rem;
-  padding-bottom: 0; }
+  padding-bottom: 0;
+  width: 100%; }
 
 .mdc-layout-grid__inner {
-  margin-top: 1rem; }
+  margin-top: 1rem;
+  width: 100%; }
 
 .mdc-floating-label--float-above {
   color: #0288d1 !important;
   margin-bottom: .5rem !important; }
 
-/*
- * Note that this is used for alignment rather than <DataTableCell alignEnd>
- * since the latter seems to have no affect on alignment at this point in
- * time
- */
-.dt-rating {
-  text-align: right; }
-
 /* ===================== Search Area ======================= */
 #search-text {
+  font-size: 1rem;
   height: 3rem;
   margin: 0 0 0 0; }
 
@@ -68,8 +64,7 @@ tr:nth-child(odd) {
   background-color: #c17900 !important;
   color: black;
   height: 2.25rem;
-  margin: .5rem .25rem .75rem .25rem;
-  min-width: 11rem; }
+  margin: .5rem .25rem .75rem .25rem; }
 
 #page-up-btn,
 #page-down-btn {
@@ -82,16 +77,15 @@ tr:nth-child(odd) {
   margin-top: 1rem;
   margin-right: 1rem; }
 
-/* ==================== Search Results ===================== */
 /* ======================= Map Area ======================== */
-.map-container .mdc-layout-grid {
+.map-container {
   padding: 0; }
 
 #map {
   margin: 0;
   padding: 0;
-  height: 100vw;
-  width: 90vw; }
+  height: 100vh;
+  width: 100vw; }
 
 /* =================== Map Infowindow ===================== */
 /* Google Maps API class overrides */
@@ -99,10 +93,8 @@ tr:nth-child(odd) {
   top: 0 !important;
   left: 0 !important;
   width: 100% !important;
-  min-width: 100% !important;
   height: 100% !important;
-  min-height: 9.25rem !important;
-  display: block !important; }
+  min-height: 9.5rem !important; }
 
 .full-width {
   margin: 0 2rem 0 0 !important;
@@ -113,8 +105,6 @@ tr:nth-child(odd) {
   align-items: center;
   background-color: #0288d1 !important;
   color: white !important;
-  font-size: 1.2rem !important;
-  font-weight: 600 !important;
   border-bottom: 1px solid black;
   width: 100% !important;
   height: 4rem !important;
@@ -123,7 +113,7 @@ tr:nth-child(odd) {
 
 .venue-name {
   color: white !important;
-  font-size: 1.2rem !important;
+  font-size: 1rem !important;
   font-weight: 600 !important;
   margin: auto 0 auto .5rem;
   width: 100%; }
@@ -131,10 +121,6 @@ tr:nth-child(odd) {
 .address-line {
   font-size: 1rem !important;
   margin: 0 0 0 .5rem !important; }
-
-.view-link {
-  font-size: 1rem !important;
-  margin: .5rem 0 0 .5rem; }
 
 .footnote {
   font-size: .75rem;
@@ -154,28 +140,43 @@ tr:nth-child(odd) {
   color: black;
   background-color: #ffd95a;
   display: flex;
-  font-size: .8rem;
+  font-size: .75rem;
   font-weight: 400;
   margin: .5rem .5rem .25rem .5rem;
   padding: .25rem .5rem .2rem .5rem;
   height: 1rem; }
 
-.iw-rating {
-  font-size: 1rem; }
+/* ============== Device Specific Overrides ============== */
+/* Larger mobile devices */
+@media screen and (min-width: 426px) and (max-width: 1023px) {
+  #map {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 66vw; }
+  .venue-name {
+    font-size: 1rem !important; }
+  .address-line {
+    font-size: 1rem !important; }
+  .iw-chip {
+    font-size: 1rem !important; }
+  #search-text {
+    font-size: 1rem; } }
 
-/* ================= Place Detail Drawer ================== */
-#place-detail-drawer {
-  min-height: 15rem; }
-
-#place-drawer-header {
-  background-color: #5eb8ff;
-  height: 1.5rem;
-  width: 100%; }
-
-#place-detail-content {
-  margin: 1rem; }
-
-#place-details-close-btn {
-  background-color: #c17900 !important;
-  color: black !important;
-  margin: 1rem; }
+/* For laptops and desktops */
+@media screen and (min-width: 1024px) {
+  #map {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 66vw; }
+  .gm-style-iw {
+    min-height: 12rem !important; }
+  .venue-name {
+    font-size: 1rem !important; }
+  .address-line {
+    font-size: 1rem !important; }
+  .iw-chip {
+    font-size: 1rem !important; }
+  #search-text {
+    font-size: 1rem; } }
