@@ -41,8 +41,8 @@ the Kennedy Space Flight Center in Cape Canaveral, Florida.
 attractions to be redisplayed following a custom search.
 - Markers are placed on the map for both top attractions as well as places
 identified in a custom search.
-- More information about a location, from [Foursquare](foursquare.com) will
-be display by clicking on either a place name in the search results list or
+- More information about a location, from [Foursquare](http://www.foursquare.com)
+will be display by clicking on either a place name in the search results list or
 on a marker.
 - Up and down arrows at the bottom of the search results list allow the user
 to scroll through the results if there are more than will fit on a single page.
@@ -53,7 +53,7 @@ to scroll through the results if there are more than will fit on a single page.
 |:----------------|:--------------------------------------------------------|
 | Color           | Primary: #0288d1 - Light: #5eb8ff - Dark: #005b9f       |
 |                 | Secondary: #f9a825 - Light: #ffd95a - Dark: #c17900     |
-|                 | Text on primary: #000000 - secondary: #000000           |
+|                 | Text on primary: #ffffff - secondary: #000000           |
 | Typography      | Title: Roboto                                           |
 |                 | Subtitle: Open Sans                                     |
 |                 | Body: Roboto Slab                                       |
