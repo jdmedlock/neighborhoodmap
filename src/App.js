@@ -28,7 +28,6 @@ class NeighborhoodMap extends React.Component {
       searchResultsLimit: Number.parseInt(process.env.REACT_APP_SEARCH_RESULTS_LIMIT, 10),
       map: {},
       mapIsLoaded: false,
-      isPlaceDrawerOpen: false,
     };
   }
 

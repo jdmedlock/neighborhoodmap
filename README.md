@@ -144,7 +144,7 @@ button in an information window on the map, is obtained from [FourSquare](https:
 The component structure of the neighborhoodmap application is shown in the following
 diagram.
 
-![neighborhoodmap Component Structure](https://github.com/jdmedlock/neighborhoodmap/blob/development/docs/neighborhoodmap%20Component%20Structure.png)
+![neighborhoodmap Component Structure](https://github.com/jdmedlock/neighborhoodmap/blob/development/docs/nm_component_structure.png)
 
 ## Frequently Asked Questions
 
