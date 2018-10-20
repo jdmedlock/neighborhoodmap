@@ -29,6 +29,8 @@ You can find the project instructions here -->[Project Specification](https://jd
 
 ### UI Features
 
+
+![Screenshot](https://github.com/jdmedlock/neighborhoodmap/blob/development/docs/nm_screenshot.png)
 The requirements for this project are defined by he [Udacity Rubric](https://review.udacity.com/#!/rubrics/1351/view). However, the main requirements
 for the main page are:
 
