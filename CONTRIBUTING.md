@@ -21,7 +21,7 @@ Resolves: <issue URL>
 See also: <reference URLs>
 ```
 
-_Type_ describes the nature of the change and should be one of the following: 
+_Type_ describes the nature of the change and should be one of the following:
 
 - `feature`: a new feature
 - `fix`: a bug fix
@@ -52,7 +52,7 @@ example, URL's to Gist's.
 
 Please update the tests to reflect your code changes. Pull requests will not
 be accepted if they are failing
-on [Travis CI](https://travis-ci.org/jdmedlock/memorygame).
+on [Travis CI](https://travis-ci.org/jdmedlock/neighborhoodmap).
 
 ### Documentation
 
@@ -65,7 +65,7 @@ the API and the documentation.
 
 #### Git Branches
 
-![MemoryGame Git Workflow](https://github.com/jdmedlock/memorygame/blob/master/docs/Git%20-%20Team%20Workflow.png)
+![Neighborhood Git Workflow](https://github.com/jdmedlock/neighborhoodmap/blob/development/docs/Git%20-%20Team%20Workflow.png)
 
 - `master`: Only updated from PR's from the `development` branch for release.
 This branch always reflects the current production release.
@@ -74,8 +74,8 @@ work in working branches, which are then pulled into this branch. All code
 pulled into this branch must be tested and undergo peer review as part of the
 PR process.
 - `working branches`: Are individual branches created by each developer when
-they are working on changes and bug fixes. There are 4 basic types of branches: 
-bug, feature, refactor and style, after the type comes the name, it should 
+they are working on changes and bug fixes. There are 4 basic types of branches:
+bug, feature, refactor and style, after the type comes the name, it should
 specify on top of the branch type. For example feature/course-review.
 
 

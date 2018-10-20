@@ -1,21 +1,106 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 
-class App extends Component {
+// React Material Web Components
+import { Grid, GridCell } from '@rmwc/grid';
+import { TopAppBar, TopAppBarRow, TopAppBarSection, TopAppBarTitle } from '@rmwc/top-app-bar';
+
+// Application Components
+import Map from './components/Map';
+import SearchPage from './components/SearchPage';
+import MapsAPI from './utils/MapsAPI';
+import './css/App.css';
+
+class NeighborhoodMap extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    // App state
+    this.state = {
+      // Coordinates of the center of our neighborhood
+      home: {
+        lat: Number.parseFloat(process.env.REACT_APP_LAT),
+        lng: Number.parseFloat(process.env.REACT_APP_LNG)
+      },
+      // Maximum search radius in meters
+      searchRadius: Number.parseInt(process.env.REACT_APP_SEARCH_RADIUS,10),
+      searchResultsLimit: Number.parseInt(process.env.REACT_APP_SEARCH_RESULTS_LIMIT, 10),
+      map: {},
+      mapIsLoaded: false,
+    };
+  }
+
+  /**
+   * @description Load the Google map for our neighborhood and add insert it
+   * into the DOM
+   * @memberof NeighborhoodMap
+   */
+  componentDidMount() {
+    MapsAPI.addScriptToDOM(process.env.REACT_APP_MAPS_URL, this.loadGoogleMap);
+  }
+
+  /**
+   * @description Load the Neighborhood map
+   * @returns {Promise} Promise that will be resolved when the map is loaded
+   * @memberof NeighborhoodMap
+   */
+  loadGoogleMap = () => {
+    MapsAPI.createMap(this.state.home)
+    .then(map => {
+      this.setState({ map: map });
+      this.setState({ mapIsLoaded: true });
+    })
+    .catch(error => console.log('Failed to load map. Error: ', error));
+  };
+
+  /**
+   * @description Create the HTML for the following application pages:
+   * - Search page to allow the user to search for locations and places
+   * - Details page showing detail information about a specific location
+   * @returns {HTMLDivElement} Main application page
+   * @memberof NeighborhoodMap
+   */
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+      <div>
+
+        <header>
+          <TopAppBar>
+            <TopAppBarRow>
+              <TopAppBarSection alignStart>
+                <TopAppBarTitle>Neighborhood Map</TopAppBarTitle>
+              </TopAppBarSection>
+            </TopAppBarRow>
+          </TopAppBar>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+
+        <main>
+          <Grid>
+            <GridCell span="4" phone="4" tablet="3" desktop="4">
+              {
+                this.state.mapIsLoaded ? (
+                  <Switch>
+                    <Route exact path='/' render={() => (
+                      <SearchPage
+                        home={ this.state.home}
+                        searchRadius={ this.state.searchRadius }
+                        searchResultsLimit={ this.state.searchResultsLimit }
+                        map={ this.state.map }
+                      />
+                    )} />
+                  </Switch>
+                ) : ('')
+              }
+            </GridCell>
+            <GridCell className="map-container" span="4" phone="4" tablet="4" desktop="8">
+              <Map id="map"/>
+            </GridCell>
+          </Grid>
+        </main>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default NeighborhoodMap;

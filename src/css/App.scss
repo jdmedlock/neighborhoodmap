@@ -1,167 +1,225 @@
-@import url(../../node_modules/material-components-web/dist/material-components-web.min.css);
+@charset "utf-8";
+
+$mdc-theme-primary: #0288d1;
+$mdc-theme-primary-light: #5eb8ff;
+$mdc-theme-primary-dark: #005b9f;
+$mdc-theme-secondary: #f9a825;
+$mdc-theme-secondary-light: #ffd95a;
+$mdc-theme-secondary-dark: #c17900;
+$mdc-theme-background: #fff;
+
+$table-row-light: #ffffff;
+$table-row-dark: #e2f5ff;
+
+@import "../../node_modules/material-components-web/dist/material-components-web.min.css";
+
 /* ============= HTML Tag Attribute overrides ============== */
+
 html, body {
   height: 100%;
   margin: 0;
-  padding: 0; }
+  padding: 0;
+}
 
 th {
-  background-color: #0288d1;
+  background-color: $mdc-theme-primary;
   color: black;
   font-size: 1rem;
   font-weight: 600;
   height: 1.5rem;
-  width: 100%; }
+  width: 100%;
+}
 
 td, tr {
   font-size: 1rem;
   font-weight: 400;
   height: 1.5rem;
   width: 100%;
-  min-width: 4rem; }
+  min-width: 4rem;
+}
 
 /* Alternate row shading for table rows */
-tr:nth-child(even) {
-  background: #e2f5ff; }
-
-tr:nth-child(odd) {
-  background: #ffffff; }
+tr:nth-child(even) {background: $table-row-dark;}
+tr:nth-child(odd) {background: $table-row-light;}
 
 /* =================== Common Elements ===================== */
+
 .center-contents {
   display: flex;
   justify-content: center;
-  width: 100%; }
+  width: 100%;
+}
 
 /* ============== Material Design overrides ================ */
+
 .mdc-top-app-bar {
-  background-color: #005b9f; }
+  background-color: $mdc-theme-primary-dark;
+}
 
 .mdc-top-app-bar__title {
   color: white;
-  font-size: 1.75rem; }
+  font-size: 1.75rem;
+}
 
 .mdc-layout-grid {
   padding-left: .5rem;
   padding-bottom: 0;
-  width: 100%; }
+  width: 100%;
+}
 
 .mdc-layout-grid__inner {
   margin-top: 1rem;
-  width: 100%; }
+  width: 100%;
+}
 
 .mdc-floating-label--float-above {
-  color: #0288d1 !important;
-  margin-bottom: .5rem !important; }
+  color: $mdc-theme-primary !important;
+  margin-bottom: .5rem !important;
+}
+
+.mdc-text-field .mdc-line-ripple {
+  background-color: $mdc-theme-primary-light !important;
+}
 
 /* ===================== Search Area ======================= */
+
 #search-text {
   font-size: 1rem;
   height: 3rem;
-  margin: 0 0 0 0; }
+  margin: 0 0 0 0;
+}
 
 #top-attractions-btn {
-  background-color: #c17900 !important;
+  background-color: $mdc-theme-secondary-dark !important;
   color: black;
   height: 2.25rem;
-  margin: .5rem .25rem .75rem .25rem; }
+  margin: .5rem .25rem .75rem .25rem;
+}
 
 #page-up-btn,
 #page-down-btn {
-  background-color: #c17900 !important;
+  background-color: $mdc-theme-secondary-dark !important;
   border-radius: 50%;
   height: 2rem;
   width: 2rem;
   color: black;
   font-size: 2rem;
   margin-top: 1rem;
-  margin-right: 1rem; }
+  margin-right: 1rem;
+}
+
 
 /* ======================= Map Area ======================== */
+
 .map-container {
-  padding: 0; }
+  padding: 0;
+}
 
 #map {
   margin: 0;
   padding: 0;
   height: 100vh;
-  width: 100vw; }
+  width: 100vw;
+}
 
 /* =================== Map Infowindow ===================== */
+
 /* Google Maps API class overrides */
+
 .gm-style-iw {
   top: 0 !important;
   left: 0 !important;
   width: 100% !important;
   height: 100% !important;
-  min-height: 9.5rem !important; }
+  min-height: 9.5rem !important;
+ }
 
 .full-width {
   margin: 0 2rem 0 0 !important;
-  width: 100% !important; }
+  width: 100% !important;
+}
 
 .title {
   display: flex;
   align-items: center;
-  background-color: #0288d1 !important;
+  background-color: $mdc-theme-primary !important;
   color: white !important;
   border-bottom: 1px solid black;
   width: 100% !important;
   height: 4rem !important;
   padding: auto 0 auto 0;
-  margin: 0 0 .5rem 0 !important; }
+  margin: 0 0 .5rem 0 !important;
+}
 
 .venue-name {
   color: white !important;
   font-size: 1rem !important;
   font-weight: 600 !important;
   margin: auto 0 auto .5rem;
-  width: 100%; }
+  width: 100%;
+}
 
 .address-line {
   font-size: 1rem !important;
-  margin: 0 0 0 .5rem !important; }
+  margin: 0 0 0 .5rem !important;
+}
 
 .footnote {
   font-size: .75rem;
-  margin: 1rem .5rem .25rem .5rem; }
+  margin: 1rem .5rem .25rem .5rem;
+}
 
 /* Classes for app-specific infowindow components */
+
 .iw-attrs {
   margin: .5rem .5rem 0 0;
   padding: 0;
   display: flex;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+}
 
 .iw-chip {
   align-content: center;
   border: 1px solid grey;
   border-radius: 10px;
   color: black;
-  background-color: #ffd95a;
+  background-color: $mdc-theme-secondary-light;
   display: flex;
   font-size: .75rem;
   font-weight: 400;
   margin: .5rem .5rem .25rem .5rem;
   padding: .25rem .5rem .2rem .5rem;
-  height: 1rem; }
+  height: 1rem;
+}
 
 /* ============== Device Specific Overrides ============== */
+
+
 /* Larger mobile devices */
 @media screen and (min-width: 426px) and (max-width: 1023px) {
   #map {
     margin: 0;
     padding: 0;
     height: 100vh;
-    width: 66vw; }
+    width: 66vw;
+  }
+
   .venue-name {
-    font-size: 1rem !important; }
+    font-size: 1rem !important;
+  }
+
   .address-line {
-    font-size: 1rem !important; }
+    font-size: 1rem !important;
+  }
+
   .iw-chip {
-    font-size: 1rem !important; }
+    font-size: 1rem !important;
+  }
+
   #search-text {
-    font-size: 1rem; } }
+    font-size: 1rem;
+  }
+}
 
 /* For laptops and desktops */
 @media screen and (min-width: 1024px) {
@@ -169,14 +227,26 @@ tr:nth-child(odd) {
     margin: 0;
     padding: 0;
     height: 100vh;
-    width: 66vw; }
+    width: 66vw;
+  }
+
   .gm-style-iw {
-    min-height: 12rem !important; }
+    min-height: 12rem !important;
+  }
+
   .venue-name {
-    font-size: 1rem !important; }
+    font-size: 1rem !important;
+  }
+
   .address-line {
-    font-size: 1rem !important; }
+    font-size: 1rem !important;
+  }
+
   .iw-chip {
-    font-size: 1rem !important; }
+    font-size: 1rem !important;
+  }
+
   #search-text {
-    font-size: 1rem; } }
+    font-size: 1rem;
+  }
+}
