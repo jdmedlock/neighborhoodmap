@@ -80,6 +80,10 @@ tr:nth-child(odd) {
   margin-top: 1rem;
   margin-right: 1rem; }
 
+#page-up-btn:focus,
+#page-down-btn:focus {
+  outline: 0; }
+
 /* ======================= Map Area ======================== */
 .map-container {
   padding: 0; }
