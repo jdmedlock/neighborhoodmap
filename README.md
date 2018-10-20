@@ -8,9 +8,9 @@
 
 * [Overview](#overview)
 * [Usage](#usage)
-* [FAQ](#frequently-asked-questions)
 * [Dependencies](#dependencies)
 * [Application Structure](#application-structure)
+* [FAQ](#frequently-asked-questions)
 * [Change Log](#change-log)
 * [Contributing](#contributing)
 * [Authors](#authors)
@@ -101,6 +101,53 @@ out of application code it does not make them secure.
 | REACT_APP_FS_CLIENT_ID  | Foursquare API client id | REACT_APP_FS_CLIENT_ID=ADADEAFDF4ADFADFAA5ADADFAFAD |
 | REACT_APP_FS_CLIENT_SECRET | Foursquaer API client secret | REACT_APP_FS_CLIENT_SECRET=ADADEAFDF4ADFADFAA5ADADFAFAD |
 
+## Dependencies
+
+### Libraries
+
+This app has the following dependencies
+
+| Module/Library | Environment | Description | Related Files |
+|:---------------|:------------|:------------|:--------------|
+| autoprefixer   | Development | Parses CSS and adds vendor prefixes to CSS rules | N/a |
+| css-loader     | Development | Resolves CSS @import and url() paths | N/a |
+| extract-loader | Development | Extracts the CSS into a .css file | N/a |
+| file-loader    | Development | Serves the .css file as a public URL | N/a |
+| lodash.debounce | Runtime    | _debounce text input | N/a  |
+| node-sass-chokidar | Development | CSS complier | N/a |
+| NPM            | Development | Package manager | package.json |
+| npm-run-all    | Runtime     | Run multiple scripts | N/a |
+| postcss-loader | Deveopment  | Loader for Webpack used in conjunction with autoprefixer | N/a |
+| prop-types     | Runtime     | Type checking for props | N/a |
+| react          | Runtime     | UI Library  | N/a           |
+| react-dom      | Runtime     | DOM renderer for React | N/a |
+| react-router   | Runtime     | Declarative routing for React | N/a |
+| react-scripts  | Runtime     | scripts and configuration used by Create React App | N/a |
+| rmwc           | Runtime     | [React Material Web Components](https://jamesmfriedman.github.io/rmwc//) | N/a |
+| sass-loader    | Development | Loads a Sass file and compiles it to CSS | N/a |
+
+In addition to these libraries, which the app explicitly depends on,
+Create React App includes other libraries such as Babel and Webpack. For more
+information about Create React App and it's dependencies consult its
+[documentation](https://github.com/facebook/create-react-app).
+
+### External Dependencies
+
+In addition to libraries Neighborhood Maps also depends on webservices to
+provide with details about places. The [Google Maps Javascript API](https://developers.google.com/maps/documentation/javascript/tutorial)
+used for basic
+searching and to populate information windows on the map with basic information.
+
+Detailed information about a place, displayed when the user clicks the `Details...`
+button in an information window on the map, is obtained from [FourSquare](https://developer.foursquare.com/docs/api).
+
+## Application Structure
+
+The component structure of the neighborhoodmap application is shown in the following
+diagram.
+
+![neighborhoodmap Component Structure](https://github.com/jdmedlock/neighborhoodmap/blob/development/docs/neighborhoodmap%20Component%20Structure.png)
+
 ## Frequently Asked Questions
 
 1. Why is a native Google Maps API used instead of a library like [react-google-maps](https://github.com/tomchentw/react-google-maps)?
@@ -153,53 +200,6 @@ experience using different data sources and to improve the user experience by
 using the best source for a particular context. For example, the purpose of
 the info window is to provide a general description of the place while the
 place details drawer is intended to provide more indepth information.
-
-## Dependencies
-
-### Libraries
-
-This app has the following dependencies
-
-| Module/Library | Environment | Description | Related Files |
-|:---------------|:------------|:------------|:--------------|
-| autoprefixer   | Development | Parses CSS and adds vendor prefixes to CSS rules | N/a |
-| css-loader     | Development | Resolves CSS @import and url() paths | N/a |
-| extract-loader | Development | Extracts the CSS into a .css file | N/a |
-| file-loader    | Development | Serves the .css file as a public URL | N/a |
-| lodash.debounce | Runtime    | _debounce text input | N/a  |
-| node-sass-chokidar | Development | CSS complier | N/a |
-| NPM            | Development | Package manager | package.json |
-| npm-run-all    | Runtime     | Run multiple scripts | N/a |
-| postcss-loader | Deveopment  | Loader for Webpack used in conjunction with autoprefixer | N/a |
-| prop-types     | Runtime     | Type checking for props | N/a |
-| react          | Runtime     | UI Library  | N/a           |
-| react-dom      | Runtime     | DOM renderer for React | N/a |
-| react-router   | Runtime     | Declarative routing for React | N/a |
-| react-scripts  | Runtime     | scripts and configuration used by Create React App | N/a |
-| rmwc           | Runtime     | [React Material Web Components](https://jamesmfriedman.github.io/rmwc//) | N/a |
-| sass-loader    | Development | Loads a Sass file and compiles it to CSS | N/a |
-
-In addition to these libraries, which the app explicitly depends on,
-Create React App includes other libraries such as Babel and Webpack. For more
-information about Create React App and it's dependencies consult its
-[documentation](https://github.com/facebook/create-react-app)
-
-### External Dependencies
-
-In addition to libraries Neighborhood Maps also depends on webservices to
-provide with details about places. The [Google Maps Javascript API](https://developers.google.com/maps/documentation/javascript/tutorial)
-used for basic
-searching and to populate information windows on the map with basic information.
-
-Detailed information about a place, displayed when the user clicks the `Details...`
-button in an information window on the map, is obtained from [FourSquare](https://developer.foursquare.com/docs/api).
-
-## Application Structure
-
-The component structure of the neighborhoodmap application is shown in the following
-diagram.
-
-![neighborhoodmap Component Structure](https://github.com/jdmedlock/neighborhoodmap/blob/development/docs/neighborhoodmap%20Component%20Structure.png)
 
 ## Change Log
 
