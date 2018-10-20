@@ -8,13 +8,13 @@ html, body {
 th {
   background-color: #0288d1;
   color: black;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 600;
   height: 1.5rem;
   width: 100%; }
 
 td, tr {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 400;
   height: 1.5rem;
   width: 100%;
@@ -43,10 +43,12 @@ tr:nth-child(odd) {
 
 .mdc-layout-grid {
   padding-left: .5rem;
-  padding-bottom: 0; }
+  padding-bottom: 0;
+  width: 100%; }
 
 .mdc-layout-grid__inner {
-  margin-top: 1rem; }
+  margin-top: 1rem;
+  width: 100%; }
 
 .mdc-floating-label--float-above {
   color: #0288d1 !important;
@@ -62,8 +64,7 @@ tr:nth-child(odd) {
   background-color: #c17900 !important;
   color: black;
   height: 2.25rem;
-  margin: .5rem .25rem .75rem .25rem;
-  min-width: 11rem; }
+  margin: .5rem .25rem .75rem .25rem; }
 
 #page-up-btn,
 #page-down-btn {
@@ -76,15 +77,14 @@ tr:nth-child(odd) {
   margin-top: 1rem;
   margin-right: 1rem; }
 
-/* ==================== Search Results ===================== */
 /* ======================= Map Area ======================== */
-.map-container .mdc-layout-grid {
+.map-container {
   padding: 0; }
 
 #map {
   margin: 0;
   padding: 0;
-  height: 100vw;
+  height: 100vh;
   width: 100vw; }
 
 /* =================== Map Infowindow ===================== */
@@ -148,42 +148,35 @@ tr:nth-child(odd) {
 
 /* ============== Device Specific Overrides ============== */
 /* Larger mobile devices */
-/*
-@media screen and (min-width: 425px) and (max-width: 1023px) {
+@media screen and (min-width: 426px) and (max-width: 1023px) {
+  #map {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 66vw; }
   .venue-name {
-    font-size: 1.2rem !important;
-  }
-
+    font-size: 1rem !important; }
   .address-line {
-    font-size: 1.2rem !important;
-  }
-
+    font-size: 1rem !important; }
   .iw-chip {
-    font-size: 1rem !important;
-  }
-
+    font-size: 1rem !important; }
   #search-text {
-    font-size: 1.2rem;
-  }
-}
-*/
+    font-size: 1rem; } }
+
 /* For laptops and desktops */
-/*
 @media screen and (min-width: 1024px) {
+  #map {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 66vw; }
+  .gm-style-iw {
+    min-height: 12rem !important; }
   .venue-name {
-    font-size: 1.2rem !important;
-  }
-
+    font-size: 1rem !important; }
   .address-line {
-    font-size: 1.2rem !important;
-  }
-
+    font-size: 1rem !important; }
   .iw-chip {
-    font-size: 1rem !important;
-  }
-
+    font-size: 1rem !important; }
   #search-text {
-    font-size: 1.2rem;
-  }
-}
-*/
+    font-size: 1rem; } }

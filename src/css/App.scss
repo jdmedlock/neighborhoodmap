@@ -24,14 +24,14 @@ html, body {
 th {
   background-color: $mdc-theme-primary;
   color: black;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 600;
   height: 1.5rem;
   width: 100%;
 }
 
 td, tr {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 400;
   height: 1.5rem;
   width: 100%;
@@ -64,11 +64,12 @@ tr:nth-child(odd) {background: $table-row-light;}
 .mdc-layout-grid {
   padding-left: .5rem;
   padding-bottom: 0;
-  
+  width: 100%;
 }
 
 .mdc-layout-grid__inner {
   margin-top: 1rem;
+  width: 100%;
 }
 
 .mdc-floating-label--float-above {
@@ -89,7 +90,6 @@ tr:nth-child(odd) {background: $table-row-light;}
   color: black;
   height: 2.25rem;
   margin: .5rem .25rem .75rem .25rem;
-  min-width: 11rem;
 }
 
 #page-up-btn,
@@ -104,20 +104,17 @@ tr:nth-child(odd) {background: $table-row-light;}
   margin-right: 1rem;
 }
 
-/* ==================== Search Results ===================== */
-
-
 
 /* ======================= Map Area ======================== */
 
-.map-container .mdc-layout-grid {
+.map-container {
   padding: 0;
 }
 
 #map {
   margin: 0;
   padding: 0;
-  height: 100vw;
+  height: 100vh;
   width: 100vw;
 }
 
@@ -195,7 +192,14 @@ tr:nth-child(odd) {background: $table-row-light;}
 
 
 /* Larger mobile devices */
-@media screen and (min-width: 425px) and (max-width: 1023px) {
+@media screen and (min-width: 426px) and (max-width: 1023px) {
+  #map {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 66vw;
+  }
+
   .venue-name {
     font-size: 1rem !important;
   }
@@ -215,6 +219,17 @@ tr:nth-child(odd) {background: $table-row-light;}
 
 /* For laptops and desktops */
 @media screen and (min-width: 1024px) {
+  #map {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 66vw;
+  }
+
+  .gm-style-iw {
+    min-height: 12rem !important;
+  }
+
   .venue-name {
     font-size: 1rem !important;
   }
@@ -231,4 +246,3 @@ tr:nth-child(odd) {background: $table-row-light;}
     font-size: 1rem;
   }
 }
-*/
