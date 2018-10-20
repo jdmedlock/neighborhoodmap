@@ -146,11 +146,13 @@ class SearchResults extends React.Component {
                 <ButtonIcon id="page-up-btn" tabIndex="0" role="button"
                   onClick={ this.pageBackResults }
                   disabled={ this.state.pageBackDisabled }
+                  outlined={ this.state.pageBackDisabled }
                   icon="arrow_upward" aria-label="Page up results">
                 </ButtonIcon>
                 <ButtonIcon id="page-down-btn" tabIndex="0" role="button"
                   onClick={ this.pageForwardResults }
                   disabled={ this.state.pageForwardDisabled }
+                  outlined={ this.state.pageForwardDisabled }
                   icon="arrow_downward" aria-label="Page down results">
                 </ButtonIcon>
               </div>
