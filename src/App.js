@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 // React Material Web Components
 import { Grid, GridCell } from '@rmwc/grid';
 import { TopAppBar, TopAppBarRow, TopAppBarSection, TopAppBarTitle } from '@rmwc/top-app-bar';
+import { Typography } from '@rmwc/typography';
 
 // Application Components
 import Map from './components/Map';
@@ -51,7 +52,10 @@ class NeighborhoodMap extends React.Component {
       this.setState({ map: map });
       this.setState({ mapIsLoaded: true });
     })
-    .catch(error => console.log('Failed to load map. Error: ', error));
+    .catch(error => {
+      console.log('Failed to load map. Error: ', error);
+
+    });
   };
 
   /**
@@ -93,9 +97,18 @@ class NeighborhoodMap extends React.Component {
                 ) : ('')
               }
             </GridCell>
-            <GridCell className="map-container" span="4" phone="4" tablet="4" desktop="8">
-              <Map id="map"/>
-            </GridCell>
+            {
+              <GridCell className="map-container" span="4" phone="4" tablet="4" desktop="8">
+              this.state.mapHasError ? (
+                <Typography use="headline5">Google Maps API failure!</Typography>
+                <Typography use="body1">
+                  An error has occurred building the map. Please try again.
+                </Typography>
+              ) : (
+                <Map id="map"/>
+              ) 
+              </GridCell>
+            }
           </Grid>
         </main>
       </div>
