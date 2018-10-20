@@ -32,7 +32,18 @@ You can find the project instructions here -->[Project Specification](https://jd
 The requirements for this project are defined by he [Udacity Rubric](https://review.udacity.com/#!/rubrics/1351/view). However, the main requirements
 for the main page are:
 
-<TBD>
+- Provide the user with a list of popular attractions within 10 miles of
+the Kennedy Space Flight Center in Cape Canaveral, Florida.
+- Allow the users to search for other places in this area.
+- Provide a 'Top Attractions' button to allow the original list of popular
+attractions to be redisplayed following a custom search.
+- Markers are placed on the map for both top attractions as well as places
+identified in a custom search.
+- More information about a location, from [Foursquare](foursquare.com) will
+be display by clicking on either a place name in the search results list or
+on a marker.
+- Up and down arrows at the bottom of the search results list allow the user
+to scroll through the results if there are more than will fit on a single page.
 
 ### Style Guide
 
@@ -46,20 +57,38 @@ for the main page are:
 |                 | Body: Roboto Slab                                       |
 |                 | Caption: Roboto Slab                                    |
 |                 | Button: Roboto                                          |
-| Motion          | Selection: Increase dimension then return to normal size |
+| Motion          | Selection: Markers animate using the Google Maps `BOUNCE`
+setting |
 
-### Starting the App
+### Starting & Building the App
 
-To start the application simply run `npm run start` or `yarn start` from the
-command line to
-start the application environment. The application will automatically open a
+To start the application in development mode simply run `npm run start` or
+`yarn start` from the command line. The application will automatically open a
 new tab in your browser with the url `localhost:3000`.
+
+To start the application in production mode run `npm run serve` or `yarn serve`
+from the command line. In production mode the app will automatically create a
+new browser tab with the url `localhost:5000`. The main difference between
+production and development modes is a Service Worker runs in productin mode to
+support offline execution.
+
+The production version of the app is build by running `npm run publish`.
+
+### Environment Variables
 
 Environment variables that control the operation of the app are defined in the
 `.env` file in the application root. These variables and their usage are shown
 in the following table. It's important to keep in mind that when these settings
 in the `.env` file are changed `npm run build` must be run before they will
 take effect.
+
+Environment variables maintained in the `.env` file are made available to the
+application code via `process.env.<variable-name>`. For example, the
+neighborhood's latitude is accessed in the code by referencing
+`process.env.REACT_APP_LAT`.
+
+Remember that even though this keeps secure tokens like client id's and secrets
+out of application code it does not make them secure.
 
 | Environment Variable    | Description | Example Setting |
 |:------------------------|:------------|:----------------|
@@ -83,7 +112,20 @@ A secondary reason is that there are already a large number of dependencies
 in the app on various libraries. So, a native approach was chosen to help
 reduce the number of dependencies.
 
-2. Why are the API's implemented as `static` functions rather than as an
+2. Why is Material Design used in the applications UI?
+
+This application's UI could have been implemented using any number of scheme's
+as long as it satisfies the need to deliver information to the user in a
+logical and consistent manner. However, Material Design is one of those
+UI/UX schemes, it is widely used, and since it has been proven effective
+in numerous other applications (like all of Google's apps) it was a good fit
+for Neighborhood Maps.
+
+A secondary reason for using it, but one that is just as important, is that
+since one of the goals of this app is to extend our knowledge and
+experience it was chosen as a "stretch" goal.
+
+3. Why are the API's implemented as `static` functions rather than as an
 instantiated class?
 
 The simple reason is they don't have to be. This was implemented in this
@@ -91,7 +133,17 @@ manner to eliminate the need to maintain yet another state. The map and other
 data elements could have been carried in a stateful API, but it was felt that
 the additional level of insulation this would have provided wasn't necessary.
 
-3. Aren't you just showing off by using both Google Maps and Foursquare as
+4. Why is the UI is implementated with a minimal color scheme and few adornments?
+
+There are two reasons for this. First, using a white background increases the
+contrast of other elements making it easier for those with impared vision to
+distinguish between the various visual elements of the app.
+
+Secondly, since the map contains a variety of colors and elements using a
+minimalistic approach minimizes "clashes" between map elements and the
+surrounding visual elements.
+
+5. Aren't you just showing off by using both Google Maps and Foursquare as
 sources for information about places?
 
 Yes, but since this is a "learning" app the benefit has been to expand our
@@ -108,11 +160,7 @@ This app has the following dependencies
 
 | Module/Library | Environment | Description | Related Files |
 |:---------------|:------------|:------------|:--------------|
-| @rmwc          | Runtime     | [React Material Web Components](https://jamesmfriedman.github.io/rmwc//) | N/a |
 | autoprefixer   | Development | Parses CSS and adds vendor prefixes to CSS rules | N/a |
-| babel-core     | Development | Babel compiler core | N/a |
-| babel-loader   | Development | Compiles JavaScript files using babel | N/a |
-| babel-preset-es2015 | Development | Preset for compiling es2015 | N/a |
 | css-loader     | Development | Resolves CSS @import and url() paths | N/a |
 | extract-loader | Development | Extracts the CSS into a .css file | N/a |
 | file-loader    | Development | Serves the .css file as a public URL | N/a |
@@ -126,9 +174,13 @@ This app has the following dependencies
 | react-dom      | Runtime     | DOM renderer for React | N/a |
 | react-router   | Runtime     | Declarative routing for React | N/a |
 | react-scripts  | Runtime     | scripts and configuration used by Create React App | N/a |
+| rmwc           | Runtime     | [React Material Web Components](https://jamesmfriedman.github.io/rmwc//) | N/a |
 | sass-loader    | Development | Loads a Sass file and compiles it to CSS | N/a |
-| webpack        | Development | Module bundler | `webpack.config.js` |
-| webpack-dev-server | Development | Development server | N/a |
+
+In addition to these libraries, which the app explicitly depends on,
+Create React App includes other libraries such as Babel and Webpack. For more
+information about Create React App and it's dependencies consult its
+[documentation](https://github.com/facebook/create-react-app)
 
 ### External Dependencies
 
