@@ -54,6 +54,9 @@ tr:nth-child(odd) {
   color: #0288d1 !important;
   margin-bottom: .5rem !important; }
 
+.mdc-text-field .mdc-line-ripple {
+  background-color: #5eb8ff !important; }
+
 /* ===================== Search Area ======================= */
 #search-text {
   font-size: 1rem;

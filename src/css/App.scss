@@ -77,6 +77,10 @@ tr:nth-child(odd) {background: $table-row-light;}
   margin-bottom: .5rem !important;
 }
 
+.mdc-text-field .mdc-line-ripple {
+  background-color: $mdc-theme-primary-light !important;
+}
+
 /* ===================== Search Area ======================= */
 
 #search-text {
