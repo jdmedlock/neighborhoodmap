@@ -27,6 +27,7 @@ class NeighborhoodMap extends React.Component {
       // Maximum search radius in meters
       searchRadius: Number.parseInt(process.env.REACT_APP_SEARCH_RADIUS,10),
       searchResultsLimit: Number.parseInt(process.env.REACT_APP_SEARCH_RESULTS_LIMIT, 10),
+      mapHasError: false,
       map: {},
       mapIsLoaded: false,
     };
@@ -51,10 +52,11 @@ class NeighborhoodMap extends React.Component {
     .then(map => {
       this.setState({ map: map });
       this.setState({ mapIsLoaded: true });
+      this.setState({ mapHasError: false });
     })
     .catch(error => {
       console.log('Failed to load map. Error: ', error);
-
+      this.setState({ mapHasError: true });
     });
   };
 
@@ -98,16 +100,18 @@ class NeighborhoodMap extends React.Component {
               }
             </GridCell>
             {
-              <GridCell className="map-container" span="4" phone="4" tablet="4" desktop="8">
               this.state.mapHasError ? (
-                <Typography use="headline5">Google Maps API failure!</Typography>
-                <Typography use="body1">
-                  An error has occurred building the map. Please try again.
-                </Typography>
+                <GridCell className="map-container" span="4" phone="4" tablet="4" desktop="8">
+                  <Typography use="headline5">Google Maps API failure!</Typography>
+                  <Typography use="body1">
+                    An error has occurred building the map. Please try again.
+                  </Typography>
+                </GridCell>
               ) : (
-                <Map id="map"/>
-              ) 
-              </GridCell>
+                <GridCell className="map-container" span="4" phone="4" tablet="4" desktop="8">
+                  <Map id="map"/>
+                </GridCell>
+              )
             }
           </Grid>
         </main>
