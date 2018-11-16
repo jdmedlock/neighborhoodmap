@@ -201,12 +201,12 @@ place details drawer is intended to provide more indepth information.
 
 ## Change Log
 
-For more information see [Change Log](https://github.com/jdmedlock/neighborhoodmap/blob/development/CHANGELOG.md)
+For more information see [Change Log](https://github.com/jdmedlock/neighborhoodmap/blob/development/docs/CHANGELOG.md)
 
 ## Contributing
 
-See [Contributing](https://github.com/jdmedlock/neighborhoodmap/blob/development/CONTRIBUTING.md)
-and our [Collaborator Guide](https://github.com/jdmedlock/neighborhoodmap/blob/development/COLLABORATOR_GUIDE.md).
+See [Contributing](https://github.com/jdmedlock/neighborhoodmap/blob/development/docs/CONTRIBUTING.md)
+and our [Collaborator Guide](https://github.com/jdmedlock/neighborhoodmap/blob/development/docs/COLLABORATOR_GUIDE.md).
 
 ## Authors
 
